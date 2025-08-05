@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">Keenon SDK Sample</string>
+
+    <string name="position_type">Positioning mode</string>
+    <string name="position_laser">Lidar</string>
+    <string name="position_label">label</string>
+
+    <string name="demo_title_baselist">Equipment information</string>
+    <string name="demo_desc_baselist">Robot equipment list, module information, version information, mileage, etc</string>
+    <string name="demo_title_chassislist">Chassis function</string>
+    <string name="demo_desc_chassislist">Robot navigation, charging, motor control, etc</string>
+    <string name="demo_title_navigation">Navigation function</string>
+    <string name="demo_desc_navigation">Navigation control and status information</string>
+    <string name="demo_title_pilot">Navigation control</string>
+    <string name="demo_title_motor">Motor function</string>
+    <string name="demo_desc_motor">Motor unlocking control and status information</string>
+    <string name="demo_title_charger">Charging function</string>
+    <string name="demo_desc_charger">Charging control and status information</string>
+    <string name="demo_title_t8_light">T8 Light</string>
+    <string name="demo_desc_t8_light">T8 Dining plate lamp</string>
+    <string name="demo_desc_w3_door">W3 Door</string>
+    <string name="demo_desc_t3_door">T3 Door</string>
+    <string name="demo_desc_map">Map import/export</string>
+    <string name="demo_title_map">Map</string>
+
+
+    <!--navigation-->
+    <string name="auto_pilot_next">next</string>
+    <string name="auto_pilot_pause">Pause navigation</string>
+    <string name="auto_pilot">Start navigation</string>
+    <string name="auto_pilot_resume">Continue navigation</string>
+    <string name="auto_pilot_stop">Stop navigation</string>
+    <string name="auto_pilot_finish">End navigation</string>
+    <string name="auto_pilot_path">Planning path</string>
+    <string name="auto_pilot_query_dest">Get target point</string>
+    <string name="auto_pilot_target_id_title">Target point serial number</string>
+    <string name="auto_pilot_target_id">1</string>
+    <string name="auto_pilot_status_title">Navigation status</string>
+    <string name="please_input_destination">Enter target point</string>
+    <string name="please_input_speed">Please enter the navigation speed</string>
+    <string name="robot_action">Robot chassis function</string>
+    <string name="sensor_action">Robot sensor function</string>
+    <string name="emotion_action">Robot light board function</string>
+
+    <string name="auto_charge">Automatic charging</string>
+    <string name="manual_charge">Manual charging</string>
+    <string name="cancel_charge">Cancel charging</string>
+    <string name="adapter_charge">Adapter charging</string>
+
+
+
+    <string name="auto_send_power">Automatic power reporting</string>
+    <string name="auto_charge_match">Subscription charging matching times</string>
+    <string name="auto_send_location">Report positioning status</string>
+    <string name="auto_send_motor_status">Automatically report motor status</string>
+
+
+    <!--device-->
+    <string name="arm_info">ARM Info</string>
+    <string name="stm32_info">STM32 Info</string>
+    <string name="query_ip">Robot IP</string>
+    <string name="query_power">Get power</string>
+    <string name="query_location">Laser positioning</string>
+    <string name="query_params">Effective model configuration</string>
+    <string name="query_mileage">Get mileage</string>
+    <string name="query_path">Location path information</string>
+    <string name="set_robot_time">Set robot time</string>
+    <string name="set_send_report_position">Report location information</string>
+
+
+    <!--motor-->
+    <string name="motor_enable">Motor status</string>
+    <string name="motor_unlock">Unlock</string>
+    <string name="motor_lock">locking</string>
+    <string name="motor_hrc">HRC Unlock</string>
+    <string name="motor_encoder">Query motor encoder</string>
+    <string name="motor_health">Query motor health status</string>
+    <string name="motor_speed">Query motor speed</string>
+
+
+    <string name="arrival">Approximate arrival</string>
+    <string name="timeout_tip">Avoidance timeout (range: 0 ~ 300 s)</string>
+    <string name="repeat_time">Number of cycles (- 1: infinite)</string>
+    <string name="speed">Walking speed(cm/s)</string>
+    <string name="continue_nav">Continue to navigate to the next point~</string>
+    <string name="avoid_tip">Can you excuse me</string>
+    <string name="no_more_point">There is no next target point</string>
+    <string name="arrive_tip_1">Arrive at the destination, stay for %s milliseconds and automatically go to the next point</string>
+    <string name="arrive_tip_2">When you reach the destination, please click manually to continue navigation</string>
+    <string name="go_to">go to</string>
+    <string name="block_timeout_tip">Blocking timeout！</string>
+    <string name="str_content">Welcome to Qinglang robot Android SDK v</string>
+    <string name="str_init_text">SDK Init：</string>
+
+    <string name="led_effect_time">Duration in milliseconds</string>
+    <string name="action_start">start</string>
+    <string name="str_tips_1">Please enter the lighting effect time</string>
+    <string name="auto_send_cover_status">Please enter the lighting effect time</string>
+
+    <string name="str_door_1">Door1</string>
+    <string name="str_door_2">Door2</string>
+    <string name="str_door_3">Door3</string>
+    <string name="str_door_4">Door4</string>
+</resources>

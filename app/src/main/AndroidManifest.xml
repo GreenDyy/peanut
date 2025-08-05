@@ -1,0 +1,54 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.keenon.peanut.sample">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:requestLegacyExternalStorage="true"
+        android:name=".DemoApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".KeenonApiDemoMain"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".base.BaseDemo"
+            android:label="@string/demo_title_baselist" />
+        <activity
+            android:name=".chassis.ChassisList"
+            android:label="@string/demo_title_chassislist" />
+        <activity
+            android:name=".chassis.NavigationDemo"
+            android:label="@string/demo_title_navigation" />
+        <activity
+            android:name=".chassis.NavigationActivity"
+            android:label="@string/demo_title_pilot" />
+        <activity
+            android:name=".chassis.ChargerDemo"
+            android:label="@string/demo_title_charger" />
+        <activity
+            android:name=".chassis.MotorDemo"
+            android:label="@string/demo_title_motor" />
+        <activity android:name=".util.BaseActivity"></activity>
+        <activity android:name=".chassis.T8LightDemo" />
+        <activity android:name=".chassis.DoorDemo" />
+        <activity android:name=".chassis.MapDemo" />
+        <activity android:name=".chassis.T3DoorDemo" />
+    </application>
+
+</manifest>
