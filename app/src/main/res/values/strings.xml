@@ -9,6 +9,8 @@
     <string name="demo_desc_baselist">Robot equipment list, module information, version information, mileage, etc</string>
     <string name="demo_title_chassislist">Chassis function</string>
     <string name="demo_desc_chassislist">Robot navigation, charging, motor control, etc</string>
+    <string name="demo_title_hello_duy">Hello Duy Function</string>
+    <string name="demo_desc_hello_duy">Custom function to display hello message for Duy</string>
     <string name="demo_title_navigation">Navigation function</string>
     <string name="demo_desc_navigation">Navigation control and status information</string>
     <string name="demo_title_pilot">Navigation control</string>
@@ -101,4 +103,5 @@
     <string name="str_door_2">Door2</string>
     <string name="str_door_3">Door3</string>
     <string name="str_door_4">Door4</string>
+    <string name="test_api">Test API</string>
 </resources>

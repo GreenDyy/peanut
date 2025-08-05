@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+
     <application
         android:requestLegacyExternalStorage="true"
         android:name=".DemoApplication"
@@ -45,6 +46,8 @@
             android:name=".chassis.MotorDemo"
             android:label="@string/demo_title_motor" />
         <activity android:name=".util.BaseActivity"></activity>
+        <activity android:name=".test.HelloDuyActivity"
+                  android:label="@string/demo_title_hello_duy" />
         <activity android:name=".chassis.T8LightDemo" />
         <activity android:name=".chassis.DoorDemo" />
         <activity android:name=".chassis.MapDemo" />

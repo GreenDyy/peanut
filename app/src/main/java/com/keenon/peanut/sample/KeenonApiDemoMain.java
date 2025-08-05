@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.keenon.peanut.sample.base.BaseDemo;
 import com.keenon.peanut.sample.chassis.ChassisList;
 import com.keenon.peanut.sample.util.BaseActivity;
+import com.keenon.peanut.sample.test.HelloDuyActivity;
 import com.keenon.common.constant.PeanutConstants;
 import com.keenon.common.utils.LogUtils;
 import com.keenon.common.utils.VersionInfo;
@@ -56,7 +57,8 @@ public class KeenonApiDemoMain extends BaseActivity {
 
   private static final DemoInfo[] DEMOS = {
           new DemoInfo(R.drawable.info, R.string.demo_title_baselist, R.string.demo_desc_baselist, BaseDemo.class),
-          new DemoInfo(R.drawable.chassis, R.string.demo_title_chassislist, R.string.demo_desc_chassislist, ChassisList.class)
+          new DemoInfo(R.drawable.chassis, R.string.demo_title_chassislist, R.string.demo_desc_chassislist, ChassisList.class),
+          new DemoInfo(R.drawable.util, R.string.demo_title_hello_duy, R.string.demo_desc_hello_duy, HelloDuyActivity.class)
   };
   private boolean isPermissionRequested;
   private PeanutSDK.ErrorListener mErrorListener = errorCode -> {

@@ -134,7 +134,15 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_slam_location" />
 
-
+            <Button
+                android:id="@+id/btn_test_api"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/test_api"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cb_navigation_position" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
