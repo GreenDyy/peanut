@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- Header Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/bg_card_item"
+        android:padding="16dp"
+        android:layout_margin="16dp">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_dialog"
+            android:background="@drawable/bg_card_item"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dialog - Cuộc hội thoại"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ghi âm và chuyển đổi thành văn bản"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <!-- Dialog Content Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_item"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp">
+
+        <!-- Dialog Content -->
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:background="#FFFFFF">
+
+            <TextView
+                android:id="@+id/tv_dialog_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chào mừng đến với Dialog!\n\nNhấn 'Bắt đầu hội thoại' để bắt đầu ghi âm và chuyển đổi thành văn bản.\n\n"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:lineSpacingExtra="4dp"
+                android:fontFamily="monospace"/>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <!-- Control Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Start/Stop Button -->
+        <Button
+            android:id="@+id/btn_start_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="🎙️ Bắt đầu hội thoại"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btn_stop_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="⏹️ Dừng hội thoại"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Clear Button -->
+        <Button
+            android:id="@+id/btn_clear_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="🗑️ Xóa cuộc hội thoại"
+            android:textSize="14sp"
+            android:textColor="#F44336"
+            android:background="@drawable/bg_card_item"/>
+
+    </LinearLayout>
+
+</LinearLayout> 

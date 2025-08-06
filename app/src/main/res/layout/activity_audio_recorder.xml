@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#F5F5F5">
+
+    <!-- Header Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="32dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/audio_recorder"
+            android:background="@drawable/bg_card_item"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Audio Recorder"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ghi âm và phát audio"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <!-- Status Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_item"
+        android:padding="20dp"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sẵn sàng ghi âm"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:gravity="center"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#2196F3"
+            android:gravity="center"
+            android:fontFamily="monospace"/>
+
+    </LinearLayout>
+
+    <!-- Control Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="24dp">
+
+        <Button
+            android:id="@+id/btn_record"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:text="Ghi âm"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginEnd="8dp"
+            android:drawableTop="@drawable/ic_record"
+            android:drawablePadding="8dp"/>
+
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:text="Phát"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginStart="8dp"
+            android:drawableTop="@drawable/ic_play"
+            android:drawablePadding="8dp"/>
+
+    </LinearLayout>
+
+    <!-- Stop Button -->
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Dừng"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/bg_button_primary"
+        android:drawableTop="@drawable/ic_stop"
+        android:drawablePadding="8dp"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Check Directory Button -->
+    <Button
+        android:id="@+id/btn_check_directory"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Kiểm tra thư mục lưu file"
+        android:textSize="14sp"
+        android:textColor="#2196F3"
+        android:background="@drawable/bg_card_item"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Instructions -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_item"
+        android:padding="16dp"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hướng dẫn sử dụng:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Nhấn 'Ghi âm' để bắt đầu ghi âm\n2. Nhấn 'Dừng' để kết thúc ghi âm\n3. Nhấn 'Phát' để nghe lại audio\n4. File audio sẽ được lưu trong thư mục Downloads\n5. Kiểm tra Logcat để xem đường dẫn đầy đủ"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:lineSpacingExtra="4dp"/>
+
+    </LinearLayout>
+
+</LinearLayout> 

@@ -67,6 +67,7 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.68'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation "androidx.multidex:multidex:2.0.1"
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
     // 友盟统计SDK
     implementation  'com.umeng.umsdk:common:9.4.0'// 必选
     implementation  'com.umeng.umsdk:asms:1.2.3'// 必选

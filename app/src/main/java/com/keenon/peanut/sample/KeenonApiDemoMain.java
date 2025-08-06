@@ -28,6 +28,9 @@ import com.keenon.peanut.sample.base.BaseDemo;
 import com.keenon.peanut.sample.chassis.ChassisList;
 import com.keenon.peanut.sample.util.BaseActivity;
 import com.keenon.peanut.sample.test.HelloDuyActivity;
+import com.keenon.peanut.sample.test.AudioRecorderActivity;
+import com.keenon.peanut.sample.test.DialogActivity;
+import com.keenon.peanut.sample.test.RobotPeanutActivity;
 import com.keenon.common.constant.PeanutConstants;
 import com.keenon.common.utils.LogUtils;
 import com.keenon.common.utils.VersionInfo;
@@ -58,7 +61,10 @@ public class KeenonApiDemoMain extends BaseActivity {
   private static final DemoInfo[] DEMOS = {
           new DemoInfo(R.drawable.info, R.string.demo_title_baselist, R.string.demo_desc_baselist, BaseDemo.class),
           new DemoInfo(R.drawable.chassis, R.string.demo_title_chassislist, R.string.demo_desc_chassislist, ChassisList.class),
-          new DemoInfo(R.drawable.util, R.string.demo_title_hello_duy, R.string.demo_desc_hello_duy, HelloDuyActivity.class)
+          new DemoInfo(R.drawable.util, R.string.demo_title_hello_duy, R.string.demo_desc_hello_duy, HelloDuyActivity.class),
+          new DemoInfo(R.drawable.audio_recorder, R.string.demo_title_audio_recorder, R.string.demo_desc_audio_recorder, AudioRecorderActivity.class),
+          new DemoInfo(R.drawable.ic_dialog, R.string.demo_title_dialog, R.string.demo_desc_dialog, DialogActivity.class),
+          new DemoInfo(R.drawable.chassis, R.string.demo_title_robot_peanut, R.string.demo_desc_robot_peanut, RobotPeanutActivity.class)
   };
   private boolean isPermissionRequested;
   private PeanutSDK.ErrorListener mErrorListener = errorCode -> {
@@ -208,6 +214,27 @@ public class KeenonApiDemoMain extends BaseActivity {
       }
     }
   }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    if (requestCode == 1000) {
+      boolean allGranted = true;
+      for (int result : grantResults) {
+        if (result != PackageManager.PERMISSION_GRANTED) {
+          allGranted = false;
+          break;
+        }
+      }
+      if (allGranted) {
+        initView();  // <-- Sau khi được cấp quyền thì mới init
+      } else {
+        text.setTextColor(Color.RED);
+        text.setText("Thiếu quyền. Vui lòng cấp đầy đủ quyền để sử dụng ứng dụng.");
+      }
+    }
+  }
+
 
   private static class DemoInfo {
     private final int image;

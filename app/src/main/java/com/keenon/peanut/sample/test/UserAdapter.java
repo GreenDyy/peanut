@@ -59,20 +59,15 @@ public class UserAdapter extends BaseAdapter {
             holder.tvUserName.setText(user.getName());
             holder.tvUserId.setText("#" + user.getId());
             holder.tvUserEmail.setText(user.getEmail());
-            
-            if (user.getAddress() != null) {
-                holder.tvUserAddress.setText(user.getAddress().getFullAddress());
-            } else {
-                holder.tvUserAddress.setText("Không có địa chỉ");
-            }
-            
-            if (user.getCompany() != null) {
-                holder.tvUserCompany.setText(user.getCompany().getName());
-            } else {
-                holder.tvUserCompany.setText("Không có thông tin công ty");
-            }
-            
             holder.tvUserPhone.setText(user.getPhone());
+
+            // Cập nhật địa chỉ
+            holder.tvUserAddress.setText(user.getAddress() != null ?
+                    user.getAddress().getFullAddress() : "Không có địa chỉ");
+
+            // Cập nhật thông tin công ty
+            holder.tvUserCompany.setText(user.getCompany() != null ?
+                    user.getCompany().getName() : "Không có thông tin công ty");
         }
 
         return convertView;

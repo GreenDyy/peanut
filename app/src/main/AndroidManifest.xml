@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 
     <application
@@ -48,6 +49,12 @@
         <activity android:name=".util.BaseActivity"></activity>
         <activity android:name=".test.HelloDuyActivity"
                   android:label="@string/demo_title_hello_duy" />
+        <activity android:name=".test.AudioRecorderActivity"
+                  android:label="@string/demo_title_audio_recorder" />
+        <activity android:name=".test.DialogActivity"
+                  android:label="@string/demo_title_dialog" />
+        <activity android:name=".test.RobotPeanutActivity"
+                  android:label="@string/demo_title_robot_peanut" />
         <activity android:name=".chassis.T8LightDemo" />
         <activity android:name=".chassis.DoorDemo" />
         <activity android:name=".chassis.MapDemo" />

@@ -1,6 +1,6 @@
 package com.keenon.peanut.sample.test;
 
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,11 +17,13 @@ import com.google.gson.reflect.TypeToken;
 import com.keenon.peanut.sample.R;
 import com.keenon.peanut.sample.util.BaseActivity;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.IOException;
 import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class HelloDuyActivity extends BaseActivity {
     private TextView tvStatus;
     private UserAdapter userAdapter;
     private List<User> userList;
+    private OkHttpClient okHttpClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,27 @@ public class HelloDuyActivity extends BaseActivity {
         userList = new ArrayList<>();
         userAdapter = new UserAdapter(this, userList);
         listViewUsers.setAdapter(userAdapter);
+        
+        // Khởi tạo OkHttpClient
+        okHttpClient = new OkHttpClient();
+
+        // Set click listener cho ListView items
+        listViewUsers.setOnItemClickListener((parent, view, position, id) -> {
+            User selectedUser = userAdapter.getItem(position);
+            if (selectedUser != null) {
+                Gson gson = new Gson();
+
+                // Chuyển đối tượng thành chuỗi JSON
+                String userJson = gson.toJson(selectedUser);
+
+                // Log chuỗi JSON ra Logcat
+                Log.d("HelloDuyActivity", "User selected: " + userJson);
+                Toast.makeText(HelloDuyActivity.this,
+                        "User ID: " + selectedUser.getId(),
+                        Toast.LENGTH_SHORT).show();
+                System.out.println("User selected: " + userJson);
+            }
+        });
 
         // Set click listener cho nút Test API
         btnTestApi.setOnClickListener(new View.OnClickListener() {
@@ -64,118 +88,131 @@ public class HelloDuyActivity extends BaseActivity {
                 userList.clear();
                 userAdapter.notifyDataSetChanged();
                 tvStatus.setText("Đang gọi API...");
-                new ApiCallTask().execute();
+                callApiWithOkHttp();
             }
         });
     }
     
 
     
-    private class ApiCallTask extends AsyncTask<Void, Void, String> {
+    private void callApiWithOkHttp() {
+        Toast.makeText(this, "Đang gọi API với OkHttp...", Toast.LENGTH_SHORT).show();
         
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Toast.makeText(HelloDuyActivity.this, "Đang gọi API...", Toast.LENGTH_SHORT).show();
-        }
+        String url = "https://jsonplaceholder.typicode.com/users";
+        Log.d("OKHTTP_CALL", "Starting OkHttp API call to: " + url);
         
-        @Override
-        protected String doInBackground(Void... voids) {
-            try {
-                Log.d("API_CALL", "Starting API call to: https://jsonplaceholder.typicode.com/users");
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("OKHTTP_CALL", "API call failed: " + e.getMessage(), e);
                 
-                URL url = new URL("https://jsonplaceholder.typicode.com/users");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-                connection.setConnectTimeout(10000);
-                connection.setReadTimeout(10000);
-                
-                Log.d("API_CALL", "Connecting to API...");
-                int responseCode = connection.getResponseCode();
-                Log.d("API_CALL", "Response code: " + responseCode);
-                
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    Log.d("API_CALL", "Reading response...");
-                    BufferedReader reader = new BufferedReader(
-                            new InputStreamReader(connection.getInputStream()));
-                    StringBuilder response = new StringBuilder();
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        response.append(line);
+                // Cập nhật UI trên main thread
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tvStatus.setText("Lỗi kết nối: " + e.getMessage());
+                        Toast.makeText(HelloDuyActivity.this, 
+                                "Lỗi kết nối: " + e.getMessage(), 
+                                Toast.LENGTH_LONG).show();
                     }
-                    reader.close();
-                    
-                    String result = response.toString();
-                    Log.d("API_CALL", "Response length: " + result.length() + " characters");
-                    return result;
-                } else {
-                    Log.e("API_CALL", "HTTP Error: " + responseCode);
-                    return "Lỗi HTTP: " + responseCode;
-                }
-            } catch (Exception e) {
-                Log.e("API_CALL", "Exception during API call: " + e.getMessage(), e);
-                return "Lỗi: " + e.getMessage();
+                });
             }
-        }
-        
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
             
-            try {
-                // Log raw response
-                Log.d("API_CALL", "Raw response: " + result);
-                
-                // Parse JSON response using Gson
-                Gson gson = new Gson();
-                Type userListType = new TypeToken<List<User>>(){}.getType();
-                List<User> users = gson.fromJson(result, userListType);
-                
-                if (users != null && !users.isEmpty()) {
-                    // Update UI
-                    userList.clear();
-                    userList.addAll(users);
-                    userAdapter.notifyDataSetChanged();
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String responseBody = response.body().string();
+                    Log.d("OKHTTP_CALL", "Response received, length: " + responseBody.length() + " characters");
+                    Log.d("OKHTTP_CALL", "Response code: " + response.code());
                     
-                    // Update status
-                    tvStatus.setText("Đã tải " + users.size() + " users thành công!");
-                    
-                    // Log detailed user information
-                    Log.d("API_CALL", "Total users: " + users.size());
-                    
-                    for (int i = 0; i < Math.min(users.size(), 3); i++) { // Log first 3 users
-                        User user = users.get(i);
-                        Log.d("API_CALL", "User " + (i + 1) + ":");
-                        Log.d("API_CALL", "  - ID: " + user.getId());
-                        Log.d("API_CALL", "  - Name: " + user.getName());
-                        Log.d("API_CALL", "  - Username: " + user.getUsername());
-                        Log.d("API_CALL", "  - Email: " + user.getEmail());
+                    // Parse JSON trên background thread
+                    try {
+                        Gson gson = new Gson();
+                        Type userListType = new TypeToken<List<User>>(){}.getType();
+                        List<User> users = gson.fromJson(responseBody, userListType);
                         
-                        if (user.getAddress() != null) {
-                            Log.d("API_CALL", "  - Address: " + user.getAddress().getFullAddress());
-                        }
+                        // Cập nhật UI trên main thread
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                handleApiSuccess(users);
+                            }
+                        });
                         
-                        if (user.getCompany() != null) {
-                            Log.d("API_CALL", "  - Company: " + user.getCompany().getName());
-                        }
+                    } catch (Exception e) {
+                        Log.e("OKHTTP_CALL", "Error parsing JSON: " + e.getMessage(), e);
                         
-                        Log.d("API_CALL", "  - Phone: " + user.getPhone());
-                        Log.d("API_CALL", "  - Website: " + user.getWebsite());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                tvStatus.setText("Lỗi parse JSON: " + e.getMessage());
+                                Toast.makeText(HelloDuyActivity.this, 
+                                        "Lỗi parse JSON: " + e.getMessage(), 
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
-                    
-                    Toast.makeText(HelloDuyActivity.this, 
-                            "API call thành công! Đã tải " + users.size() + " users", 
-                            Toast.LENGTH_LONG).show();
                 } else {
-                    tvStatus.setText("Không có dữ liệu users");
-                    Toast.makeText(HelloDuyActivity.this, "Không có dữ liệu users", Toast.LENGTH_LONG).show();
+                    Log.e("OKHTTP_CALL", "HTTP Error: " + response.code());
+                    
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tvStatus.setText("Lỗi HTTP: " + response.code());
+                            Toast.makeText(HelloDuyActivity.this, 
+                                    "Lỗi HTTP: " + response.code(), 
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+                response.close();
+            }
+        });
+    }
+    
+    private void handleApiSuccess(List<User> users) {
+        if (users != null && !users.isEmpty()) {
+            // Update UI
+            userList.clear();
+            userList.addAll(users);
+            userAdapter.notifyDataSetChanged();
+            
+            // Update status
+            tvStatus.setText("Đã tải " + users.size() + " users thành công với OkHttp!");
+            
+            // Log detailed user information
+            Log.d("OKHTTP_CALL", "Total users: " + users.size());
+            
+            for (int i = 0; i < Math.min(users.size(), 3); i++) { // Log first 3 users
+                User user = users.get(i);
+                Log.d("OKHTTP_CALL", "User " + (i + 1) + ":");
+                Log.d("OKHTTP_CALL", "  - ID: " + user.getId());
+                Log.d("OKHTTP_CALL", "  - Name: " + user.getName());
+                Log.d("OKHTTP_CALL", "  - Username: " + user.getUsername());
+                Log.d("OKHTTP_CALL", "  - Email: " + user.getEmail());
+                
+                if (user.getAddress() != null) {
+                    Log.d("OKHTTP_CALL", "  - Address: " + user.getAddress().getFullAddress());
                 }
                 
-            } catch (Exception e) {
-                Log.e("API_CALL", "Error parsing JSON: " + e.getMessage(), e);
-                tvStatus.setText("Lỗi: " + e.getMessage());
-                Toast.makeText(HelloDuyActivity.this, "Lỗi parse JSON: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                if (user.getCompany() != null) {
+                    Log.d("OKHTTP_CALL", "  - Company: " + user.getCompany().getName());
+                }
+                
+                Log.d("OKHTTP_CALL", "  - Phone: " + user.getPhone());
+                Log.d("OKHTTP_CALL", "  - Website: " + user.getWebsite());
             }
+            
+            Toast.makeText(this, 
+                    "OkHttp API call thành công! Đã tải " + users.size() + " users", 
+                    Toast.LENGTH_LONG).show();
+        } else {
+            tvStatus.setText("Không có dữ liệu users");
+            Toast.makeText(this, "Không có dữ liệu users", Toast.LENGTH_LONG).show();
         }
     }
 }

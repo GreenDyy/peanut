@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- Header Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/bg_card_item"
+        android:padding="16dp"
+        android:layout_margin="16dp">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/chassis"
+            android:background="@drawable/bg_card_item"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Robot Peanut - Tất cả API"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tất cả chức năng có trong PeanutRuntime và PeanutSDK"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <!-- Content Area -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Runtime API Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_item"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🔧 PEANUT RUNTIME API"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#2196F3"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Runtime Control Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btn_runtime_start"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Start Runtime"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_check_status"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Check Status"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btn_runtime_location"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Location"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_runtime_get_path"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Get Path (N/A)"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btn_runtime_sync_params"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Sync Params (N/A)"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_runtime_set_time"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Set Time (N/A)"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btn_runtime_set_work_mode_auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Auto Mode"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_runtime_set_work_mode_mfg"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="MFG Mode"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <!-- Runtime Info Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btn_runtime_get_arm_info"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Arm Info"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_runtime_get_stm32_info"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="STM32 Info"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btn_runtime_get_ip"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Get IP"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_runtime_get_dest_list"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Dest List"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_runtime_get_power"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Get Power"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_runtime_get_mileage"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Get Mileage"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- SDK API Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_item"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="⚙️ PEANUT SDK API"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FF9800"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Motor Control -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Motor Control:"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btn_sdk_motor_enable"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Enable"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_sdk_motor_disable"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Disable"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btn_sdk_motor_hrc_enable"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="HRC Enable"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_sdk_motor_hrc_disable"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="HRC Disable"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <Button
+                        android:id="@+id/btn_sdk_motor_get_state"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Get State"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_sdk_motor_get_encoder"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Get Encoder"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <Button
+                        android:id="@+id/btn_sdk_motor_get_speed"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Get Speed"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_sdk_motor_get_health"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Get Health"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <!-- Door Control -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Door Control:"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btn_sdk_door_open_1"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Door1 Open"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_sdk_door_close_1"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Door1 Close"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btn_sdk_door_open_2"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Door2 Open"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_sdk_door_close_2"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Door2 Close"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btn_sdk_door_open_3"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Door3 Open"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_sdk_door_close_3"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Door3 Close"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_sdk_door_open_4"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Door4 Open"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginEnd="4dp"/>
+
+                    <Button
+                        android:id="@+id/btn_sdk_door_close_4"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Door4 Close"
+                        android:textSize="12sp"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_primary"
+                        android:layout_marginStart="4dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Subscribe Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_item"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="📡 SUBSCRIBE TOPICS"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#4CAF50"
+                    android:layout_marginBottom="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <CheckBox
+                        android:id="@+id/cb_position_status"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Position Status"
+                        android:textSize="12sp"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_navigation_path"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Navigation Path"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <CheckBox
+                        android:id="@+id/cb_motor_status"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Motor Status"
+                        android:textSize="12sp"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_bottom_raw"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Bottom Raw"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/cb_door_switch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Door Switch"
+                        android:textSize="12sp"/>
+
+                    <CheckBox
+                        android:id="@+id/cb_charge_match"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Charge Match"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Log Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_item"
+        android:layout_margin="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📋 API LOG"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:padding="12dp"
+            android:background="#E0E0E0"/>
+
+        <ScrollView
+            android:id="@+id/sv_api_log"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/tv_api_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chào mừng đến với Robot Peanut API!\n\nNhấn các nút để test các chức năng API.\n\n"
+                android:textSize="12sp"
+                android:textColor="#333333"
+                android:fontFamily="monospace"
+                android:lineSpacingExtra="2dp"/>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout> 
