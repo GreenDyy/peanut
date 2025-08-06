@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chọn Chức Năng"
+        android:textSize="28sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="50dp" />
+
+    <Button
+        android:id="@+id/btn_can_cuoc"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Căn Cước Công Dân"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@drawable/bg_button_primary"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="20dp"
+        android:elevation="8dp" />
+
+    <Button
+        android:id="@+id/btn_tam_tru"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Khai Báo Tạm Trú"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@drawable/bg_button_primary"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="20dp"
+        android:elevation="8dp" />
+
+    <Button
+        android:id="@+id/btn_xac_nhan_cu_tru"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Xin Giấy Xác Nhận Cư Trú"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@drawable/bg_button_primary"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="20dp"
+        android:elevation="8dp" />
+
+    <Button
+        android:id="@+id/btn_test_tts"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Test Text To Speech"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@drawable/bg_button_primary"
+        android:textColor="@android:color/white"
+        android:elevation="8dp" />
+
+</LinearLayout> 

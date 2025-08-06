@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Keenon SDK Sample</string>
+    <string name="app_name">Keenon SDK Sample-A</string>
 
     <string name="position_type">Positioning mode</string>
     <string name="position_laser">Lidar</string>
@@ -17,6 +17,8 @@
     <string name="demo_desc_dialog">Speech to text conversation with AI bot</string>
     <string name="demo_title_robot_peanut">Robot Peanut API</string>
     <string name="demo_desc_robot_peanut">All PeanutRuntime and PeanutSDK functions</string>
+    <string name="demo_title_main_app">Main App</string>
+    <string name="demo_desc_main_app">Robot Assistant with Service Functions</string>
     <string name="demo_title_navigation">Navigation function</string>
     <string name="demo_desc_navigation">Navigation control and status information</string>
     <string name="demo_title_pilot">Navigation control</string>

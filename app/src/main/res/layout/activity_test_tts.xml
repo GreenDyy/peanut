@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Text To Speech"
+        android:textSize="28sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="50dp" />
+
+    <EditText
+        android:id="@+id/et_input_text"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:hint="Nhập text để phát âm thanh..."
+        android:textSize="16sp"
+        android:background="@drawable/bg_card_item"
+        android:padding="15dp"
+        android:gravity="top|start"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/darker_gray"
+        android:layout_marginBottom="30dp"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Phát Âm Thanh"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@drawable/bg_button_primary"
+        android:textColor="@android:color/white"
+        android:elevation="8dp" />
+
+</LinearLayout> 

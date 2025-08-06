@@ -31,6 +31,7 @@ import com.keenon.peanut.sample.test.HelloDuyActivity;
 import com.keenon.peanut.sample.test.AudioRecorderActivity;
 import com.keenon.peanut.sample.test.DialogActivity;
 import com.keenon.peanut.sample.test.RobotPeanutActivity;
+import com.keenon.peanut.sample.test.MainAppActivity;
 import com.keenon.common.constant.PeanutConstants;
 import com.keenon.common.utils.LogUtils;
 import com.keenon.common.utils.VersionInfo;
@@ -64,7 +65,8 @@ public class KeenonApiDemoMain extends BaseActivity {
           new DemoInfo(R.drawable.util, R.string.demo_title_hello_duy, R.string.demo_desc_hello_duy, HelloDuyActivity.class),
           new DemoInfo(R.drawable.audio_recorder, R.string.demo_title_audio_recorder, R.string.demo_desc_audio_recorder, AudioRecorderActivity.class),
           new DemoInfo(R.drawable.ic_dialog, R.string.demo_title_dialog, R.string.demo_desc_dialog, DialogActivity.class),
-          new DemoInfo(R.drawable.chassis, R.string.demo_title_robot_peanut, R.string.demo_desc_robot_peanut, RobotPeanutActivity.class)
+          new DemoInfo(R.drawable.chassis, R.string.demo_title_robot_peanut, R.string.demo_desc_robot_peanut, RobotPeanutActivity.class),
+          new DemoInfo(R.drawable.util, R.string.demo_title_main_app, R.string.demo_desc_main_app, MainAppActivity.class)
   };
   private boolean isPermissionRequested;
   private PeanutSDK.ErrorListener mErrorListener = errorCode -> {
@@ -160,6 +162,36 @@ public class KeenonApiDemoMain extends BaseActivity {
     }
   }
 
+  private void checkAndInitSDK() {
+    if (Build.VERSION.SDK_INT >= 23) {
+      ArrayList<String> permissionsList = new ArrayList<>();
+      String[] permissions = {
+              Manifest.permission.ACCESS_NETWORK_STATE,
+              Manifest.permission.INTERNET,
+              Manifest.permission.WRITE_EXTERNAL_STORAGE,
+              Manifest.permission.READ_EXTERNAL_STORAGE,
+              Manifest.permission.ACCESS_WIFI_STATE,
+              Manifest.permission.READ_PHONE_STATE,
+      };
+
+      for (String perm : permissions) {
+        if (PackageManager.PERMISSION_GRANTED != checkSelfPermission(perm)) {
+          permissionsList.add(perm);
+        }
+      }
+
+      if (!permissionsList.isEmpty()) {
+        String[] strings = new String[permissionsList.size()];
+        requestPermissions(permissionsList.toArray(strings), 1000); // Đổi requestCode để dễ quản lý hơn
+      } else {
+        // Đã có tất cả các quyền, tiến hành khởi tạo SDK
+        initSDK(getType());
+      }
+    } else {
+      // Phiên bản Android dưới 6.0, không cần xin quyền động
+      initSDK(getType());
+    }
+  }
   private void initSDK(String ip) {
     PeanutConfig.getConfig()
             .setLinkType(PeanutConstants.REMOTE_LINK_PROXY.equals(ip) ? PeanutConstants.LinkType.COAP : PeanutConstants.LinkType.COM_COAP)
@@ -218,7 +250,7 @@ public class KeenonApiDemoMain extends BaseActivity {
   @Override
   public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    if (requestCode == 1000) {
+    if (requestCode == 1000) { // Xử lý kết quả từ request mới
       boolean allGranted = true;
       for (int result : grantResults) {
         if (result != PackageManager.PERMISSION_GRANTED) {
@@ -227,7 +259,8 @@ public class KeenonApiDemoMain extends BaseActivity {
         }
       }
       if (allGranted) {
-        initView();  // <-- Sau khi được cấp quyền thì mới init
+        // Đã có quyền, khởi tạo SDK với loại kết nối đã lưu
+        initSDK(getType());
       } else {
         text.setTextColor(Color.RED);
         text.setText("Thiếu quyền. Vui lòng cấp đầy đủ quyền để sử dụng ứng dụng.");
