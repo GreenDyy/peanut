@@ -14,9 +14,10 @@ import com.keenon.common.utils.LogUtils;
 import com.keenon.sdk.component.charger.PeanutCharger;
 import com.keenon.sdk.component.charger.common.Charger;
 import com.keenon.sdk.component.charger.common.ChargerInfo;
-import com.keenon.sdk.constant.TopicName;
-import com.keenon.sdk.external.IDataCallback;
-import com.keenon.sdk.external.PeanutSDK;
+import com.keenon.sdk.constant.RobotTopic;
+// SDK mới không còn sử dụng PeanutSDK.subscribe() và IDataCallback
+// import com.keenon.sdk.external.IDataCallback;
+// import com.keenon.sdk.external.PeanutSDK;
 import com.keenon.sdk.hedera.model.ApiError;
 
 import butterknife.BindView;
@@ -34,22 +35,32 @@ public class ChargerDemo extends BaseActivity {
   PeanutCharger mPeanutCharger;
   private StringBuilder sb = new StringBuilder();
 
-  //充电回调
+  //充电回调 - SDK mới sử dụng Charger.Listener thay vì subscribe pattern
   Charger.Listener listener=new Charger.Listener() {
     @Override
     public void onChargerInfoChanged(int event, ChargerInfo chargerInfo) {
       Log.d(TAG, "event = " + event +
               " Power = " + chargerInfo.getPower() + " ChargeEvent = " + chargerInfo.getEvent());
+      
+      // Log chi tiết cho UI
+      PrintLnLog.d(ChargerDemo.this, tvApiLog, svApiLog, sb, 
+        "Charger Info - Event: " + event + ", Power: " + chargerInfo.getPower() + 
+        "%, ChargeEvent: " + chargerInfo.getEvent());
     }
 
     @Override
     public void onChargerStatusChanged(int status) {
-      PrintLnLog.d(ChargerDemo.this, tvApiLog, svApiLog, sb, "status = " + status);
+      PrintLnLog.d(ChargerDemo.this, tvApiLog, svApiLog, sb, "Charger Status = " + status);
+      
+      // Thông tin này tương đương với CHARGE_MATCH_TIMES trong subscribe pattern cũ
+      if (status > 0) {
+        PrintLnLog.d(ChargerDemo.this, tvApiLog, svApiLog, sb, "Charge Match Times: " + status);
+      }
     }
 
     @Override
     public void onError(int errorCode) {
-      PrintLnLog.d(ChargerDemo.this, tvApiLog, svApiLog, sb, "errorCode = " + errorCode);
+      PrintLnLog.d(ChargerDemo.this, tvApiLog, svApiLog, sb, "Charger Error Code = " + errorCode);
     }
   };
 
@@ -69,17 +80,8 @@ public class ChargerDemo extends BaseActivity {
         .build();
     mPeanutCharger.execute();
   }
-  IDataCallback callback= new IDataCallback() {
-    @Override
-    public void success(String response) {
-      PrintLnLog.d(ChargerDemo.this, tvApiLog, svApiLog, sb, "charge match success = " + response);
-    }
-
-    @Override
-    public void error(ApiError error) {
-      PrintLnLog.d(ChargerDemo.this, tvApiLog, svApiLog, sb, "charge match error = " + error.toString());
-    }
-  };
+  // Note: Trong SDK mới, charge match data được nhận qua Charger.Listener
+  // thay vì sử dụng subscribe pattern
   @OnCheckedChanged({
       R.id.cb_auto_charge_match
   })
@@ -87,9 +89,10 @@ public class ChargerDemo extends BaseActivity {
     switch (view.getId()) {
       case R.id.cb_auto_charge_match:
         if (isChecked) {
-          PeanutSDK.getInstance().subscribe(TopicName.CHARGE_MATCH_TIMES,callback );
+          PrintLnLog.d(ChargerDemo.this, tvApiLog, svApiLog, sb, "Enabled charge match monitoring via Charger.Listener");
+          PrintLnLog.d(ChargerDemo.this, tvApiLog, svApiLog, sb, "Topic: " + RobotTopic.CHARGE_MATCH_TIMES);
         } else {
-          PeanutSDK.getInstance().unSubscribe(TopicName.CHARGE_MATCH_TIMES,callback);
+          PrintLnLog.d(ChargerDemo.this, tvApiLog, svApiLog, sb, "Disabled charge match monitoring");
         }
         break;
       default:

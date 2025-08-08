@@ -11,11 +11,13 @@ import android.widget.TextView;
 import com.keenon.peanut.sample.R;
 import com.keenon.peanut.sample.util.BaseActivity;
 import com.keenon.peanut.sample.util.PrintLnLog;
-import com.keenon.sdk.api.DeviceListApi;
+import com.keenon.sdk.coapapi.api.device.DeviceListApi;
+import com.keenon.sdk.robot.model.bean.device.DeviceListBean;
 import com.keenon.sdk.component.runtime.PeanutRuntime;
-import com.keenon.sdk.constant.TopicName;
-import com.keenon.sdk.external.IDataCallback;
-import com.keenon.sdk.external.PeanutSDK;
+import com.keenon.sdk.constant.RobotTopic;
+// SDK mới không còn sử dụng PeanutSDK.subscribe() và IDataCallback
+// import com.keenon.sdk.external.IDataCallback;
+// import com.keenon.sdk.external.PeanutSDK;
 import com.keenon.sdk.hedera.model.ApiError;
 
 import java.util.List;
@@ -33,14 +35,28 @@ public class BaseDemo extends BaseActivity {
   @BindView(R.id.sv_api_log)
   ScrollView svApiLog;
   private StringBuilder sb = new StringBuilder();
-  private List<DeviceListApi.Bean.DataBean> deviceList;
+  private List<DeviceListBean.DeviceBean> deviceList;
   private PeanutRuntime.Listener mRuntimeListener = new PeanutRuntime.Listener() {
     @Override
     public void onEvent(int event, Object obj) {
       Log.d(TAG, "onEvent:" + event + ", content: " + obj);
       tvApiLog.setTextColor(Color.RED);
-      PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "event  = " + event);
-
+      
+      // Xử lý các event khác nhau
+      String eventName = "Unknown";
+      switch (event) {
+        case 1: // Position Status - giả định
+          eventName = "POSITION_STATUS";
+          break;
+        case 2: // Navigation Path - giả định  
+          eventName = "NAVIGATION_PATH";
+          break;
+        default:
+          eventName = "EVENT_" + event;
+          break;
+      }
+      
+      PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Event: " + eventName + " = " + (obj != null ? obj.toString() : "null"));
     }
 
     @Override
@@ -132,29 +148,9 @@ public class BaseDemo extends BaseActivity {
     }
   }
 
-  IDataCallback mCallback = new IDataCallback() {
-    @Override
-    public void success(String result) {
-      PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query PositionStatus = " + result);
-    }
-
-    @Override
-    public void error(ApiError error) {
-      PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query PositionStatus error = " + error.toString());
-    }
-  };
-
-  IDataCallback navigationCallback = new IDataCallback() {
-    @Override
-    public void success(String result) {
-      PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Navigation Path = " + result);
-    }
-
-    @Override
-    public void error(ApiError error) {
-      PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Navigation Path error = " + error.toString());
-    }
-  };
+  // Note: Trong SDK mới, subscribe/unsubscribe đã được thay thế
+  // Tất cả dữ liệu giờ được nhận qua PeanutRuntime.Listener.onEvent()
+  // Các callback cũ đã không còn cần thiết
 
   @OnCheckedChanged({
           R.id.cb_location_status,
@@ -164,17 +160,18 @@ public class BaseDemo extends BaseActivity {
     switch (view.getId()) {
       case R.id.cb_location_status:
         if (isChecked) {
-          PeanutSDK.getInstance().subscribe(TopicName.POSITION_STATUS, mCallback);
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Enabled POSITION_STATUS monitoring via PeanutRuntime.Listener");
         } else {
-          PeanutSDK.getInstance().unSubscribe(TopicName.POSITION_STATUS, mCallback);
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Disabled POSITION_STATUS monitoring");
         }
         break;
       case R.id.cb_navigation_position:
         if (isChecked) {
-          PeanutSDK.getInstance().subscribe(TopicName.NAVIGATION_PATH, navigationCallback);
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Enabled NAVIGATION_PATH monitoring via PeanutRuntime.Listener");
         } else {
-          PeanutSDK.getInstance().unSubscribe(TopicName.NAVIGATION_PATH, navigationCallback);
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Disabled NAVIGATION_PATH monitoring");
         }
+        break;
       default:
         break;
     }

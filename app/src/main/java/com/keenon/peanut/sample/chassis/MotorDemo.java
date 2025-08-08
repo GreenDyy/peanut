@@ -12,8 +12,11 @@ import com.keenon.peanut.sample.util.BaseActivity;
 import com.keenon.peanut.sample.util.PrintLnLog;
 import com.keenon.sdk.component.runtime.PeanutRuntime;
 import com.keenon.sdk.constant.ApiConstants;
-import com.keenon.sdk.constant.TopicName;
-import com.keenon.sdk.external.IDataCallback;
+import com.keenon.sdk.constant.RobotTopic;
+// SDK mới sử dụng MotorComponent và ApiCallback thay vì ApiCallback<String> và PeanutSDK
+// import com.keenon.sdk.external.ApiCallback<String>;
+// import com.keenon.sdk.external.PeanutSDK;
+import com.keenon.sdk.robot.ApiCallback;
 import com.keenon.sdk.external.PeanutSDK;
 import com.keenon.sdk.hedera.model.ApiError;
 
@@ -35,6 +38,27 @@ public class MotorDemo extends BaseActivity {
   boolean manualControlLongClicked, isRunning;
   private StringBuilder sb = new StringBuilder();
   private ScheduledThreadPoolExecutor executor;
+  
+  // PeanutRuntime.Listener cho SDK mới thay vì subscribe pattern
+  private PeanutRuntime.Listener mRuntimeListener = new PeanutRuntime.Listener() {
+    @Override
+    public void onEvent(int event, Object obj) {
+      // Xử lý các event khác nhau
+      String eventName = "EVENT_" + event;
+      PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, 
+        "Runtime Event: " + eventName + " = " + (obj != null ? obj.toString() : "null"));
+    }
+
+    @Override
+    public void onHealth(Object content) {
+      PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "Runtime Health: " + content);
+    }
+
+    @Override
+    public void onHeartbeat(Object content) {
+      PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "Runtime Heartbeat: " + content);
+    }
+  };
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -55,51 +79,37 @@ public class MotorDemo extends BaseActivity {
   @Override
   protected void onDestroy() {
     PeanutRuntime.getInstance().setWorkMode(ApiConstants.WorkMode.AUTO);
-    PeanutSDK.getInstance().unSubscribe(TopicName.BOTTOM_RAW,bottomCallback);
+    // SDK mới sử dụng removeListener thay vì unSubscribe
+    PeanutRuntime.getInstance().removeListener(mRuntimeListener);
     super.onDestroy();
   }
 
-  IDataCallback bottomCallback = new IDataCallback() {
-    @Override
-    public void success(String result) {
-      PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "raw data success = " + result);
-    }
-
-    @Override
-    public void error(ApiError error) {
-      PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "raw data error = " + error.toString());
-    }
-  };
+  // Note: bottomCallback đã được thay thế bởi PeanutRuntime.Listener.onEvent()
+  // Dữ liệu BOTTOM_RAW giờ được nhận qua runtime listener
 
   private void initData() {
     // step 1: switch work mode to factory mode
     PeanutRuntime.getInstance().setWorkMode(ApiConstants.WorkMode.MFG_TEST);
-    PeanutSDK.getInstance().subscribe(TopicName.BOTTOM_RAW,bottomCallback);
+    
+    // SDK mới: registerListener thay vì subscribe
+    PeanutRuntime.getInstance().registerListener(mRuntimeListener);
+    PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "Registered runtime listener for " + RobotTopic.BOTTOM_RAW);
 
-    PeanutSDK.getInstance().motor().getState(new IDataCallback() {
+    PeanutSDK.getInstance().motor().getState(new ApiCallback<String>() {
       @Override
-      public void success(String result) {
+      public void onSuccess(String result) {
         PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "motor state success = " + result);
       }
 
       @Override
-      public void error(ApiError error) {
-        PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "motor state error = " + error.toString());
+      public void onSuccess(String requestId, String result) {
+        PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "motor state success, requestId: " + requestId + ", result: " + result);
       }
     });
   }
 
-  IDataCallback motorCallback = new IDataCallback() {
-    @Override
-    public void success(String result) {
-      PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "motor status success = " + result);
-    }
-
-    @Override
-    public void error(ApiError error) {
-      PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "motor status error = " + error.toString());
-    }
-  };
+  // Note: motorCallback đã được thay thế bởi PeanutRuntime.Listener.onEvent()
+  // Dữ liệu MOTOR_STATUS giờ được nhận qua runtime listener
 
   @OnCheckedChanged({
       R.id.sw_motor_enable,
@@ -124,9 +134,10 @@ public class MotorDemo extends BaseActivity {
         break;
       case R.id.cb_motor_status:
         if (isChecked) {
-          PeanutSDK.getInstance().subscribe(TopicName.MOTOR_STATUS, motorCallback);
+          PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "Enabled motor status monitoring via PeanutRuntime.Listener");
+          PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "Topic: " + RobotTopic.MOTOR_STATUS);
         } else {
-          PeanutSDK.getInstance().unSubscribe(TopicName.MOTOR_STATUS,motorCallback);
+          PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "Disabled motor status monitoring");
         }
         break;
       default:
@@ -141,41 +152,41 @@ public class MotorDemo extends BaseActivity {
   public void onViewClicked(View view) {
     switch (view.getId()) {
       case R.id.btn_motor_encoder:
-        PeanutSDK.getInstance().motor().getEncoder(new IDataCallback() {
+        PeanutSDK.getInstance().motor().getEncoder(new ApiCallback<String>() {
           @Override
-          public void success(String response) {
+          public void onSuccess(String response) {
             PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "query motor encoder success = " + response);
           }
 
           @Override
-          public void error(ApiError error) {
-            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "query motor encoder error = " + error.toString());
+          public void onSuccess(String requestId, String response) {
+            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "query motor encoder success, requestId: " + requestId + ", response: " + response);
           }
         });
         break;
       case R.id.btn_motor_speed:
-        PeanutSDK.getInstance().motor().getSpeed(new IDataCallback() {
+        PeanutSDK.getInstance().motor().getSpeed(new ApiCallback<String>() {
           @Override
-          public void success(String response) {
+          public void onSuccess(String response) {
             PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "query motor speed success = " + response);
           }
 
           @Override
-          public void error(ApiError error) {
-            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "query motor speed error = " + error.toString());
+          public void onSuccess(String requestId, String response) {
+            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "query motor speed success, requestId: " + requestId + ", response: " + response);
           }
         });
         break;
       case R.id.btn_motor_health:
-        PeanutSDK.getInstance().motor().getHealth(new IDataCallback() {
+        PeanutSDK.getInstance().motor().getHealth(new ApiCallback<String>() {
           @Override
-          public void success(String response) {
+          public void onSuccess(String response) {
             PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "query motor health success = " + response);
           }
 
           @Override
-          public void error(ApiError error) {
-            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "query motor health error = " + error.toString());
+          public void onSuccess(String requestId, String response) {
+            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "query motor health success, requestId: " + requestId + ", response: " + response);
           }
         });
         break;
@@ -246,15 +257,15 @@ public class MotorDemo extends BaseActivity {
     executor.scheduleWithFixedDelay(new Runnable() {
       @Override
       public void run() {
-        PeanutSDK.getInstance().motor().manual(new IDataCallback() {
+        PeanutSDK.getInstance().motor().manual(new ApiCallback<String>() {
           @Override
-          public void success(String result) {
+          public void onSuccess(String result) {
             PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front success = " + result);
           }
 
           @Override
-          public void error(ApiError error) {
-            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front error = " + error.toString());
+          public void onSuccess(String requestId, String result) {
+            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front success, requestId: " + requestId + ", result: " + result);
           }
         }, ApiConstants.MotorMove.FRONT);
       }
@@ -269,15 +280,15 @@ public class MotorDemo extends BaseActivity {
     executor.scheduleWithFixedDelay(new Runnable() {
       @Override
       public void run() {
-        PeanutSDK.getInstance().motor().manual(new IDataCallback() {
+        PeanutSDK.getInstance().motor().manual(new ApiCallback<String>() {
           @Override
-          public void success(String result) {
+          public void onSuccess(String result) {
             PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front success = " + result);
           }
 
           @Override
-          public void error(ApiError error) {
-            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front error = " + error.toString());
+          public void onSuccess(String requestId, String result) {
+            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front success (overload), requestId: " + requestId + ", result: " + result);
           }
         }, ApiConstants.MotorMove.BACK);
       }
@@ -292,15 +303,15 @@ public class MotorDemo extends BaseActivity {
     executor.scheduleWithFixedDelay(new Runnable() {
       @Override
       public void run() {
-        PeanutSDK.getInstance().motor().manual(new IDataCallback() {
+        PeanutSDK.getInstance().motor().manual(new ApiCallback<String>() {
           @Override
-          public void success(String result) {
+          public void onSuccess(String result) {
             PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front success = " + result);
           }
 
           @Override
-          public void error(ApiError error) {
-            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front error = " + error.toString());
+          public void onSuccess(String requestId, String result) {
+            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front success (overload), requestId: " + requestId + ", result: " + result);
           }
         }, ApiConstants.MotorMove.LEFT);
       }
@@ -315,15 +326,15 @@ public class MotorDemo extends BaseActivity {
     executor.scheduleWithFixedDelay(new Runnable() {
       @Override
       public void run() {
-        PeanutSDK.getInstance().motor().manual(new IDataCallback() {
+        PeanutSDK.getInstance().motor().manual(new ApiCallback<String>() {
           @Override
-          public void success(String result) {
+          public void onSuccess(String result) {
             PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front success = " + result);
           }
 
           @Override
-          public void error(ApiError error) {
-            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front error = " + error.toString());
+          public void onSuccess(String requestId, String result) {
+            PrintLnLog.d(MotorDemo.this, tvApiLog, svApiLog, sb, "manual run front success (overload), requestId: " + requestId + ", result: " + result);
           }
         }, ApiConstants.MotorMove.RIGHT);
       }

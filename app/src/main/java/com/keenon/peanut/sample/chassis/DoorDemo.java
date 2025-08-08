@@ -13,7 +13,10 @@ import com.keenon.sdk.component.gating.data.Faults;
 import com.keenon.sdk.component.gating.data.GatingType;
 import com.keenon.sdk.component.gating.manager.PeanutDoor;
 import com.keenon.sdk.component.gating.state.GatingState;
-import com.keenon.sdk.external.IDataCallback;
+// SDK mới sử dụng DoorComponent và ApiCallback thay vì IDataCallback và PeanutSDK
+// import com.keenon.sdk.external.IDataCallback;
+// import com.keenon.sdk.external.PeanutSDK;
+import com.keenon.sdk.robot.ApiCallback;
 import com.keenon.sdk.external.PeanutSDK;
 import com.keenon.sdk.hedera.model.ApiError;
 
@@ -76,27 +79,27 @@ public class DoorDemo extends BaseActivity{
 
     private void controlDoor(int doorId,boolean isOpen) {
         if (isOpen) {
-            PeanutSDK.getInstance().door().open(new IDataCallback() {
+            PeanutSDK.getInstance().door().open(new ApiCallback<String>() {
                 @Override
-                public void success(String s) {
-                    PrintLnLog.d(DoorDemo.this, tvApiLog, svApiLog, sb, "open success :" + doorId);
+                public void onSuccess(String s) {
+                    PrintLnLog.d(DoorDemo.this, tvApiLog, svApiLog, sb, "open success :" + doorId + ", response: " + s);
                 }
 
                 @Override
-                public void error(ApiError apiError) {
-                    PrintLnLog.d(DoorDemo.this, tvApiLog, svApiLog, sb, "open error :" + doorId);
+                public void onSuccess(String requestId, String s) {
+                    PrintLnLog.d(DoorDemo.this, tvApiLog, svApiLog, sb, "open success :" + doorId + ", requestId: " + requestId + ", response: " + s);
                 }
             },doorId);
         } else{
-            PeanutSDK.getInstance().door().close(new IDataCallback() {
+            PeanutSDK.getInstance().door().close(new ApiCallback<String>() {
                 @Override
-                public void success(String s) {
-                    PrintLnLog.d(DoorDemo.this, tvApiLog, svApiLog, sb, "close success :" + doorId);
+                public void onSuccess(String s) {
+                    PrintLnLog.d(DoorDemo.this, tvApiLog, svApiLog, sb, "close success :" + doorId + ", response: " + s);
                 }
 
                 @Override
-                public void error(ApiError apiError) {
-                    PrintLnLog.d(DoorDemo.this, tvApiLog, svApiLog, sb, "close error :" + doorId);
+                public void onSuccess(String requestId, String s) {
+                    PrintLnLog.d(DoorDemo.this, tvApiLog, svApiLog, sb, "close success :" + doorId + ", requestId: " + requestId + ", response: " + s);
                 }
             },doorId);
         }
