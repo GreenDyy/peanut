@@ -67,6 +67,8 @@
                   android:label="Xin Giấy Xác Nhận Cư Trú" />
         <activity android:name=".test.TestTTSActivity"
                   android:label="Test Text To Speech" />
+        <activity android:name=".test.ObjectPerceptionTestActivity"
+                  android:label="@string/demo_title_object_perception" />
         <activity android:name=".chassis.T8LightDemo" />
         <activity android:name=".chassis.DoorDemo" />
         <activity android:name=".chassis.MapDemo" />

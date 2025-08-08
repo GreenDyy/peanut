@@ -28,6 +28,8 @@
     <string name="demo_desc_charger">Charging control and status information</string>
     <string name="demo_title_t8_light">T8 Light</string>
     <string name="demo_desc_t8_light">T8 Dining plate lamp</string>
+    <string name="demo_title_object_perception">Object Perception Test</string>
+    <string name="demo_desc_object_perception">Test subscribe topic action/topic/object_perception với log đầy đủ</string>
     <string name="demo_desc_w3_door">W3 Door</string>
     <string name="demo_desc_t3_door">T3 Door</string>
     <string name="demo_desc_map">Map import/export</string>

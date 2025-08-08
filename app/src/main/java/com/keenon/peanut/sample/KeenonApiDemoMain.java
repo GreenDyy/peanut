@@ -32,6 +32,7 @@ import com.keenon.peanut.sample.test.AudioRecorderActivity;
 import com.keenon.peanut.sample.test.DialogActivity;
 import com.keenon.peanut.sample.test.RobotPeanutActivity;
 import com.keenon.peanut.sample.test.MainAppActivity;
+import com.keenon.peanut.sample.test.ObjectPerceptionTestActivity;
 import com.keenon.common.constant.PeanutConstants;
 import com.keenon.common.utils.LogUtils;
 import com.keenon.common.utils.VersionInfo;
@@ -66,7 +67,8 @@ public class KeenonApiDemoMain extends BaseActivity {
           new DemoInfo(R.drawable.audio_recorder, R.string.demo_title_audio_recorder, R.string.demo_desc_audio_recorder, AudioRecorderActivity.class),
           new DemoInfo(R.drawable.ic_dialog, R.string.demo_title_dialog, R.string.demo_desc_dialog, DialogActivity.class),
           new DemoInfo(R.drawable.chassis, R.string.demo_title_robot_peanut, R.string.demo_desc_robot_peanut, RobotPeanutActivity.class),
-          new DemoInfo(R.drawable.util, R.string.demo_title_main_app, R.string.demo_desc_main_app, MainAppActivity.class)
+          new DemoInfo(R.drawable.util, R.string.demo_title_main_app, R.string.demo_desc_main_app, MainAppActivity.class),
+          new DemoInfo(R.drawable.chassis, R.string.demo_title_object_perception, R.string.demo_desc_object_perception, ObjectPerceptionTestActivity.class)
   };
   private boolean isPermissionRequested;
   private PeanutSDK.ErrorListener mErrorListener = errorCode -> {
