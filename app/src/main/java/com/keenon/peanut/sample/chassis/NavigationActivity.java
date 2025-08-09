@@ -159,8 +159,4 @@ public class NavigationActivity extends BaseActivity implements Navigation.Liste
 
   }
 
-  @Override
-  public void onEvent(int event) {
-
-  }
 }

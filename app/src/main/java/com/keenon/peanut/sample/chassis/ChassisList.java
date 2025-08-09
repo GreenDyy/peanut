@@ -17,11 +17,8 @@ public class ChassisList extends BaseActivity {
   private static final DemoInfo[] DEMOS = {
       new DemoInfo(R.string.demo_title_navigation, R.string.demo_desc_navigation, NavigationDemo.class),
       new DemoInfo(R.string.demo_title_charger, R.string.demo_desc_charger, ChargerDemo.class),
-      new DemoInfo(R.string.demo_title_motor, R.string.demo_desc_motor, MotorDemo.class),
-      new DemoInfo(R.string.demo_title_t8_light, R.string.demo_desc_t8_light, T8LightDemo.class),
-      new DemoInfo(R.string.demo_desc_w3_door, R.string.demo_desc_w3_door, DoorDemo.class),
-      new DemoInfo(R.string.demo_desc_t3_door, R.string.demo_desc_t3_door, T3DoorDemo.class),
-      new DemoInfo(R.string.demo_title_map, R.string.demo_desc_map, MapDemo.class)
+//      new DemoInfo(R.string.demo_title_motor, R.string.demo_desc_motor, MotorDemo.class),
+//      new DemoInfo(R.string.demo_title_map, R.string.demo_desc_map, MapDemo.class)
   };
 
   @Override

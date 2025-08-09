@@ -14,8 +14,6 @@ import com.keenon.peanut.sample.util.PrintLnLog;
 import com.keenon.sdk.component.charger.PeanutCharger;
 import com.keenon.sdk.component.charger.common.Charger;
 import com.keenon.sdk.component.charger.common.ChargerInfo;
-import com.keenon.sdk.constant.TopicName;
-import com.keenon.sdk.external.IDataCallback;
 import com.keenon.sdk.external.PeanutSDK;
 import com.keenon.sdk.hedera.model.ApiError;
 

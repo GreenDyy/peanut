@@ -108,40 +108,124 @@ public class BaseDemo extends BaseActivity {
   public void onViewClicked(View view) {
     switch (view.getId()) {
       case R.id.btn_arm_info:
-        String armInfo = PeanutRuntime.getInstance().getRuntimeInfo().getRobotArmInfo();
-        PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query arm board = " + armInfo);
+        try {
+          if (PeanutRuntime.getInstance() != null && PeanutRuntime.getInstance().getRuntimeInfo() != null) {
+            String armInfo = PeanutRuntime.getInstance().getRuntimeInfo().getRobotArmInfo();
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query arm board = " + armInfo);
+          } else {
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Runtime not initialized - arm info unavailable");
+          }
+        } catch (Exception e) {
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Error getting arm info: " + e.getMessage());
+        }
         break;
       case R.id.btn_stm32_version:
-        String stm32Info = PeanutRuntime.getInstance().getRuntimeInfo().getRobotStm32Info();
-        PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query stm32 board = " + stm32Info);
+        try {
+          if (PeanutRuntime.getInstance() != null && PeanutRuntime.getInstance().getRuntimeInfo() != null) {
+            String stm32Info = PeanutRuntime.getInstance().getRuntimeInfo().getRobotStm32Info();
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query stm32 board = " + stm32Info);
+          } else {
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Runtime not initialized - stm32 info unavailable");
+          }
+        } catch (Exception e) {
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Error getting stm32 info: " + e.getMessage());
+        }
         break;
       case R.id.btn_query_ip:
-        String ip = PeanutRuntime.getInstance().getRuntimeInfo().getRobotIp();
-        PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query IP = " + ip);
+        try {
+          if (PeanutRuntime.getInstance() != null && PeanutRuntime.getInstance().getRuntimeInfo() != null) {
+            String ip = PeanutRuntime.getInstance().getRuntimeInfo().getRobotIp();
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query IP = " + ip);
+          } else {
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Runtime not initialized - IP unavailable");
+          }
+        } catch (Exception e) {
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Error getting robot IP: " + e.getMessage());
+        }
         break;
       case R.id.btn_query_all_dest:
-        String dest = PeanutRuntime.getInstance().getRuntimeInfo().getDestList();
-        PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "dest list = " + dest);
+        try {
+          if (PeanutRuntime.getInstance() != null && PeanutRuntime.getInstance().getRuntimeInfo() != null) {
+            String dest = PeanutRuntime.getInstance().getRuntimeInfo().getDestList();
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "dest list = " + dest);
+          } else {
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Runtime not initialized - dest list unavailable");
+          }
+        } catch (Exception e) {
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Error getting dest list: " + e.getMessage());
+        }
         break;
       case R.id.btn_query_power:
-        int power = PeanutRuntime.getInstance().getRuntimeInfo().getPower();
-        PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query power = " + power);
+        try {
+          if (PeanutRuntime.getInstance() != null && PeanutRuntime.getInstance().getRuntimeInfo() != null) {
+            int power = PeanutRuntime.getInstance().getRuntimeInfo().getPower();
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query power = " + power);
+          } else {
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Runtime not initialized - power unavailable");
+          }
+        } catch (Exception e) {
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Error getting power: " + e.getMessage());
+        }
         break;
       case R.id.btn_slam_location:
-        PeanutRuntime.getInstance().location();
+        try {
+          if (PeanutRuntime.getInstance() != null) {
+            PeanutRuntime.getInstance().location();
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "SLAM location query initiated");
+          } else {
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Runtime not initialized - location unavailable");
+          }
+        } catch (Exception e) {
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Error getting location: " + e.getMessage());
+        }
         break;
       case R.id.btn_query_mileage:
-        Double odo = PeanutRuntime.getInstance().getRuntimeInfo().getTotalOdo();
-        PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query odo = " + odo);
+        try {
+          if (PeanutRuntime.getInstance() != null && PeanutRuntime.getInstance().getRuntimeInfo() != null) {
+            Double odo = PeanutRuntime.getInstance().getRuntimeInfo().getTotalOdo();
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "query odo = " + odo);
+          } else {
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Runtime not initialized - mileage unavailable");
+          }
+        } catch (Exception e) {
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Error getting mileage: " + e.getMessage());
+        }
         break;
       case R.id.btn_sync_params:
-        PeanutRuntime.getInstance().syncParams2Robot(true);
+        try {
+          if (PeanutRuntime.getInstance() != null) {
+            PeanutRuntime.getInstance().syncParams2Robot(true);
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Sync params to robot initiated");
+          } else {
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Runtime not initialized - sync params unavailable");
+          }
+        } catch (Exception e) {
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Error syncing params: " + e.getMessage());
+        }
         break;
       case R.id.btn_sync_time:
-        PeanutRuntime.getInstance().setTime(System.currentTimeMillis());
+        try {
+          if (PeanutRuntime.getInstance() != null) {
+            PeanutRuntime.getInstance().setTime(System.currentTimeMillis());
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Time sync initiated");
+          } else {
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Runtime not initialized - time sync unavailable");
+          }
+        } catch (Exception e) {
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Error syncing time: " + e.getMessage());
+        }
         break;
       case R.id.btn_query_path:
-        PeanutRuntime.getInstance().getPath();
+        try {
+          if (PeanutRuntime.getInstance() != null) {
+            PeanutRuntime.getInstance().getPath();
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Path query initiated");
+          } else {
+            PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Runtime not initialized - path query unavailable");
+          }
+        } catch (Exception e) {
+          PrintLnLog.d(BaseDemo.this, tvApiLog, svApiLog, sb, "Error getting path: " + e.getMessage());
+        }
         break;
       default:
         break;

@@ -2,8 +2,15 @@
     package="com.keenon.peanut.sample">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" 
+                     android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" 
+                     android:maxSdkVersion="32" />
+    <!-- Android 13+ (API 33+) quyền mới -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <!-- Quyền khác -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -44,17 +51,16 @@
             android:name=".chassis.ChargerDemo"
             android:label="@string/demo_title_charger" />
         <activity
+            android:name=".chassis.HeadMotorDemo"
+            android:label="@string/demo_title_head_motor" />
+        <activity
             android:name=".chassis.MotorDemo"
             android:label="@string/demo_title_motor" />
         <activity android:name=".util.BaseActivity"></activity>
-        <activity android:name=".test.HelloDuyActivity"
-                  android:label="@string/demo_title_hello_duy" />
         <activity android:name=".test.AudioRecorderActivity"
                   android:label="@string/demo_title_audio_recorder" />
         <activity android:name=".test.DialogActivity"
                   android:label="@string/demo_title_dialog" />
-        <activity android:name=".test.RobotPeanutActivity"
-                  android:label="@string/demo_title_robot_peanut" />
         <activity android:name=".test.MainAppActivity"
                   android:label="@string/demo_title_main_app" />
         <activity android:name=".test.FunctionMenuActivity"
@@ -67,8 +73,10 @@
                   android:label="Xin Giấy Xác Nhận Cư Trú" />
         <activity android:name=".test.TestTTSActivity"
                   android:label="Test Text To Speech" />
+                <activity android:name=".test.RobotKeenonActivity"
+android:label="Robot Keenon Test Center" />
         <activity android:name=".test.ObjectPerceptionTestActivity"
-                  android:label="@string/demo_title_object_perception" />
+android:label="Object Perception Test" />
         <activity android:name=".chassis.T8LightDemo" />
         <activity android:name=".chassis.DoorDemo" />
         <activity android:name=".chassis.MapDemo" />

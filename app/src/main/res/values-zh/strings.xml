@@ -99,14 +99,10 @@
     <string name="str_door_2">舱门2</string>
     <string name="str_door_3">舱门3</string>
     <string name="str_door_4">舱门4</string>
-    <string name="demo_title_hello_duy">Hello Duy Function</string>
-    <string name="demo_desc_hello_duy">Custom function to display hello message for Duy</string>
     <string name="demo_title_audio_recorder">Audio Recorder</string>
     <string name="demo_desc_audio_recorder">Record and play audio functionality</string>
     <string name="demo_title_dialog">Dialog Activity</string>
     <string name="demo_desc_dialog">Speech to text conversation with AI bot</string>
-    <string name="demo_title_robot_peanut">Robot Peanut API</string>
-    <string name="demo_desc_robot_peanut">All PeanutRuntime and PeanutSDK functions</string>
     <string name="demo_title_main_app">Main App</string>
     <string name="demo_desc_main_app">Robot Assistant with Service Functions</string>
 

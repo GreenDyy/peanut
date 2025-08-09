@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Keenon SDK Sample-A</string>
+    <string name="app_name">Keenon SDK Sample 2.2.5rc1-beta9</string>
 
     <string name="position_type">Positioning mode</string>
     <string name="position_laser">Lidar</string>
@@ -9,14 +9,12 @@
     <string name="demo_desc_baselist">Robot equipment list, module information, version information, mileage, etc</string>
     <string name="demo_title_chassislist">Chassis function</string>
     <string name="demo_desc_chassislist">Robot navigation, charging, motor control, etc</string>
-    <string name="demo_title_hello_duy">Hello Duy Function</string>
-    <string name="demo_desc_hello_duy">Custom function to display hello message for Duy</string>
     <string name="demo_title_audio_recorder">Audio Recorder</string>
     <string name="demo_desc_audio_recorder">Record and play audio functionality</string>
     <string name="demo_title_dialog">Dialog Activity</string>
     <string name="demo_desc_dialog">Speech to text conversation with AI bot</string>
-    <string name="demo_title_robot_peanut">Robot Peanut API</string>
-    <string name="demo_desc_robot_peanut">All PeanutRuntime and PeanutSDK functions</string>
+    <string name="demo_title_robot_keenon">Robot Keenon Test Center</string>
+    <string name="demo_desc_robot_keenon">Robot Keenon Test Center</string>
     <string name="demo_title_main_app">Main App</string>
     <string name="demo_desc_main_app">Robot Assistant with Service Functions</string>
     <string name="demo_title_navigation">Navigation function</string>
@@ -26,10 +24,10 @@
     <string name="demo_desc_motor">Motor unlocking control and status information</string>
     <string name="demo_title_charger">Charging function</string>
     <string name="demo_desc_charger">Charging control and status information</string>
+    <string name="demo_title_head_motor">Head Motor Demo</string>
+    <string name="demo_desc_head_motor">Head motor control and angle settings</string>
     <string name="demo_title_t8_light">T8 Light</string>
     <string name="demo_desc_t8_light">T8 Dining plate lamp</string>
-    <string name="demo_title_object_perception">Object Perception Test</string>
-    <string name="demo_desc_object_perception">Test subscribe topic action/topic/object_perception với log đầy đủ</string>
     <string name="demo_desc_w3_door">W3 Door</string>
     <string name="demo_desc_t3_door">T3 Door</string>
     <string name="demo_desc_map">Map import/export</string>
@@ -103,6 +101,10 @@
     <string name="block_timeout_tip">Blocking timeout！</string>
     <string name="str_content">Welcome to Qinglang robot Android SDK v</string>
     <string name="str_init_text">SDK Init：</string>
+    
+    <!-- Object Perception -->
+    <string name="demo_title_object_perception">Object Perception</string>
+    <string name="demo_desc_object_perception">Test object detection and perception APIs</string>
 
     <string name="led_effect_time">Duration in milliseconds</string>
     <string name="action_start">start</string>

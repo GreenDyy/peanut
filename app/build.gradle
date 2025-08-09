@@ -58,6 +58,10 @@ dependencies {
     implementation files('libs/keenonlib-release.aar')
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'org.slf4j:slf4j-api:1.7.25'
+    
+    // Californium CoAP library cho PeanutSDK
+    implementation 'org.eclipse.californium:californium-core:3.0.0'
+    implementation 'org.eclipse.californium:element-connector:3.0.0'
 
     // 开发调试
 //    api project(":peanut-sdk")

@@ -217,9 +217,4 @@ public class NavManager implements Navigation.Listener {
     }
   }
 
-  @Override
-  public void onEvent(int event) {
-
-  }
-
 }

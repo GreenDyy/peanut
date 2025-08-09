@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#f5f5f5">
+
+    <!-- Header -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Head Motor Demo - Keenon SDK"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#2196F3"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="#ffffff"
+        android:layout_marginBottom="16dp"
+        android:elevation="2dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Exploration Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="API Exploration"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:padding="8dp"
+                android:background="#E3F2FD"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btn_explore_head_classes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Explore Classes"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+                <Button
+                    android:id="@+id/btn_test_head_bean"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Test Bean"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+                <Button
+                    android:id="@+id/btn_test_sensor_head"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Test Sensor"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+            </LinearLayout>
+
+            <!-- Head Movement Controls -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Head Movement Controls"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:padding="8dp"
+                android:background="#E8F5E8"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Up/Down Controls -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btn_head_up"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Head Up ⬆️"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+                <Button
+                    android:id="@+id/btn_head_down"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Head Down ⬇️"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+            </LinearLayout>
+
+            <!-- Left/Right Controls -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btn_head_left"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Turn Left 👈"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+                <Button
+                    android:id="@+id/btn_head_right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Turn Right 👉"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+            </LinearLayout>
+
+            <!-- Center and Advanced Controls -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btn_head_center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Center 🎯"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+                <Button
+                    android:id="@+id/btn_head_nod"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nod 🤖"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+                <Button
+                    android:id="@+id/btn_head_stop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Stop 🛑"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+            </LinearLayout>
+
+            <!-- Advanced Controls -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Advanced Controls"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:padding="8dp"
+                android:background="#FFF3E0"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btn_get_head_status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Get Status 📊"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+                <Button
+                    android:id="@+id/btn_set_head_angle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Set Angles 📐"
+                    android:textSize="12sp"
+                    android:layout_margin="4dp" />
+
+            </LinearLayout>
+
+            <!-- Angle Input Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Angle Controls"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:padding="8dp"
+                android:background="#F3E5F5"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="X Angle:"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="4dp" />
+
+                <EditText
+                    android:id="@+id/et_angle_x"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="0"
+                    android:inputType="numberSigned"
+                    android:textSize="14sp"
+                    android:layout_margin="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Y Angle:"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="4dp" />
+
+                <EditText
+                    android:id="@+id/et_angle_y"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="0"
+                    android:inputType="numberSigned"
+                    android:textSize="14sp"
+                    android:layout_margin="4dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_apply_custom_angles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apply Custom Angles"
+                android:textSize="14sp"
+                android:layout_margin="4dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Log Display -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Head Motor Log"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="#333"
+        android:padding="8dp"
+        android:background="#ECEFF1" />
+
+    <ScrollView
+        android:id="@+id/sv_head_log"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#ffffff"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_head_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Head Motor Demo ready for testing...\n"
+            android:textSize="12sp"
+            android:textColor="#555"
+            android:fontFamily="monospace" />
+
+    </ScrollView>
+
+</LinearLayout>

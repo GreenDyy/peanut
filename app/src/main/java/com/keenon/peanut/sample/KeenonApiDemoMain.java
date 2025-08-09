@@ -10,8 +10,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,11 +29,10 @@ import android.widget.TextView;
 import com.keenon.peanut.sample.base.BaseDemo;
 import com.keenon.peanut.sample.chassis.ChassisList;
 import com.keenon.peanut.sample.util.BaseActivity;
-import com.keenon.peanut.sample.test.HelloDuyActivity;
 import com.keenon.peanut.sample.test.AudioRecorderActivity;
 import com.keenon.peanut.sample.test.DialogActivity;
-import com.keenon.peanut.sample.test.RobotPeanutActivity;
 import com.keenon.peanut.sample.test.MainAppActivity;
+import com.keenon.peanut.sample.test.RobotKeenonActivity;
 import com.keenon.peanut.sample.test.ObjectPerceptionTestActivity;
 import com.keenon.common.constant.PeanutConstants;
 import com.keenon.common.utils.LogUtils;
@@ -63,12 +64,13 @@ public class KeenonApiDemoMain extends BaseActivity {
   private static final DemoInfo[] DEMOS = {
           new DemoInfo(R.drawable.info, R.string.demo_title_baselist, R.string.demo_desc_baselist, BaseDemo.class),
           new DemoInfo(R.drawable.chassis, R.string.demo_title_chassislist, R.string.demo_desc_chassislist, ChassisList.class),
-          new DemoInfo(R.drawable.util, R.string.demo_title_hello_duy, R.string.demo_desc_hello_duy, HelloDuyActivity.class),
+          new DemoInfo(R.drawable.robot_eye, R.string.demo_title_robot_keenon, R.string.demo_desc_robot_keenon, RobotKeenonActivity.class),
           new DemoInfo(R.drawable.audio_recorder, R.string.demo_title_audio_recorder, R.string.demo_desc_audio_recorder, AudioRecorderActivity.class),
           new DemoInfo(R.drawable.ic_dialog, R.string.demo_title_dialog, R.string.demo_desc_dialog, DialogActivity.class),
-          new DemoInfo(R.drawable.chassis, R.string.demo_title_robot_peanut, R.string.demo_desc_robot_peanut, RobotPeanutActivity.class),
+//          new DemoInfo(R.drawable.chassis, R.string.demo_title_robot_peanut, R.string.demo_desc_robot_peanut, RobotPeanutActivity.class),
           new DemoInfo(R.drawable.util, R.string.demo_title_main_app, R.string.demo_desc_main_app, MainAppActivity.class),
-          new DemoInfo(R.drawable.chassis, R.string.demo_title_object_perception, R.string.demo_desc_object_perception, ObjectPerceptionTestActivity.class)
+          new DemoInfo(R.drawable.chassis, R.string.demo_title_object_perception, R.string.demo_desc_object_perception, ObjectPerceptionTestActivity.class),
+
   };
   private boolean isPermissionRequested;
   private PeanutSDK.ErrorListener mErrorListener = errorCode -> {
@@ -111,8 +113,8 @@ public class KeenonApiDemoMain extends BaseActivity {
     setContentView(R.layout.main);
     ButterKnife.bind(this);
     initView();
-    // 申请动态权限
-    requestPermission();
+    // Kiểm tra và yêu cầu quyền ngay khi khởi động
+    checkAndInitSDK();
   }
 
   @OnCheckedChanged({
@@ -126,7 +128,8 @@ public class KeenonApiDemoMain extends BaseActivity {
           saveToSP(PeanutConstants.REMOTE_LINK_PROXY);
           cbLabel.setChecked(false);
           PeanutSDK.getInstance().release();
-          initSDK(PeanutConstants.REMOTE_LINK_PROXY);
+          // Kiểm tra quyền trước khi init SDK
+          checkAndInitSDK();
         }
         break;
       case R.id.cb_label:
@@ -134,7 +137,8 @@ public class KeenonApiDemoMain extends BaseActivity {
           saveToSP(PeanutConstants.LOCAL_LINK_PROXY);
           cbLaser.setChecked(false);
           PeanutSDK.getInstance().release();
-          initSDK(PeanutConstants.LOCAL_LINK_PROXY);
+          // Kiểm tra quyền trước khi init SDK
+          checkAndInitSDK();
         }
         break;
       default:
@@ -265,11 +269,39 @@ public class KeenonApiDemoMain extends BaseActivity {
         initSDK(getType());
       } else {
         text.setTextColor(Color.RED);
-        text.setText("Thiếu quyền. Vui lòng cấp đầy đủ quyền để sử dụng ứng dụng.");
+        text.setText("Thiếu quyền Storage. Nhấp để mở Settings và cấp quyền.");
+        text.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            openAppSettings();
+          }
+        });
+        // Yêu cầu lại quyền sau 3 giây
+        text.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            checkAndInitSDK();
+          }
+        }, 3000);
       }
     }
   }
 
+  private void openAppSettings() {
+    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+    Uri uri = Uri.fromParts("package", getPackageName(), null);
+    intent.setData(uri);
+    startActivityForResult(intent, 1001);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == 1001) {
+      // Quay lại từ Settings, kiểm tra lại quyền
+      checkAndInitSDK();
+    }
+  }
 
   private static class DemoInfo {
     private final int image;
