@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	margin:0px;
+}
+        ul{
+            list-style-type: none;
+            margin: 5px;
+            padding: 0;
+        }
+       .mod-faq__answer div ul li{margin-bottom:6px;
+        }
+.mod-faq__answer div ul li span{font-weight: 800;font-size: 18px;}
+        .ui-mt-medium{
+            margin-top: 10px;
+        }
+        .mod-faq{
+            min-height: 100%;
+            color: #57cffc;
+            background-color: #252944;
+            padding: 0 30px;
+            font: 18px/2em "微软雅黑","Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+        }
+        .mod-faq__header{
+            padding: 41px 0  18px;
+            font-weight: bold;
+            font-size: 28px;
+            border-bottom: 1px solid #02779e;
+            margin: 0;
+        }
+        .mod-faq__content{
+            padding: 24px 0;
+        }
+        .mod-faq__brief{
+            margin-bottom: 26px;
+        }
+        .mod-faq__list-item{
+            margin-bottom: 26px;
+        }
+        .mod-faq__authority{
+            text-align: right;
+            padding-bottom: 26px;
+        }
+        .mod-faq__quest-list{
+            line-height: 26px;
+        }
+        .mod-faq__quest{
+            font-weight: bold;
+			font-size:22px;
+            margin-bottom: 16px;
+        }
+        .mod-faq__answer{
+            position: relative;
+            color: #fff;
+            margin-left: 0;
+            padding-left: 24px;
+            margin-bottom: 28px;
+        }
+        .mod-faq__tail{
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-style:normal;
+        }
+
+

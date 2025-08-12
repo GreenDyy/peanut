@@ -1,0 +1,174 @@
+[
+  {
+    "lightId": "idle_scene_light",
+    "levels": 4,
+    "times": 0,
+    "head": -1,
+    "plate": -56,
+    "bottom": 1
+  },
+  {
+    "lightId": "enter_page_light",
+    "levels": 7,
+    "times": 0,
+    "head": -1,
+    "plate": -56,
+    "bottom": 1
+  },
+  {
+    "lightId": "emergency_stop_light",
+    "levels": 8,
+    "times": 2,
+    "head": -1,
+    "plate": -54,
+    "bottom": 25,
+    "notFindNextLight": true
+  },
+  {
+    "lightId": "click_go_light",
+    "levels": 7,
+    "times": 2,
+    "head": -1,
+    "plate": -54,
+    "bottom": 25
+  },
+  {
+    "lightId": "common_go_light",
+    "levels": 7,
+    "times": 2,
+    "head": -1,
+    "plate": -56,
+    "bottom": 25
+  },
+  {
+    "lightId": "put_dishes_light",
+    "levels": 7,
+    "times": 0,
+    "head": -1,
+    "plate": -1,
+    "bottom": -1,
+    "key": "putDishes"
+  },
+  {
+    "lightId": "wait_take_dishes_light",
+    "levels": 7,
+    "times": 0,
+    "head": -1,
+    "plate": -56,
+    "bottom": 25,
+    "key": "takeLayer"
+  },
+  {
+    "lightId": "take_wrong_dishes_light",
+    "levels": 8,
+    "times": 0,
+    "head": -1,
+    "plate": -54,
+    "bottom": 25,
+    "key": "wrongLayer"
+  },
+  {
+    "lightId": "take_finish_light",
+    "levels": 8,
+    "times": 1,
+    "head": -1,
+    "plate": -56,
+    "bottom": 1
+  },
+  {
+    "lightId": "running_light",
+    "levels": 6,
+    "times": 0,
+    "head": -1,
+    "plate": -56,
+    "bottom": 25
+  },
+  {
+    "lightId": "turn_left_light",
+    "levels": 6,
+    "times": 2,
+    "head": -1,
+    "plate": -52,
+    "bottom": 25
+  },
+  {
+    "lightId": "turn_right_light",
+    "levels": 6,
+    "times": 2,
+    "head": -1,
+    "plate": -51,
+    "bottom": 25
+  },
+  {
+    "lightId": "running_collision_light",
+    "levels": 7,
+    "times": 3,
+    "head": -1,
+    "plate": -54,
+    "bottom": 25
+  },
+  {
+    "lightId": "running_block_light",
+    "levels": 7,
+    "times": 3,
+    "head": -1,
+    "plate": -56,
+    "bottom": 25
+  },
+  {
+    "lightId": "arrive_light",
+    "levels": 6,
+    "times": 0,
+    "head": -1,
+    "plate": -56,
+    "bottom": 1
+  },
+  {
+    "lightId": "charge_ing_light",
+    "levels": 9,
+    "times": 0,
+    "head": -1,
+    "plate": -55,
+    "bottom": 103
+  },
+  {
+    "lightId": "charge_full_light",
+    "levels": 9,
+    "times": 0,
+    "head": -1,
+    "plate": -55,
+    "bottom": 26
+  },
+  {
+    "lightId": "fault_light",
+    "levels": 7,
+    "times": 0,
+    "head": -1,
+    "plate": -56,
+    "bottom": 30
+  },
+  {
+    "lightId": "lower_power_light",
+    "levels": 9,
+    "times": 0,
+    "head": -1,
+    "plate": -56,
+    "bottom": 1
+  },
+  {
+    "lightId": "power_save_light",
+    "levels": 9,
+    "times": 0,
+    "head": -1,
+    "plate": -55,
+    "bottom": 1
+  },
+  {
+    "lightId": "close_machine_light",
+    "levels": 9,
+    "times": 0,
+    "head": -1,
+    "plate": -56,
+    "bottom": 25
+  }
+]

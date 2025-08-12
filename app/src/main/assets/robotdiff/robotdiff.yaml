@@ -1,0 +1,286 @@
+#参数列表
+#availableModeList
+# 0-送餐，1-送小吃，2-直达，3-祝福歌，4-多点，5-迎宾，7-回盘
+
+#availableThemeList
+# 0-深色（默认），1-红色，2-金色，3-浅色
+
+#viceScreen
+#T5 Pro上的表情灯板
+
+#adScreen
+#T8Pro T10的广告屏
+
+#autoAddLayer
+#T8Pro T8 补录桌号
+
+#chargeTip
+#T8Pro T8 T10补录桌号
+
+#doorLampSet
+#T3 舱门设置
+
+#welcomeGuideSet
+#T8 T8Pro T10 T10S 移动迎宾
+
+
+robotFeatures:
+  #T3
+  - robot: T3
+    availableModeList:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 5
+      - 7
+    availableThemeList:
+      - 3
+    defaultTheme: 3
+    storeMode: true
+    autoDoor: true
+    rdn: false
+    viceScreen: false
+    adScreen: false
+    autoTake: false
+    autoTakeChangeModel: false
+    autoAddLayer: false
+    putDish: false
+    chargeTip: false
+    voiceInteract: false
+    collisionBar: true
+    snackSet: true
+    doorLampSet: true
+    welcomeGuideSet: false
+    shopSet: false
+
+  #T8
+  - robot: T8
+    availableModeList:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 5
+      - 7
+    availableThemeList:
+      - 3
+    defaultTheme: 0
+    storeMode: true
+    autoDoor: false
+    rdn: false
+    viceScreen: false
+    adScreen: false
+    autoTake: true
+    autoTakeChangeModel: true
+    autoAddLayer: true
+    putDish: true
+    chargeTip: true
+    voiceInteract: true
+    collisionBar: true
+    snackSet: true
+    doorLampSet: false
+    welcomeGuideSet: true
+    shopSet: false
+
+  #T11 即T8 Pro
+  - robot: T11
+    availableModeList:
+      - 0
+      - 3
+      - 5
+      - 7
+      - 10
+    availableThemeList:
+      - 3
+    defaultTheme: 3
+    storeMode: true
+    autoDoor: false
+    rdn: false
+    viceScreen: false
+    adScreen: true
+    autoTake: true
+    autoTakeChangeModel: true
+    autoAddLayer: true
+    putDish: true
+    chargeTip: true
+    voiceInteract: true
+    collisionBar: true
+    snackSet: false
+    doorLampSet: false
+    welcomeGuideSet: true
+    shopSet: true
+
+  # T5 Pro
+  - robot: T5 Pro
+    availableModeList:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 5
+      - 7
+    availableThemeList:
+      - 3
+    defaultTheme: 3
+    storeMode: false
+    autoDoor: false
+    rdn: false
+    viceScreen: true
+    adScreen: false
+    autoTake: true
+    autoTakeChangeModel: false
+    autoAddLayer: false
+    putDish: false
+    chargeTip: false
+    voiceInteract: false
+    collisionBar: true
+    snackSet: true
+    doorLampSet: false
+    welcomeGuideSet: false
+    shopSet: false
+
+  #T5
+  - robot: T5
+    availableModeList:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 5
+      - 7
+    availableThemeList:
+      - 3
+    defaultTheme: 3
+    storeMode: false
+    autoDoor: false
+    rdn: false
+    viceScreen: false
+    adScreen: false
+    autoTake: false
+    autoTakeChangeModel: false
+    autoAddLayer: false
+    putDish: false
+    chargeTip: false
+    voiceInteract: false
+    collisionBar: true
+    snackSet: true
+    doorLampSet: false
+    welcomeGuideSet: false
+    shopSet: false
+
+
+    #T9
+  - robot: T9
+    availableModeList:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 5
+      - 7
+    availableThemeList:
+      - 3
+    defaultTheme: 3
+    storeMode: false
+    autoDoor: false
+    rdn: false
+    viceScreen: false
+    adScreen: false
+    autoTake: false
+    autoTakeChangeModel: false
+    autoAddLayer: false
+    putDish: false
+    chargeTip: false
+    voiceInteract: false
+    collisionBar: true
+    snackSet: true
+    doorLampSet: false
+    welcomeGuideSet: false
+    shopSet: false
+
+
+    #T9 Pro
+  - robot: T9 Pro
+    availableModeList:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 5
+      - 7
+    availableThemeList:
+      - 3
+    defaultTheme: 3
+    storeMode: false
+    autoDoor: false
+    rdn: false
+    viceScreen: false
+    adScreen: false
+    autoTake: true
+    autoTakeChangeModel: false
+    autoAddLayer: false
+    putDish: false
+    chargeTip: false
+    voiceInteract: false
+    collisionBar: true
+    snackSet: true
+    doorLampSet: false
+    welcomeGuideSet: false
+    shopSet: false
+
+  #T10
+  - robot: T10
+    availableModeList:
+      - 0
+      - 3
+      - 5
+      - 7
+      - 10
+    availableThemeList:
+      - 3
+    defaultTheme: 3
+    storeMode: true
+    autoDoor: false
+    rdn: false
+    viceScreen: false
+    adScreen: true
+    autoTake: true
+    autoTakeChangeModel: true
+    autoAddLayer: false
+    putDish: true
+    chargeTip: true
+    voiceInteract: true
+    collisionBar: false
+    snackSet: false
+    doorLampSet: false
+    welcomeGuideSet: true
+    shopSet: true
+
+  #T10 S
+  - robot: T10 S
+    availableModeList:
+      - 0
+      - 3
+      - 5
+      - 7
+      - 10
+    availableThemeList:
+      - 3
+    defaultTheme: 3
+    storeMode: true
+    autoDoor: false
+    rdn: false
+    viceScreen: false
+    adScreen: true
+    autoTake: true
+    autoTakeChangeModel: true
+    autoAddLayer: false
+    putDish: true
+    chargeTip: true
+    voiceInteract: false
+    collisionBar: false
+    snackSet: false
+    doorLampSet: false
+    welcomeGuideSet: true
+    shopSet: true

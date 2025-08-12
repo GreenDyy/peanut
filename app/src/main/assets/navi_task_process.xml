@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="FoodDelivery">
+
+    <!-- 启始点 -->
+    <start>
+        <transition to="InitStage" />
+    </start>
+
+    <!-- 初始化阶段 -->
+    <state name="InitStage" expr="#{action}" impl="com.keenon.component.transport.flow.InitStage">
+        <transition name="forward" to="ChooseStage" />
+    </state>
+
+    <!-- 选择目标点阶段 -->
+    <state name="ChooseStage" expr="#{action}" impl="com.keenon.component.transport.flow.ChooseStage">
+        <transition name="forward" to="VerifyStage" />
+    </state>
+
+    <!-- 数据校验阶段 -->
+    <state name="VerifyStage" expr="#{action}" impl="com.keenon.component.transport.flow.VerifyStage">
+        <transition name="forward" to="PrepareStage" />
+        <transition name="backward" to="ChooseStage" />
+    </state>
+
+    <!-- 准备阶段 -->
+    <state name="PrepareStage" expr="#{action}" impl="com.keenon.component.transport.flow.PrepareStage">
+        <transition name="forward" to="NavigateStage" />
+    </state>
+
+    <!-- 修改目标点阶段 -->
+    <state name="ModifyStage" expr="#{action}" impl="com.keenon.component.transport.flow.ModifyStage">
+        <transition name="forward" to="VerifyStage" />
+        <transition name="backward" to="NavigateStage" />
+    </state>
+
+    <!-- 配送阶段 -->
+    <state name="NavigateStage" expr="#{action}" impl="com.keenon.component.transport.flow.NavigateStage">
+        <transition name="pause" to="NavigateStage" />
+        <transition name="continue" to="NavigateStage" />
+        <transition name="launchNavi" to="NavigateStage" />
+        <transition name="forceNext" to="NavigateStage" />
+        <transition name="tryRecover" to="NavigateStage" />
+        <transition name="reconnect" to="NavigateStage" />
+        <transition name="locked" to="NavigateStage" />
+        <transition name="unlock" to="NavigateStage" />
+        <transition name="forward" to="ArriveStage" />
+        <transition name="ahead" to="ArriveStage" />
+        <transition name="modify" to="ModifyStage" />
+        <transition name="discard" to="CompleteStage" />
+        <transition name="finish" to="CompleteStage" />
+    </state>
+
+    <!-- 点位到达阶段 -->
+    <!-- take动作，判断任务是否完结。如完结发complete,否则发next -->
+    <!-- next：组件内部流转使用，外界不可使用; inner：附加点到达后，要求进入包厢内   -->
+    <state name="ArriveStage" expr="#{action}" impl="com.keenon.component.transport.flow.ArriveStage">
+        <transition name="take" to="ArriveStage" />
+        <transition name="inner" to="ArriveStage" />
+        <transition name="next" to="NavigateStage" />
+        <transition name="backward" to="NavigateStage" />
+        <transition name="finish" to="CompleteStage" />
+        <transition name="complete" to="CompleteStage" />
+    </state>
+
+    <!-- 完成阶段 -->
+    <end name="CompleteStage" expr="#{action}" impl="com.keenon.component.transport.flow.CompleteStage">
+        <transition name="forward" to="InitStage" />
+    </end>>
+
+</process>

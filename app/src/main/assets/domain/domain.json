@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "domainName": "es-cloud.robotkeenon.com",
+      "englishName": "Data Center Zone1(Europe Region)",
+      "iso2": "ES",
+      "linkId": 1
+    },
+    {
+      "domainName": "cloud.robotkeenon.com",
+      "englishName": "Data Center Zone2(Other Region)",
+      "iso2": "JP",
+      "linkId": 2
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+[
+  {
+    "lightId": "idle_scene_light",
+    "levels": 6,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": -56
+  },
+  {
+    "lightId": "emergency_stop_light",
+    "levels": 8,
+    "times": 0,
+    "head": 27,
+    "plate": -1,
+    "bottom": -56,
+    "notFindNextLight": true
+  },
+  {
+    "lightId": "click_go_light",
+    "levels": 7,
+    "times": 2,
+    "head": 25,
+    "plate": -1,
+    "bottom": -56
+  },
+  {
+    "lightId": "running_light",
+    "levels": 6,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": -56
+  },
+  {
+    "lightId": "turn_left_light",
+    "levels": 6,
+    "times": 2,
+    "head": 15,
+    "plate": -1,
+    "bottom": -56
+  },
+  {
+    "lightId": "arrive_light",
+    "levels": 6,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": -56
+  },
+  {
+    "lightId": "turn_right_light",
+    "levels": 6,
+    "times": 2,
+    "head": 16,
+    "plate": -1,
+    "bottom": -56
+  },
+  {
+    "lightId": "running_collision_light",
+    "levels": 7,
+    "times": 3,
+    "head": 27,
+    "plate": -1,
+    "bottom": -56
+  },
+  {
+    "lightId": "fault_light",
+    "levels": 7,
+    "times": 0,
+    "head": 27,
+    "plate": -1,
+    "bottom": -56
+  },
+  {
+    "lightId": "charge_ing_light",
+    "levels": 9,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": -56
+  },
+  {
+    "lightId": "charge_full_light",
+    "levels": 9,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": -56
+  },
+  {
+    "lightId": "lower_power_light",
+    "levels": 9,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": -56
+  },
+  {
+    "lightId": "power_save_light",
+    "levels": 9,
+    "times": 0,
+    "head": 1,
+    "plate": -1,
+    "bottom": -55
+  }
+
+]

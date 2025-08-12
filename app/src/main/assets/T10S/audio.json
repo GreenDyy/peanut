@@ -1,0 +1,838 @@
+{
+  "audios": [
+    {
+      "audioId": "normal_enter_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "input"
+      ],
+      "times": 1,
+      "muteScene": [
+        "modeSwitch"
+      ]
+    },
+    {
+      "audioId": "put_dishes_overtime_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "inputAgain"
+      ],
+      "oldAudioList": [
+        "input"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "normal_depart_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "depart"
+      ],
+      "times": 1,
+      "muteScene": [
+        "blessMusic",
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "normal_running_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "navigation"
+      ],
+      "times": 0,
+      "muteScene": [
+        "blessMusic",
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "normal_wait_take_audio",
+      "level": 4,
+      "canInterrupt": true,
+      "needFindIndex": true,
+      "audioList": [
+        "arriveTip",
+        "layerTip",
+        "takeTip"
+      ],
+      "times": 0,
+      "muteScene": [
+        "blessMusic"
+      ]
+    },
+    {
+      "audioId": "take_wrong_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "needFindIndex": true,
+      "audioList": [
+        "foodLayer",
+        "errorLayer"
+      ],
+      "times": 0,
+      "muteScene": [
+        "blessMusic"
+      ]
+    },
+    {
+      "audioId": "take_finish_audio",
+      "level": 4,
+      "canInterrupt": false,
+      "audioList": [
+        "bless"
+      ],
+      "times": 1,
+      "muteScene": [
+        "blessMusic"
+      ]
+    },
+    {
+      "audioId": "origin_arrive_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "backOrigin"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "snack_enter_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "snacksMode"
+      ],
+      "times": 1,
+      "muteScene": [
+        "modeSwitch"
+      ]
+    },
+    {
+      "audioId": "snack_depart_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "snacksDepart"
+      ],
+      "oldAudioList": [
+        "depart"
+      ],
+      "times": 1,
+      "muteScene": [
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "snack_running_audio",
+      "level": 3,
+      "needFindIndex": true,
+      "canInterrupt": true,
+      "audioList": [
+        "snacksRunning"
+      ],
+      "times": 0,
+      "muteScene": [
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "log_out_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "logout"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "direct_enter_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "directMode"
+      ],
+      "times": 1,
+      "muteScene": [
+        "modeSwitch"
+      ]
+    },
+    {
+      "audioId": "direct_depart_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "directDepart"
+      ],
+      "oldAudioList": [
+        "depart"
+      ],
+      "times": 1,
+      "muteScene": [
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "direct_running_audio",
+      "level": 3,
+      "needFindIndex": true,
+      "canInterrupt": true,
+      "audioList": [
+        "directRunning"
+      ],
+      "oldAudioList": [
+        "navigation"
+      ],
+      "times": 0,
+      "muteScene": [
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "direct_arrive_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "directArrive"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "multi_enter_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "multiMode"
+      ],
+      "oldAudioList": [
+        "input"
+      ],
+      "times": 1,
+      "muteScene": [
+        "modeSwitch"
+      ]
+    },
+    {
+      "audioId": "multi_depart_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "multiDepart"
+      ],
+      "oldAudioList": [
+        "depart"
+      ],
+      "times": 1,
+      "muteScene": [
+        "blessMusic",
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "multi_running_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "multiNavigation"
+      ],
+      "oldAudioList": [
+        "navigation"
+      ],
+      "times": 0,
+      "muteScene": [
+        "blessMusic",
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "multi_wait_take_audio",
+      "level": 4,
+      "canInterrupt": true,
+      "needFindIndex": true,
+      "audioList": [
+        "multiArriveTip",
+        "multiTakeTip"
+      ],
+      "oldAudioList": [
+        "arriveTip",
+        "takeTip"
+      ],
+      "times": 0,
+      "muteScene": [
+        "blessMusic"
+      ]
+    },
+    {
+      "audioId": "multi_take_finish_audio",
+      "level": 4,
+      "canInterrupt": false,
+      "audioList": [
+        "multiBless"
+      ],
+      "oldAudioList": [
+        "bless"
+      ],
+      "times": 1,
+      "muteScene": [
+        "blessMusic"
+      ]
+    },
+    {
+      "audioId": "multi_origin_arrive_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "multiBackOrigin"
+      ],
+      "oldAudioList": [
+        "backOrigin"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "wel_enter_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "welcomeMode"
+      ],
+      "oldAudioList": [
+        "welcomeGuests"
+      ],
+      "times": 1,
+      "muteScene": [
+        "modeSwitch"
+      ]
+    },
+    {
+      "audioId": "wel_speak_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "welcomeGuests"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "wel_running_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "welcomeRunning"
+      ],
+      "oldAudioList": [
+        "navigation"
+      ],
+      "times": 1,
+      "muteScene": [
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "shop_enter_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "enterShop"
+      ],
+      "times": 1,
+      "muteScene": [
+        "modeSwitch"
+      ]
+    },
+    {
+      "audioId": "shop_detect_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "detectShop"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "guide_enter_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "guideMode"
+      ],
+      "times": 1,
+      "muteScene": [
+        "modeSwitch"
+      ]
+    },
+    {
+      "audioId": "guide_depart_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "guideDepart"
+      ],
+      "times": 1,
+      "muteScene": [
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "guide_arrive_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "guideArrive"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "shop_guide_arrive_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "shopGuideArrive"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "remote_call_start_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "remoteCall"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "remote_call_quit_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "remoteCancel"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "remote_running_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "remoteRunning"
+      ],
+      "oldAudioList": [
+        "navigation"
+      ],
+      "times": 0
+    },
+    {
+      "audioId": "laser_location_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "laserPosition"
+      ],
+      "times": 0
+    },
+    {
+      "audioId": "schedule_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "scheduler"
+      ],
+      "times": 0
+    },
+    {
+      "audioId": "schedule_end_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "scheduleEnd"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "time_charge_go_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "offWorkCharge"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "low_power_charge_go_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "lowerCharge"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "manual_charge_go_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "manualCharge"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "time_charge_quit_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "workTimeLeave"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "full_charge_quit_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "fullLeave"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "manual_charge_quit_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "manualEndCharge"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "plank_holder_fault_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "plankHolder"
+      ],
+      "times": 0,
+      "muteScene": [
+        "blessMusic",
+        "faultSwitch"
+      ]
+    },
+    {
+      "audioId": "far_label_fault_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "farLabel"
+      ],
+      "times": 0,
+      "muteScene": [
+        "blessMusic",
+        "faultSwitch"
+      ]
+    },
+    {
+      "audioId": "lost_label_fault_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "lostLocation"
+      ],
+      "times": 0,
+      "muteScene": [
+        "blessMusic",
+        "faultSwitch"
+      ]
+    },
+    {
+      "audioId": "rec_enter_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "recycleMode"
+      ],
+      "times": 1,
+      "muteScene": [
+        "modeSwitch"
+      ]
+    },
+    {
+      "audioId": "rec_depart_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "recycleDepart"
+      ],
+      "oldAudioList": [
+        "depart"
+      ],
+      "times": 1,
+      "muteScene": [
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "rec_running_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "recycleRunning"
+      ],
+      "oldAudioList": [
+        "navigation"
+      ],
+      "times": 1,
+      "muteScene": [
+        "runningVoiceSwitch"
+      ]
+    },
+    {
+      "audioId": "remote_arrive_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "remoteDestination"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "remote_rec_arrive_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "needFindIndex": true,
+      "audioList": [
+        "recycleRemoteArrive"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "remote_take_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "remoteTakeTip"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "rec_wait_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "needFindIndex": true,
+      "audioList": [
+        "recycleArrive"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "wash_wait_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "needFindIndex": true,
+      "audioList": [
+        "recycleWashRoomArrive"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "running_collision_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "collision"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "running_block_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "blockAudios"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "running_probe_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "blockProbe"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "running_wait_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "blockWaiting"
+      ],
+      "times": 0
+    },
+    {
+      "audioId": "volume_test_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "depart"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "charge_reminder_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "chargeReminder"
+      ],
+      "times": 0
+    },
+    {
+      "audioId": "location_press_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "locationPress"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "location_choose_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "locationChoose"
+      ],
+      "times":1
+    },
+    {
+      "audioId": "location_remove_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "locationRemove"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "ear_touch_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "earTouch"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "wave_detect_audio",
+      "level": 3,
+      "canInterrupt": false,
+      "audioList": [
+        "waveDetection"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "block_road_early_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "blockDetectEarlyAudio"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "block_road_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "humanDetectionAudio"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "wait_put_dish_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "waitPutDishTip"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "put_dish_tip_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "audioList": [
+        "putDishTip"
+      ],
+      "times": 1
+    },
+    {
+      "audioId": "dish_arrive_audio",
+      "level": 3,
+      "canInterrupt": true,
+      "needFindIndex": true,
+      "audioList": [
+        "layerTip",
+        "dishArrive"
+      ],
+      "times": 1,
+      "muteScene": [
+        "blessMusic"
+      ]
+    }
+  ],
+  "level": [
+    {
+      "level": 0,
+      "hasLocalJson": false,
+      "hasDownLoadJson": false,
+      "hasPublicRes": false,
+      "hasPrivateRes": false,
+      "hasLocalConfig": false
+    },
+    {
+      "level": 1,
+      "hasLocalJson": true,
+      "hasDownLoadJson": false,
+      "hasPublicRes": false,
+      "hasPrivateRes": false,
+      "hasLocalConfig": false
+    },
+    {
+      "level": 2,
+      "hasLocalJson": true,
+      "hasDownLoadJson": true,
+      "hasPublicRes": false,
+      "hasPrivateRes": false,
+      "hasLocalConfig": false
+    },
+    {
+      "level": 3,
+      "hasLocalJson": true,
+      "hasDownLoadJson": true,
+      "hasPublicRes": true,
+      "hasPrivateRes": false,
+      "hasLocalConfig": false
+    },
+    {
+      "level": 4,
+      "hasLocalJson": true,
+      "hasDownLoadJson": true,
+      "hasPublicRes": true,
+      "hasPrivateRes": true,
+      "hasLocalConfig": false
+    },
+    {
+      "level": 5,
+      "hasLocalJson": true,
+      "hasDownLoadJson": true,
+      "hasPublicRes": true,
+      "hasPrivateRes": true,
+      "hasLocalConfig": true
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+[
+  {
+    "ScreenId": "running_anim",
+    "levels": 6,
+    "times": 0,
+    "file": "vice_running.mp4"
+  },
+  {
+    "ScreenId": "block_anim",
+    "levels": 6,
+    "times": 0,
+    "file": "vice_avoid_obstacle.mp4"
+  },
+  {
+    "ScreenId": "arrive_anim",
+    "levels": 7,
+    "times": 1,
+    "file": "vice_arrive_destination.mp4"
+  },
+  {
+    "ScreenId": "take_wrong_anim",
+    "levels": 7,
+    "times": 1,
+    "file": "vice_take_wrong.mp4"
+  },
+  {
+    "ScreenId": "take_complete_anim",
+    "levels": 6,
+    "times": 0,
+    "file": "vice_take_food_complete.mp4"
+  },
+  {
+    "ScreenId": "running_pause_anim",
+    "levels": 6,
+    "times": 0,
+    "file": "",
+    "animSwitch": "none"
+  },
+  {
+    "ScreenId": "running_reset_anim",
+    "levels": 7,
+    "times": 1,
+    "file": "",
+    "animSwitch": "none"
+  },
+  {
+    "ScreenId": "wel_shop_enter_anim",
+    "levels": 6,
+    "times": 1,
+    "file": "vice_wel_detect.mp4"
+  },
+  {
+    "ScreenId": "welcome_default_anim",
+    "levels": 6,
+    "times": 0,
+    "file": "vice_wel_default.mp4"
+  },
+  {
+    "ScreenId": "move_detect_anim",
+    "levels": 6,
+    "times": 1,
+    "file": "vice_wel_detect.mp4"
+  }
+]

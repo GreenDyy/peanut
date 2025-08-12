@@ -1,0 +1,80 @@
+[
+  {
+    "Screen2Id": "screen2_default_anim",
+    "levels": 6,
+    "filePath": [
+      "look_rest_01.json"
+    ],
+    "times": 0,
+    "screen2Key": "anim"
+  },
+  {
+    "Screen2Id": "screen2_block_anim",
+    "levels": 6,
+    "filePath": [
+      "look_sad_01.json",
+      "look_sad_02.json",
+      "look_sad_03.json"
+    ],
+    "times": 0,
+    "screen2Key": "anim"
+  },
+  {
+    "Screen2Id": "screen2_collision_anim",
+    "levels": 6,
+    "filePath": [
+      "look_sad_01.json",
+      "look_sad_02.json",
+      "look_sad_03.json"
+    ],
+    "times": 3,
+    "screen2Key": "anim"
+  },
+  {
+    "Screen2Id": "screen2_arrive_anim",
+    "levels": 6,
+    "filePath": [
+      "look_happy.json"
+    ],
+    "times": 1,
+    "screen2Key": "anim"
+  },
+  {
+    "Screen2Id": "screen2_take_finish_anim",
+    "levels": 6,
+    "filePath": [
+      "look_throwkiss.json",
+      "look_happy_take_finish.json"
+    ],
+    "times": 1,
+    "screen2Key": "anim"
+  },
+  {
+    "Screen2Id": "screen2_working_anim",
+    "levels": 6,
+    "filePath": [
+      "look_working_01.json",
+      "look_working_02.json",
+      "look_working_03.json",
+      "look_working_04.json",
+      "look_working_05.json",
+      "look_working_06.json",
+      "look_working_07.json",
+      "look_working_08.json",
+      "look_working_09.json",
+      "look_working_10.json",
+      "look_working_11.json",
+      "look_working_12.json",
+      "look_working_13.json",
+      "look_working_14.json",
+      "look_working_15.json",
+      "look_working_16.json",
+      "look_working_17.json",
+      "look_working_18.json",
+      "look_working_19.json",
+      "look_working_20.json"
+    ],
+    "times": 0,
+    "screen2Key": "anim"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "type": "category",
+  "category": "unknown",
+  "qa_list": [
+    {
+      "conditions": [
+        "response_not_found"
+      ],
+      "answers": [
+        "你说什么，我听不懂",
+        "你说的神马，我听不懂，慢慢说",
+        "听不懂啊，亲，你可以换个说法试试",
+        "哎呀，人家累了"
+      ],
+      "priority": 0
+    },
+    {
+      "conditions": [
+        "network_limited"
+      ],
+      "answers": [
+        "没有网络，我的理解能力会很差的",
+        "给我联网我就听得懂你的话了"
+      ],
+      "priority": 0
+    }
+  ]
+}

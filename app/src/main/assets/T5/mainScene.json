@@ -1,0 +1,1113 @@
+[
+  {
+    "sceneId": "power_on",
+    "priority": 9,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "laser_location",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "laser_location_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "laser_location_fail",
+    "priority": 7,
+    "isMain": false,
+    "content": {
+      "light": "fault_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "normal_enter_page",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "enter_page_light",
+      "audio": "normal_enter_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "multi_enter_page",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "enter_page_light",
+      "audio": "multi_enter_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "snack_enter_page",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "enter_page_light",
+      "audio": "snack_enter_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "song_enter_page",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "enter_page_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "direct_enter_page",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "enter_page_light",
+      "audio": "direct_enter_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "direct_running",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "direct_running_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "wel_enter_page",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "enter_page_light",
+      "audio": "wel_enter_audio",
+      "screen": "wel_shop_enter_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "wel_default_screen",
+    "priority": 1,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "",
+      "screen": "welcome_default_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "wel_move_detect",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "wel_speak_audio",
+      "screen": "move_detect_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "wel_depart",
+    "priority": 1,
+    "isMain": true,
+    "content": {
+      "light": "click_go_light",
+      "audio": "",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "wel_running",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "wel_running_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "shop_enter_page",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "enter_page_light",
+      "audio": "shop_enter_audio",
+      "screen": "wel_shop_enter_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "shop_move_detect",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "shop_detect_audio",
+      "screen": "move_detect_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "guide_enter_page",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "guide_enter_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "guide_depart",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "guide_depart_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "guide_arrive",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "guide_arrive_audio",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "shop_guide_arrive",
+    "priority": 1,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "shop_guide_arrive_audio",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "rec_enter_page",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "enter_page_light",
+      "audio": "rec_enter_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "recycle_depart",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "click_go_light",
+      "audio": "rec_depart_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "recycle_running",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "rec_running_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "idle_scene",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "put_dishes",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "put_dishes_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "snack_log_out",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "log_out_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "put_dishes_overtime",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "put_dishes_overtime_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "normal_depart",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "click_go_light",
+      "audio": "normal_depart_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "normal_running",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "running_light",
+      "audio": "normal_running_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "common_running",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "running_light",
+      "audio": "",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "multi_running",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "running_light",
+      "audio": "multi_running_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "snack_depart",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "click_go_light",
+      "audio": "snack_depart_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "multi_depart",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "click_go_light",
+      "audio": "multi_depart_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "direct_depart",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "click_go_light",
+      "audio": "direct_depart_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "common_depart",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "click_go_light",
+      "audio": "",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "snack_running",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "running_light",
+      "audio": "snack_running_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "charge_running",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "running_light",
+      "audio": "",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "common_disappear",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "running_light",
+      "audio": "",
+      "screen": "running_pause_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "running_collision",
+    "priority": 7,
+    "isMain": false,
+    "content": {
+      "light": "running_collision_light",
+      "audio": "running_collision_audio",
+      "screen": "",
+      "screen2": "screen2_collision_anim"
+    }
+  },
+  {
+    "sceneId": "running_block",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "block_light",
+      "audio": "running_block_audio",
+      "screen": "block_anim",
+      "screen2": "screen2_block_anim"
+    }
+  },
+  {
+    "sceneId": "running_probe",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "block_light",
+      "audio": "running_probe_audio",
+      "screen": "block_anim",
+      "screen2": "screen2_block_anim"
+    }
+  },
+  {
+    "sceneId": "running_wait",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "block_light",
+      "audio": "running_wait_audio",
+      "screen": "block_anim",
+      "screen2": "screen2_block_anim"
+    }
+  },
+  {
+    "sceneId": "running_turn_left",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "turn_left_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "running_turn_right",
+    "priority": 6,
+    "isMain": true,
+    "content": {
+      "light": "turn_right_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "running_retreat",
+    "priority": 7,
+    "isMain": false,
+    "content": {
+      "light": "running_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "normal_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "",
+      "audio": "",
+      "screen": "arrive_anim",
+      "screen2": "screen2_arrive_anim"
+    }
+  },
+  {
+    "sceneId": "multi_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "",
+      "audio": "",
+      "screen": "arrive_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "common_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "pre_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "",
+      "audio": "",
+      "screen": "arrive_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "wash_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "wash_wait",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "wash_wait_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "recycle_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "recycle_wait",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "rec_wait_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "remote_rec_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "remote_rec_wait",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "remote_rec_arrive_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "remote_take_tip",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "remote_take_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "remote_running",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "remote_running_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "remote_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "remote_wait",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "remote_arrive_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "direct_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "direct_arrive_audio",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "origin_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "origin_arrive_audio",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "common_origin_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "common_reset_anim",
+    "priority": 1,
+    "isMain": true,
+    "content": {
+      "light": "",
+      "audio": "",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "multi_origin_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "multi_origin_arrive_audio",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "charge_arrive",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "arrive_light",
+      "audio": "",
+      "screen": "running_reset_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "normal_wait_take",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "wait_take_dishes_light",
+      "audio": "normal_wait_take_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "multi_wait_take",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "multi_wait_take_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "wait_take_wrong",
+    "priority": 8,
+    "isMain": false,
+    "content": {
+      "light": "take_wrong_dishes_light",
+      "audio": "take_wrong_audio",
+      "screen": "take_wrong_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "take_finish",
+    "priority": 8,
+    "isMain": true,
+    "content": {
+      "light": "take_finish_light",
+      "audio": "take_finish_audio",
+      "screen": "take_complete_anim",
+      "screen2": "screen2_take_finish_anim"
+    }
+  },
+  {
+    "sceneId": "common_take_finish",
+    "priority": 8,
+    "isMain": true,
+    "content": {
+      "light": "take_finish_light",
+      "audio": "",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "multi_take_finish",
+    "priority": 8,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "multi_take_finish_audio",
+      "screen": "take_complete_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "upgrade",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "time_charge_go",
+    "priority": 4,
+    "isMain": false,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "time_charge_go_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "low_power_charge_go",
+    "priority": 4,
+    "isMain": false,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "low_power_charge_go_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "manual_charge_go",
+    "priority": 4,
+    "isMain": false,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "manual_charge_go_audio",
+      "screen": "running_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "charge_ing",
+    "priority": 9,
+    "isMain": false,
+    "content": {
+      "light": "charge_ing_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "charge_full",
+    "priority": 1,
+    "isMain": false,
+    "content": {
+      "light": "charge_full_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "time_charge_quit",
+    "priority": 4,
+    "isMain": false,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "time_charge_quit_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "full_charge_quit",
+    "priority": 4,
+    "isMain": false,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "full_charge_quit_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "manual_charge_quit",
+    "priority": 4,
+    "isMain": false,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "manual_charge_quit_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "lower_power",
+    "priority": 9,
+    "isMain": false,
+    "content": {
+      "light": "lower_power_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "remote_call_start",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "remote_call_start_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "remote_call_quit",
+    "priority": 4,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "remote_call_quit_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "schedule",
+    "priority": 7,
+    "isMain": false,
+    "content": {
+      "light": "running_light",
+      "audio": "schedule_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "schedule_end",
+    "priority": 7,
+    "isMain": false,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "schedule_end_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "fault",
+    "priority": 7,
+    "isMain": false,
+    "content": {
+      "light": "fault_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "plank_holder_fault",
+    "priority": 7,
+    "isMain": false,
+    "content": {
+      "light": "fault_light",
+      "audio": "plank_holder_fault_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "far_label_fault",
+    "priority": 7,
+    "isMain": false,
+    "content": {
+      "light": "fault_light",
+      "audio": "far_label_fault_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "lost_label_fault",
+    "priority": 7,
+    "isMain": false,
+    "content": {
+      "light": "fault_light",
+      "audio": "lost_label_fault_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "emergency_stop",
+    "priority": 8,
+    "isMain": false,
+    "content": {
+      "light": "emergency_stop_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "low_power",
+    "priority": 9,
+    "isMain": false,
+    "content": {
+      "light": "lower_power_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "power_save",
+    "priority": 7,
+    "isMain": false,
+    "content": {
+      "light": "power_save_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "volume_audio",
+    "priority": 7,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "volume_test_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "low_power",
+    "priority": 9,
+    "isMain": false,
+    "content": {
+      "light": "lower_power_light",
+      "audio": "",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "location_press_button",
+    "priority": 1,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "location_press_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "location_success_choose",
+    "priority": 1,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "location_choose_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "location_remove_button",
+    "priority": 1,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "location_remove_audio",
+      "screen": "",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "ear_touch",
+    "priority": 9,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "ear_touch_audio",
+      "screen": "ear_touch_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "wave_detect",
+    "priority": 8,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "wave_detect_audio",
+      "screen": "wave_detect_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "block_road_early",
+    "priority": 1,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "block_road_early_audio",
+      "screen": "block_road_anim",
+      "screen2": ""
+    }
+  },
+  {
+    "sceneId": "block_road",
+    "priority": 1,
+    "isMain": true,
+    "content": {
+      "light": "idle_scene_light",
+      "audio": "block_road_audio",
+      "screen": "block_road_anim",
+      "screen2": ""
+    }
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "shopping_guide_navi",
+      "description": "You know the point enum information of the product, which can be understood as a first-level catalog. Part of the message is the product name corresponding to the first-level catalog, which can be understood as the second-level catalog. If the product is not in the second-level catalog, you need to judge which first-level catalog the product may belong to. The user will tell you what he wants to buy, please judge in order: 1. If the product name is in the level-1 directory, reply 'ok' with tool_calls and set the resultStatuss is ture; 2. the product name in the secondary directory, then tell the user in the primary directory at which point, and reply like '... Would you like me to take you there? ', with tool_calls and a resultStatus if False; 3.the product name is not in the above conditions, then tell the user he mentioned the product may be in the first level of the directory at which point, and reply similar '... Would you like me to take you there? ', with tool_calls and a resultStatus is False.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "point": {
+            "type": "string",
+            "enum": [],
+            "description": "The product area of the superstore, must be the information defined by the enum array, can not be empty or other information, does not support fuzzy matching."
+          },
+          "pointDesc": {
+            "type": "string",
+            "description": "The relationship between the product of interest to the customer and the product area, and the introduction of the product, or the introduction of the product area to which the customer is going; the introduction of the information must be as detailed as possible. The language of the return information must be the same as the language of the user question."
+          },
+          "resultStatus": {
+            "type": "boolean",
+            "description": "Returns true if the area or product that the customer is interested in is inside the definition of the product area without going through the product category search, but returns false in all other cases."
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "description": "Set off immediately to the point identified by the shopping_guide_navi function in the last instance.",
+      "name": "start_navi"
+    }
+  }
+]

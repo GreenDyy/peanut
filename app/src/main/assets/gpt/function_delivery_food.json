@@ -1,0 +1,36 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "multi_delivery_food",
+      "description": "将菜品派送到某个point，支持一次派送到多个point。识别到的point信息，如果不在enum定义里面，需要丢弃掉。如果最终的point数据不为空，通过tools进行反馈；如果为空，不通过tools反馈，通过闲聊的方式反馈。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "point": {
+            "type": "string",
+            "enum": [],
+            "description": "菜品将要送到的point, 必须为enum数组定义的信息，不能为空或者其它信息，不支持模糊匹配。如果识别到多个point，必须放到一个point字符串中进行返回，通过逗号进行分隔，例如“1,2,3”。"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "guide_navi",
+      "description": "带到/引领到某个point去，一次只能处理一个point。识别到的point信息，如果不在enum定义里面，需要丢弃掉。如果最终的point数据为多个，只取第一个point，通过tools进行反馈；如果为空，不通过tools反馈，通过闲聊的方式反馈。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "point": {
+            "type": "string",
+            "enum": [],
+            "description": "即将被引领去的point, 必须为enum数组定义的信息，不能为空或者其它信息，不支持模糊匹配。"
+          }
+        }
+      }
+    }
+  }
+]

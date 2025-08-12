@@ -1,0 +1,9 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "close_chat",
+      "description": "结束聊天,结束弹框,关闭聊天,关闭弹框"
+    }
+  }
+]

@@ -105,6 +105,10 @@
     <!-- Object Perception -->
     <string name="demo_title_object_perception">Object Perception</string>
     <string name="demo_desc_object_perception">Test object detection and perception APIs</string>
+    
+    <!-- Test Perception -->
+    <string name="demo_title_test_perception">Test Perception</string>
+    <string name="demo_desc_test_perception">Simple test perception activity</string>
 
     <string name="led_effect_time">Duration in milliseconds</string>
     <string name="action_start">start</string>

@@ -1,0 +1,365 @@
+# 配置版本（版本号根据需求，逐步递增）
+config_version: 1
+# 当前使用的场景id
+scene_id: ""
+
+# 选中主模式（0:送餐模式，1:送小吃， 2:直达， 3:生日祝福歌， 4:多点模式）
+app_main_mode: 0
+# 场景模式
+scene_normal: true
+scene_snack: true
+scene_multi: true
+scene_direct: true
+scene_birthday: true
+scene_welcome: true
+scene_recycle: true
+scene_shop: true
+# 桌号输入方式（0:键盘模式，1:选择点位模式）
+desk_input_type: 1
+# 桌号字体大小（ 0:大，1:中，2:小）
+desk_font_size: 1
+# 最近配送目标点
+latest_use_desk_enable: false
+# 大屏幕亮度 总共5档,默认第4档
+ad_screen_light: -1
+# 大屏幕亮度 0-90
+new_ad_screen_light: 90
+# 点击桌号时语音播报开关
+desk_speak_enable: true
+# 选择换肤模式（0:默认，1:红色，2:金色，3:浅色模式）
+app_skin_mode: 3
+#数字桌号中文播报(0:无计数单位(默认），1：有计数单位)
+desk_speak_choose: 0
+# 屏幕动画开关
+screen_anim_enable: true
+# 原点电机解锁开关
+origin_motor_unlock_enable: false
+# 达到目标点电机解锁开关
+arrive_motor_unlock_enable: false
+# 多语言使能开关
+language_res_enable: true
+# 氛围灯效（T8使用，0：无灯效， 1：呼吸灯效）
+ambient_light_mode: 1
+# 祝福歌悬浮窗开关
+song_floating_window_enable: true
+# 祝福歌播放音量
+birthday_song_volume: 6
+#不同机型设置不同默认值
+# 音乐播放音量
+background_music_volume: 5
+# 广告播放音量
+background_ad_volume: 20
+# 播报语音音量
+notify_speak_volume: 5
+# 播报音色类型（0:童音，1:稳重男音，2:温柔女音）
+speak_timber_type: 0
+# 送餐背景音乐
+food_delivery_background_music_path: "default"
+# 达到语音播报频率（0:频繁，1:少量，2:仅一次，3:静音）
+arrive_audio_speak_rate: 1
+# 送小吃背景音乐
+snack_delivery_background_music_path: "default"
+#回盘背景音乐
+recycle_background_music_path: "default"
+# 送小吃语音播报频率（0:频繁，1:少量，2:仅一次，3:静音）
+snack_audio_speak_rate: 1
+# 回盘语音播报频率（0:频繁，1:少量，2:仅一次，3:静音）
+recycle_audio_speak_rate: 1
+# 迎宾语音播报频率（0:频繁，1:少量，2:仅一次，3:静音）
+welcome_recycle_audio_speak_rate: 1
+# 场景切换语音开关（例如切换模式，退出场景语音）
+change_scene_audio_enable: true
+# 运行中语音开关（各种模式下出发，运行时，场景语音）
+delivery_audio_enable: true
+# 故障提示语音开关
+fault_audio_enable: true
+
+# 取餐停留时间
+take_food_stay_time: 120
+# 行走暂停时长
+delivery_pause_time: 30
+# 送餐行走速度
+delivery_trip_speed: 100
+# 返航行走速度
+back_speed: 100
+# 平稳模式去程速度
+stable_trip_speed: 40
+# 平稳模式返程速度
+stable_back_speed: 80
+# 提前通知开关
+ahead_notify_enable: false
+# 到达通知距离
+pre_notify_distance: 5
+# 平稳模式开关
+stable_mode_enable: true
+# 配送时是否选中平稳模式
+stable_delivery_state: false
+# 送餐暂停行走时，电机解锁开关
+delivery_pause_motor_unlock_enable: true
+#配送顺序
+delivery_sequence_type: 0
+
+# 送小吃运行方式（0:循环， 1:单次）
+snack_navi_type: 0
+# 送小吃暂停时时长
+snack_delivery_pause_time: 10
+# 送小吃补给点暂停时长
+snack_supply_stay_time: 10
+# 送小吃行走速度
+snack_delivery_speed: 30
+# 送小吃暂停行走时，电机解锁开关
+snack_delivery_pause_motor_unlock_enable: false
+
+# 洗碗间，循环模式，选项下标是0开始
+dishwash_loop_type: 2
+# 洗碗间，行走暂停时间
+dishwash_walk_pause_time: 30
+# 洗碗间，收盘停留时间 单位是s 旧废弃
+dishwash_recover_pause_time: -1
+# 洗碗间，收盘停留时间 单位是s 新
+new_dishwash_recover_pause_time: 180
+# 洗碗间，房间停留时间 旧废弃
+dishwash_room_pause_time: -1
+# 洗碗间，房间停留时间 新
+new_dishwash_room_pause_time: 600
+# 洗碗间，回盘行走速度
+dishwash_recover_walk_speed: 60
+# 放餐停留时长
+page_stay_time: 60
+# 页面操作时长
+page_operate_time: 10
+# 远程呼叫对话框时长
+remote_dialog_time: 5
+# 通知铃配置上传下载弹窗按钮禁用时长
+notice_bell_config_dialog_btn_disable_time: 5
+# 远程控制开关
+remote_call_enable: false
+# 返航时是否可远程呼叫开关
+back_call_enable: true
+
+# 原点id（默认取原点列表中第1个值）
+origin_point_id: -1
+# 充电桩id（默认取充电桩列表中第1个值）
+charge_pile_id: -1
+# 洗碗间id（默认取原点列表中第1个值）
+washer_point_id: -1
+# 友盟日志开关
+umeng_bi_enable: true
+
+# app守护运行开关
+app_daemon_enable: true
+# app自启动开关
+app_auto_restart_enable: true
+# 系统菜单栏隐藏开关
+hide_system_menubar_enable: true
+# app启动次数信息
+app_launch_count_enable: false
+# 普通用户密码开关
+user_setting_password_enable: false
+# 定位方式（0:标签定位，1:激光定位）
+machine_location_type: 1
+# 自动充电开关 废弃
+ban_auto_charge_enable: true
+# 自动充电开关
+auto_charge_enable: false
+# 自动回充电量
+auto_charge_power_level: 6
+# 最低使用电量
+minimum_use_power_level: 5
+# 通用低电量
+common_use_power_level: 60
+# 选择域名
+choose_domain_name: ""
+# 选择国家
+choose_region_name: ""
+# 数据中心iso2
+choose_region_iso2: ""
+# 迎宾背景音乐
+welcome_guests_background_music_path: "default"
+# 是否展示弹窗
+is_need_show_dialog: false
+# 远程呼叫送达后自动返航
+remote_auto_back: false
+# 远程呼叫按键类型（0：无，1：A键，2：B键，3：C键）
+remote_call_btn: 0
+# 远程呼叫类型（1,回盘，0，其他）
+remote_call_type: 0
+# 呼叫到达停留时长
+remote_call_arrive_stay_time: 60
+
+# 自动补录
+auto_add_layer_enable: false
+#小票模型切换
+receipt_detection_model_enable: false
+# 餐盘检测
+auto_take_food_enable: true
+# 餐盘检测1层开关
+auto_take_food_enable_layer_1: true
+# 餐盘检测2层开关
+auto_take_food_enable_layer_2: true
+# 餐盘检测3层开关
+auto_take_food_enable_layer_3: true
+# 通知铃音乐提醒开关
+bell_music_reminder_enable: true
+# 通知铃音乐音量
+bell_music_volume: 70
+# 通知铃音乐选择
+bell_music_select: 1
+# 通知铃灯光提醒开关
+bell_lighting_reminder_enable: true
+# 通知铃灯光强度
+bell_lighting_strength: 100
+# 通知铃灯光颜色
+bell_lighting_colour: 1
+# 通知铃静默时长
+bell_silence_duration: 50
+# 通知铃是否已经参数存档
+bell_parameter_archive: false
+
+# 运动过程碰撞解锁（默认解锁）
+collision_motor_unlock_enable: true
+#堵路检测开关
+block_road_detection_enable: false
+#防跌落开关状态保存
+three_vision_enable: true
+#近似到达开关 默认为true
+approximations_enable: true
+#通行场景
+ros_run_scene_mode: 2
+# 灯板表情
+lamp_expression_enable: true
+#宣传语开关
+app_select_slogan_enable: false
+#宣传语
+slogan_words: ""
+# 餐层自动识别
+layer_auto_discern_enable: false
+#选择改装样式,0 原型，1 改装
+layer_set_type: 0
+# 餐层第二层餐盘是否拆除
+layer_delete_second_enable: false
+# 餐层第三层餐盘是否拆除
+layer_delete_three_enable: false
+# 餐层数量，可配置2,3,4,默认层会在config中根据机型区分
+layer_num: 4
+# t9pro拆除模式
+t9pro_layer_remove_mode: ""
+# 机器使用工厂资源包
+in_factory_resource: false
+#迎宾领位设置
+#移动迎宾暂停时长
+welcome_navi_pause_time: 10
+#移动迎宾巡航点停留时长
+welcome_navi_stay_time: 10
+#移动迎宾速度
+welcome_navi_speed: 30
+#领位速度
+welcome_guide_navi_speed: 100
+#常驻领位页面
+keep_guide_route_page: false
+# 用户普通密码
+user_password: "0000"
+# 超级密码
+admin_password: "870051"
+# 上次成功登录时间
+last_login_success_time: 0
+#省电模式
+power_save_mode: 1
+#原点自动开门（历史版本，废弃）
+origin_auto_open_door: true
+#出菜口自动开门
+cook_auto_open_door: true
+#洗碗间自动开门
+washroom_auto_open_door: true
+#目标点自动开门
+dst_auto_open_door: true
+#投影灯送餐开关
+project_lamp_open: true
+#投影灯到达开关
+project_lamp_close: true
+#开门锁屏密码
+open_door_password: false
+#超时取餐停留时间
+over_take_food_stay_time: true
+#开发速度限制
+speed_limit_enable: false
+#到达表情预提示
+arrive_remind_anim_enable: true
+#任务状态上报频率
+work_task_report_interval: 1
+#位置上报频率
+position_report_interval: 5
+#任务上报区域 0:不上报，1:只上报远程，2：只上报本地，3：两个都上报
+work_task_report_area: 1
+#任务上报开关，目前主要控制距离变化的上报频率
+work_task_report_switch: false
+# 到达目的上报开关（后台）
+arrive_point_report_enable: false
+# 取餐离开上报开关（后台）
+take_food_report_enable: false
+# 到达祝福歌
+arrive_song_music_path: ""
+# 广告显示类型（0:角色皮肤，1:广告宣传）
+ad_show_type: 1
+#运行辅助模式
+running_default_show: true
+# 广告内容选择样式（0:大图，1:多图）
+advert_select_style: 0
+#广告素材限制
+adv_count_limit: true
+#经纬度上报频率
+latitude_longitude_interval: 3
+
+#操作屏设置
+#操作屏转动功能开关
+operation_screen_rotate_enable: true
+#操作屏默认角度
+operation_screen_default_angle: -1
+#多语言选择
+mul_language_take_food_enable: false
+#屏幕双击暂停
+click_double_pause: true
+#语音交互开关
+voice_interaction_status_enable: false
+#呼叫等待时长
+remote_wait_time_switch: true
+#T3灯带亮度调节 0-100，分10档
+light_bright_t3: 100
+#促销暂停时长
+promotion_navi_pause_time: 10
+#促销巡航点停留时长
+promotion_navi_stay_time: 10
+#促销速度
+promotion_navi_speed: 30
+#导购速度
+shop_guide_navi_speed: 80
+#保守运动模式
+guard_move_mode_enable: false
+#避让等待时长
+avoid_waiting_time: 60
+# 送达通知--ktv
+arrive_notify_ktv: false
+# 送达通知--watch
+arrive_notify_watch: false
+# 打招呼开关
+greet_switch: true
+# 摸耳朵开关
+touch_ear_switch: true
+# 导购模式切换
+shop_guide_mode_change: false
+# 语音交互本地开关
+voice_interact_enable: true
+# 语音交互远程开关
+remote_voice_interact_enable: false
+#语音交互gpt参数
+voice_interact_gpt_params: ""
+#是否放盘
+put_dish_enable: false
+#规避错误提示
+take_food_error_tip_enable: false
+#放盘时间0-10s
+pickup_cache_time: 10
+#放盘等待时间0-60s
+put_dish_wait_time: 15
+#放盘返回点位
+dish_back_type: 0

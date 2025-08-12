@@ -1,0 +1,428 @@
+# 规则：基本设置recycleView
+basal_setting_text:
+  line_num: 2
+  maxWidth: 125
+  rules:
+    - over_font_size: 19
+    - over_font_size: 18
+
+# 规则：基本设置标题
+basal_setting_title_text:
+  line_num: 2
+  maxWidth: 190
+  rules:
+    - over_font_size: 24
+    - over_font_size: 20
+
+# 规则：肤色选择
+skin_color_choose_text:
+  line_num: 1
+  maxWidth: 215
+  rules:
+    - over_font_size: 22
+
+# 规则：层数设置
+layer_number_text:
+  line_num: 1
+  maxWidth: 180
+  rules:
+    - over_font_size: 34
+    - over_font_size: 20
+
+# 规则：最近使用/所有点位
+recent_use_text:
+  line_num: 1
+  maxWidth: 620
+  rules:
+    - over_font_size: 20
+    - over_font_size: 18
+
+# 规则：暂无最近使用
+none_recent_use_text:
+  line_num: 2
+  maxWidth: 600
+  rules:
+    - over_font_size: 26
+    - over_font_size: 22
+
+# 规则：标题
+page_title_text:
+  line_num: 1
+  maxWidth: 380
+  rules:
+    - over_font_size: 40
+
+
+# 规则：已选择桌号
+# 小字号模式规则
+choose_table_num_text_small:
+  line_num: 2
+  maxWidth: 270
+  rules:
+    - over_font_size: 20
+
+# 正常字号模式规则
+choose_table_num_text:
+  line_num: 2
+  maxWidth: 270
+  rules:
+    - over_font_size: 24
+
+# 大字号模式规则
+choose_table_num_text_large:
+  line_num: 2
+  maxWidth: 270
+  rules:
+    - over_font_size: 30
+    - over_font_size: 26
+
+# 规则：弹窗标题·
+dialog_title_text:
+  line_num: 3
+  maxWidth: 600
+  rules:
+    - over_font_size: 45
+    - over_font_size: 40
+    - over_font_size: 35
+
+# 规则：弹窗按钮
+dialog_button_text:
+  line_num: 1
+  maxWidth: 300
+  rules:
+    - over_font_size: 35
+    - over_font_size: 24
+
+# 规则：暂无线路
+no_data_textView:
+  line_num: 1
+  maxWidth: 280
+  rules:
+    - over_font_size: 44
+
+# 急停关闭
+ps_scram_motor_lock:
+  line_num: 2
+  maxWidth: 280
+  rules:
+    - over_font_size: 30
+    - over_font_size: 24
+
+# 正常使用，请关闭急停开关
+ms_scram_prompt:
+  line_num: 2
+  maxWidth: 280
+  rules:
+    - over_font_size: 20
+    - over_font_size: 18
+
+# 点击屏幕任意位置，可以暂停我哦~
+sfd_snacks_touch_pause:
+  line_num: 1
+  maxWidth: 800
+  rules:
+    - over_font_size: 26
+    - over_font_size: 20
+
+# 送餐中
+delivery_tip_txt_view:
+  line_num: 2
+  maxWidth: 240
+  rules:
+    - over_font_size: 47
+    - over_font_size: 32
+
+# 送餐暂停
+delivery_pause_tip_txt_view:
+  line_num: 1
+  maxWidth: 588
+  rules:
+    - over_font_size: 30
+
+# 确认取餐
+delivery_sfd_ensure:
+  line_num: 2
+  maxWidth: 500
+  rules:
+    - over_font_size: 40
+
+# 设置左侧样式
+delivery_setting_left_txt_view:
+  line_num: 2
+  maxWidth: 430
+  rules:
+    - over_font_size: 20
+    - over_font_size: 15
+
+# 设置右侧样式
+delivery_setting_right_txt_view:
+  line_num: 2
+  maxWidth: 310
+  rules:
+    - over_font_size: 22
+    - over_font_size: 18
+
+# 右侧侧滑菜单样式如背景音乐列表
+delivery_setting_right_draw_layout:
+  # 正常字号模式规则
+  line_num: 2
+  maxWidth: 370
+  rules:
+    - over_font_size: 22
+    - over_font_size: 18
+
+# 右侧侧滑菜单样式如背景音乐列表
+delivery_setting_right_draw_layout_title:
+  # 正常字号模式规则
+  line_num: 2
+  maxWidth: 450
+  rules:
+    - over_font_size: 24
+    - over_font_size: 20
+
+
+# 开启手推
+charge_open_hand_push_tex_view:
+  line_num: 1
+  maxWidth: 180
+  rules:
+    - over_font_size: 30
+
+# 剩余时间
+charge_surplus_charge_time:
+  line_num: 2
+  maxWidth: 490
+  rules:
+    - over_font_size: 23
+
+# 充满电
+charge_full:
+  line_num: 3
+  maxWidth: 190
+  rules:
+    - over_font_size: 22
+
+#多点代配送
+multi_take_food_send_view:
+  line_num: 2
+  maxWidth: 140
+  rules:
+    - over_font_size: 26
+    - over_font_size: 22
+
+# 规则：最近使用/所有点位,只有数字的情况
+#小字号模式
+desk_item_use_text_num_small:
+  line_num: 2
+  maxWidth: 191
+  rules:
+    - over_font_size: 28
+
+# 正常字号模式
+desk_item_use_text_num:
+  line_num: 2
+  maxWidth: 232
+  rules:
+    - over_font_size: 34
+
+# 大字号模式
+desk_item_use_text_num_large:
+  line_num: 2
+  maxWidth: 296
+  rules:
+    - over_font_size: 42
+
+#小字号模式
+desk_item_use_text_small:
+  line_num: 2
+  maxWidth: 191
+  rules:
+    - over_font_size: 23
+
+# 正常字号模式
+desk_item_use_text:
+  line_num: 2
+  maxWidth: 232
+  rules:
+    - over_font_size: 26
+
+# 大字号模式
+desk_item_use_text_large:
+  line_num: 2
+  maxWidth: 296
+  rules:
+    - over_font_size: 36
+
+# 规则：通知铃配置保存按钮
+bell_config_button:
+  line_num: 2
+  maxWidth: 315
+  rules:
+    - over_font_size: 35
+    - over_font_size: 23
+
+# 规则： 取餐页桌号
+arrive_desk_text:
+  # 正常字号模式规则
+  middle:
+    line_num: 1
+    rules:
+      - layout_width: 1000
+        font_size: 125
+        over_font_size: 67
+
+# 规则： 取餐页待取桌号
+arrive_taking_layer_text:
+  line_num: 1
+  maxWidth: 650
+  rules:
+    - over_font_size: 53
+    - over_font_size: 36
+
+# 规则： 远程呼叫到达去洗碗间
+rb_remote_arrive_finish:
+  line_num: 2
+  maxWidth: 390
+  rules:
+    - over_font_size: 38
+    - over_font_size: 36
+    - over_font_size: 34
+    - over_font_size: 24
+    - over_font_size: 20
+    - over_font_size: 18
+
+# 规则： 远程呼叫到达桌号
+rb_remote_arrive_desk_num:
+  line_num: 2
+  maxWidth: 680
+  rules:
+    - font_size: 125
+    - over_font_size: 80
+
+# 规则：回盘模式右侧按钮
+recycle_navi_right_btn:
+  line_num: 2
+  maxWidth: 400
+  rules:
+    - over_font_size: 32
+    - over_font_size: 30
+    - over_font_size: 28
+    - over_font_size: 24
+    - over_font_size: 20
+    - over_font_size: 18
+
+# 规则：回盘模式左侧按钮
+recycle_navi_left_btn:
+  line_num: 2
+  maxWidth: 240
+  rules:
+    - over_font_size: 36
+    - over_font_size: 34
+    - over_font_size: 32
+    - over_font_size: 30
+    - over_font_size: 28
+    - over_font_size: 24
+    - over_font_size: 20
+    - over_font_size: 18
+# 规则：回盘模式左侧按钮
+recycle_navi_left_btn_t5:
+  line_num: 2
+  maxWidth: 240
+  rules:
+    - over_font_size: 38
+    - over_font_size: 36
+    - over_font_size: 34
+    - over_font_size: 32
+    - over_font_size: 30
+    - over_font_size: 26
+    - over_font_size: 22
+    - over_font_size: 20
+# 规则：低电量回充弹窗标题
+low_power_dialog_title:
+  line_num: 3
+  maxWidth: 560
+  rules:
+    - over_font_size: 40
+    - over_font_size: 30
+
+# 规则：回盘模式标题
+recycle_navi_title:
+  line_num: 3
+  maxWidth: 1000
+  rules:
+    - over_font_size: 65
+    - over_font_size: 50
+
+# 规则：回盘模式标题t8\t8pro
+recycle_navi_title_t8:
+  line_num: 3
+  maxWidth: 780
+  rules:
+    - over_font_size: 80
+    - over_font_size: 65
+    - over_font_size: 50
+
+# 规则：dialog字体大小
+dialog_title:
+  line_num: 3
+  maxWidth: 740
+  rules:
+    - over_font_size: 30
+    - over_font_size: 24
+# 多语言取餐
+mul_language_take_food:
+  line_num: 2
+  maxWidth: 0
+  rules:
+    - over_font_size: 50
+    - over_font_size: 40
+
+# 规则：回盘模式左侧按钮
+welcome_home_right_btn:
+  line_num: 2
+  maxWidth: 115
+  rules:
+    - over_font_size: 22
+    - over_font_size: 16
+    - over_font_size: 13
+# 规则：回盘模式左侧按钮
+location_bottom_tip:
+  line_num: 2
+  maxWidth: 600
+  rules:
+    - over_font_size: 24
+
+#小字号模式
+desk_item_guide_use_text_small:
+  line_num: 2
+  maxWidth: 350
+  rules:
+    - over_font_size: 27
+
+# 正常字号模式
+desk_item_guide_use_text:
+  line_num: 2
+  maxWidth: 350
+  rules:
+    - over_font_size: 34
+
+# 大字号模式
+desk_item_guide_use_text_large:
+  line_num: 2
+  maxWidth: 350
+  rules:
+    - over_font_size: 45
+# 导入导出
+shop_ad_download_text:
+  line_num: 1
+  maxWidth: 100
+  rules:
+    - over_font_size: 16
+# 商超首页促销换行
+shop_home_promotion_text:
+  line_num: 1
+  maxWidth: 150
+  rules:
+    - over_font_size: 25
+    - over_font_size: 16
+

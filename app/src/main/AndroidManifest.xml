@@ -77,6 +77,8 @@
 android:label="Robot Keenon Test Center" />
         <activity android:name=".test.ObjectPerceptionTestActivity"
 android:label="Object Perception Test" />
+        <activity android:name=".test.TestPerceptionActivity"
+android:label="Test Perception" />
         <activity android:name=".chassis.T8LightDemo" />
         <activity android:name=".chassis.DoorDemo" />
         <activity android:name=".chassis.MapDemo" />

@@ -1,0 +1,299 @@
+{
+  "T8": {
+    "robotModel": "T8",
+    "plateNumber": 2,
+    "devs": [
+      {
+        "lightName": "餐层一",
+        "lightType": 1,
+        "devId": [
+          3
+        ],
+        "connectType": "coap",
+        "transmissionProtocol": "com_v1_multi",
+        "ledNumber": 36,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "餐层二",
+        "lightType": 2,
+        "devId": [
+          4
+        ],
+        "connectType": "coap",
+        "transmissionProtocol": "com_v1_multi",
+        "ledNumber": 36,
+        "ledStartPoint": 0
+      }
+    ]
+  },
+  "T5 PRO": {
+    "robotModel": "T5 PRO",
+    "plateNumber": 4,
+    "devs": [
+      {
+        "lightName": "头部转向灯",
+        "lightType": 0,
+        "devId": [
+          10
+        ],
+        "connectType": "com_usb",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 21,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "底盘灯",
+        "lightType": 6,
+        "devId": [
+          9
+        ],
+        "connectType": "com_usb",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 24,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "左立柱灯",
+        "lightType": 7,
+        "devId": [
+          7
+        ],
+        "connectType": "com_usb",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 43,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "右立柱灯",
+        "lightType": 8,
+        "devId": [
+          8
+        ],
+        "connectType": "com_usb",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 43,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "餐层一",
+        "lightType": 1,
+        "devId": [
+          7,
+          8
+        ],
+        "connectType": "com_usb",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 12,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "餐层二",
+        "lightType": 2,
+        "devId": [
+          7,
+          8
+        ],
+        "connectType": "com_usb",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 23,
+        "ledStartPoint": 12
+      },
+      {
+        "lightName": "餐层三",
+        "lightType": 3,
+        "devId": [
+          7,
+          8
+        ],
+        "connectType": "com_usb",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 34,
+        "ledStartPoint": 23
+      },
+      {
+        "lightName": "餐层四",
+        "lightType": 4,
+        "devId": [
+          7,
+          8
+        ],
+        "connectType": "com_usb",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 43,
+        "ledStartPoint": 34
+      }
+    ]
+  },
+  "T3": {
+    "robotModel": "T3",
+    "plateNumber": 3,
+    "devs": [
+      {
+        "lightName": "头部环绕灯",
+        "lightType": 5,
+        "devId": [
+          50
+        ],
+        "connectType": "com_usb",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 99,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "底盘灯",
+        "lightType": 6,
+        "devId": [
+          51
+        ],
+        "connectType": "com_usb",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 102,
+        "ledStartPoint": 0
+      }
+    ]
+  },
+  "W3": {
+    "robotModel": "W3",
+    "plateNumber": 0,
+    "devs": [
+      {
+        "lightName": "头部灯",
+        "lightType": 0,
+        "devId": [
+          21
+        ],
+        "connectType": "com_s2",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 30,
+        "ledStartPoint": 0
+      }
+    ]
+  },
+  "S100": {
+    "robotModel": "S100",
+    "plateNumber": 0,
+    "devs": [
+      {
+        "lightName": "地盘前灯带",
+        "lightType": 9,
+        "devId": [
+          50
+        ],
+        "connectType": "coap",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 16,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "地盘后灯带",
+        "lightType": 10,
+        "devId": [
+          51
+        ],
+        "connectType": "coap",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 35,
+        "ledStartPoint": 0
+      }
+    ]
+  },
+  "T10": {
+    "robotModel": "T10",
+    "plateNumber": 3,
+    "devs": [
+      {
+        "lightName": "餐层一",
+        "lightType": 1,
+        "devId": [
+          33,
+          34
+        ],
+        "connectType": "coap",
+        "transmissionProtocol": "com_v2_single",
+        "ledNumber": 0,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "餐层二",
+        "lightType": 2,
+        "devId": [
+          35,
+          36
+        ],
+        "connectType": "coap",
+        "transmissionProtocol": "com_v2_single",
+        "ledNumber": 0,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "餐层三",
+        "lightType": 3,
+        "devId": [
+          68,
+          69
+        ],
+        "connectType": "coap",
+        "transmissionProtocol": "com_v2_single",
+        "ledNumber": 0,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "底盘灯",
+        "lightType": 6,
+        "devId": [
+          50
+        ],
+        "connectType": "coap",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 1,
+        "ledStartPoint": 0
+      }
+    ]
+  },
+  "T5": {
+    "robotModel": "T5",
+    "plateNumber": 0,
+    "devs": [
+      {
+        "lightName": "头部灯",
+        "lightType": 0,
+        "devId": [
+          2
+        ],
+        "connectType": "com_s2",
+        "transmissionProtocol": "com_v1",
+        "ledNumber": 0,
+        "ledStartPoint": 0
+      }
+    ]
+  },
+  "T9": {
+    "robotModel": "T9",
+    "plateNumber": 0,
+    "devs": [
+      {
+        "lightName": "头部灯",
+        "lightType": 0,
+        "devId": [
+          3
+        ],
+        "connectType": "coap",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 21,
+        "ledStartPoint": 0
+      },
+      {
+        "lightName": "地盘后灯带",
+        "lightType": 6,
+        "devId": [
+          9
+        ],
+        "connectType": "coap",
+        "transmissionProtocol": "com_v2_multi",
+        "ledNumber": 24,
+        "ledStartPoint": 0
+      }
+    ]
+  }
+}

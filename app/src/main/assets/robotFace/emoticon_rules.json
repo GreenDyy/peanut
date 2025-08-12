@@ -1,0 +1,407 @@
+{
+  "ps_app_startup_face": {
+    "t1": {
+      "file": [
+        "open_moment.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": false
+    },
+    "t5": {
+      "file": [
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": false
+    }
+  },
+  "ps_robot_startup_face": {
+    "t1": {
+      "file": [
+        "look_review001.json",
+        "look_review002.json"
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": true
+    },
+    "t5": {
+      "file": [
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": true
+    }
+  },
+  "ps_robot_charge_cancel_face": {
+    "t1": {
+      "file": [
+        "look_happy.json"
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": true
+    },
+    "t5": {
+      "file": [
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": true
+    }
+  },
+  "ps_robot_working_face": {
+    "t1": {
+      "file": [
+        "look_working001.json",
+        "look_working002.json",
+        "look_working003.json",
+        "look_working004.json",
+        "look_working005.json",
+        "look_working006.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    },
+    "t5": {
+      "file": [
+        "look_working_01.json",
+        "look_working_02.json",
+        "look_working_03.json",
+        "look_working_04.json",
+        "look_working_05.json",
+        "look_working_06.json",
+        "look_working_07.json",
+        "look_working_08.json",
+        "look_working_09.json",
+        "look_working_10.json",
+        "look_working_11.json",
+        "look_working_12.json",
+        "look_working_13.json",
+        "look_working_14.json",
+        "look_working_15.json",
+        "look_working_16.json",
+        "look_working_17.json",
+        "look_working_18.json",
+        "look_working_19.json",
+        "look_working_20.json",
+        "look_working_21.json",
+        "look_working_22.json",
+        "look_working_23.json",
+        "look_working_24.json",
+        "look_working_25.json",
+        "look_working_26.json",
+        "look_working_27.json",
+        "look_working_28.json",
+        "look_working_29.json",
+        "look_working_30.json",
+        "look_working_31.json",
+        "look_working_32.json",
+        "look_working_33.json",
+        "look_working_34.json",
+        "look_working_35.json",
+        "look_working_36.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": false
+    }
+  },
+  "ps_robot_reset_face": {
+    "t1": {
+      "file": [
+        "look_rest001.json",
+        "look_rest002.json",
+        "look_rest003.json",
+        "look_rest004.json",
+        "look_rest005.json",
+        "look_rest006.json",
+        "look_rest007.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    },
+    "t5": {
+      "file": [
+        "look_rest_01.json",
+        "look_rest_02.json",
+        "look_rest_03.json",
+        "look_rest_04.json",
+        "look_rest_05.json",
+        "look_rest_06.json",
+        "look_rest_07.json",
+        "look_rest_08.json",
+        "look_rest_09.json",
+        "look_rest_10.json",
+        "look_rest_11.json",
+        "look_rest_12.json",
+        "look_rest_13.json",
+        "look_rest_14.json",
+        "look_rest_15.json",
+        "look_rest_16.json",
+        "look_rest_17.json",
+        "look_rest_18.json",
+        "look_rest_19.json",
+        "look_rest_20.json",
+        "look_rest_21.json",
+        "look_rest_22.json",
+        "look_rest_23.json",
+        "look_rest_24.json",
+        "look_rest_25.json",
+        "look_rest_26.json",
+        "look_rest_27.json",
+        "look_rest_28.json",
+        "look_rest_29.json",
+        "look_rest_30.json",
+        "look_rest_31.json",
+        "look_rest_32.json",
+        "look_rest_33.json",
+        "look_rest_34.json",
+        "look_rest_35.json",
+        "look_rest_36.json",
+        "look_rest_37.json",
+        "look_rest_38.json",
+        "look_rest_39.json",
+        "look_rest_40.json",
+        "look_rest_41.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    }
+  },
+  "ps_robot_start_work_face": {
+    "t1": {
+      "file": [
+        "look_happy.json"
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": true
+    },
+    "t5": {
+      "file": [
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": true
+    }
+  },
+  "ps_robot_block_face": {
+    "t1": {
+      "file": [
+        "look_sad001.json",
+        "look_sad002.json",
+        "look_sad003.json"
+      ],
+      "order": "random",
+      "loop": 1,
+      "force": true
+    },
+    "t5": {
+      "file": [
+        "look_sad_01.json",
+        "look_sad_02.json",
+        "look_sad_03.json"
+      ],
+      "order": "random",
+      "loop": 1,
+      "force": true
+    }
+  },
+  "ps_robot_block_waiting_face": {
+    "t1": {
+      "file": [
+        "look_sad001.json",
+        "look_sad002.json",
+        "look_sad003.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    },
+    "t5": {
+      "file": [
+        "look_sad_01.json",
+        "look_sad_02.json",
+        "look_sad_03.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    }
+  },
+  "ps_robot_block_probe_face": {
+    "t1": {
+      "file": [
+        "look_sad001.json",
+        "look_sad002.json",
+        "look_sad003.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    },
+    "t5": {
+      "file": [
+        "look_sad_01.json",
+        "look_sad_02.json",
+        "look_sad_03.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    }
+  },
+  "ps_robot_collision_face": {
+    "t1": {
+      "file": [
+        "look_sad001.json",
+        "look_sad002.json",
+        "look_sad003.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    },
+    "t5": {
+      "file": [
+        "look_sad_01.json",
+        "look_sad_02.json",
+        "look_sad_03.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    }
+  },
+  "ps_robot_arrive_target_face": {
+    "t1": {
+      "file": [
+        "look_happy.json"
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": true
+    },
+    "t5": {
+      "file": [
+        "look_happy.json"
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": true
+    }
+  },
+  "ps_robot_take_food_face": {
+    "t1": {
+      "file": [
+        "look_throwkiss.json",
+        "look_happy.json"
+      ],
+      "order": "random",
+      "loop": 1,
+      "force": true
+    },
+    "t5": {
+      "file": [
+        "look_throwkiss.json",
+        "look_happy.json"
+      ],
+      "order": "random",
+      "loop": 1,
+      "force": true
+    }
+  },
+  "ps_robot_touch_head_face": {
+    "t1": {
+      "file": [
+        "look_happy.json"
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": true
+    },
+    "t5": {
+      "file": [
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": true
+    }
+  },
+  "ps_take_time_out_face": {
+    "t1": {
+      "file": [
+        "look_sad001.json",
+        "look_sad002.json",
+        "look_sad003.json"
+      ],
+      "order": "random",
+      "loop": 1,
+      "force": true
+    },
+    "t5": {
+      "file": [
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": true
+    }
+  },
+  "ps_robot_going_to_charge_face": {
+    "t1": {
+      "file": [
+        "look_sleepy.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    },
+    "t5": {
+      "file": [
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    }
+  },
+  "ps_robot_charging_face": {
+    "t1": {
+      "file": [
+        "look_Zzasleep.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    },
+    "t5": {
+      "file": [
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": true
+    }
+  },
+  "ps_robot_idle_face": {
+    "t1": {
+      "file": [
+        "look_default.json"
+      ],
+      "order": "asc",
+      "loop": 0,
+      "force": false
+    },
+    "t5": {
+      "file": [
+        "look_rest_01.json"
+      ],
+      "order": "asc",
+      "loop": 1,
+      "force": false
+    }
+  }
+}

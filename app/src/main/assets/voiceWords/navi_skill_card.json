@@ -1,0 +1,34 @@
+{
+  "cards": [
+    {
+      "title": "招牌菜",
+      "jumpSkillName": "有什么好吃的",
+      "skillSign": "global@actor_food_recommend",
+      "icon": ""
+    },
+    {
+      "title": "活动",
+      "jumpSkillName": "有什么优惠",
+      "skillSign": "global@actor_activity",
+      "icon": ""
+    },
+    {
+      "title": "领位",
+      "jumpSkillName": "带我去某某桌",
+      "skillSign": "global@actor_guide",
+      "icon": ""
+    },
+    {
+      "title": "唱歌",
+      "jumpSkillName": "唱首歌吧",
+      "skillSign": "global@actor_music",
+      "icon": ""
+    },
+    {
+      "title": "闲聊",
+      "jumpSkillName": "你喜欢吃火锅吗",
+      "skillSign": "global@actor_chat",
+      "icon": ""
+    }
+  ]
+}

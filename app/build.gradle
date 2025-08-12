@@ -29,6 +29,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+        // Bổ sung cấu hình cho bản debug
+        debug {
+            // Để kiểm thử lỗi ProGuard, bạn nên bật minifyEnabled
+            minifyEnabled true
+            // Sử dụng cùng file ProGuard rules
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
 
     compileOptions {

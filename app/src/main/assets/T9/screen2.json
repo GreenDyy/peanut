@@ -1,0 +1,92 @@
+{
+  "power_on_anim": {
+    "levels": 9,
+    "files": "vice_anim.mp4",
+    "times": 1,
+    "screen2Key": ""
+  },
+  "idle_scene_anim": {
+    "levels": 6,
+    "files": "vice_anim.mp4",
+    "times": 0,
+    "screen2Key": "text"
+  },
+  "charge_ing_anim": {
+    "levels": 6,
+    "files": "vice_anim.mp4",
+    "times": 0,
+    "screen2Key": ""
+  },
+  "lower_power_anim": {
+    "levels": 6,
+    "files": "vice_anim.mp4",
+    "times": 0,
+    "screen2Key": ""
+  },
+  "emergency_stop_anim": {
+    "levels": 8,
+    "files": "vice_anim.mp4",
+    "times": 0,
+    "screen2Key": ""
+  },
+  "click_go_anim": {
+    "levels": 7,
+    "files": "vice_anim.mp4",
+    "times": 0,
+    "screen2Key": ""
+  },
+  "put_dishes_anim": {
+    "levels": 7,
+    "files": "vice_anim.mp4",
+    "times": 0,
+    "screen2Key": ""
+  },
+  "arrive_anim": {
+    "levels": 7,
+    "files": "vice_anim.mp4",
+    "times": 0,
+    "screen2Key": "text"
+  },
+  "take_food_anim": {
+    "levels": 7,
+    "files": "vice_anim.mp4",
+    "times": 0,
+    "screen2Key": "text"
+  },
+  "take_wrong_anim": {
+    "levels": 8,
+    "files": "",
+    "times": 0,
+    "screen2Key": "text"
+  },
+  "take_finish_anim": {
+    "levels": 8,
+    "files": "",
+    "times": 0,
+    "screen2Key": "text"
+  },
+  "normal_running_anim": {
+    "levels": 6,
+    "files": "vice_running.mp4",
+    "times": 0,
+    "screen2Key": "text"
+  },
+  "running_block_anim": {
+    "levels": 6,
+    "files": "vice_running.mp4",
+    "times": 0,
+    "screen2Key": "text"
+  },
+  "running_collision_anim": {
+    "levels": 6,
+    "files": "vice_running.mp4",
+    "times": 0,
+    "screen2Key": "text"
+  },
+  "fault_anim": {
+    "levels": 6,
+    "files": "vice_running.mp4",
+    "times": 0,
+    "screen2Key": "text"
+  }
+}

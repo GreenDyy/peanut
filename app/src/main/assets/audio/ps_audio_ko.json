@@ -1,0 +1,1109 @@
+{
+  "input": {
+    "child": [
+      "table_ko/2.1.mp3"
+    ],
+    "male": [
+      "菜品放入托盘后，选择对应桌号",
+      "要送些什么？通通装进托盘里吧"
+    ],
+    "female": [
+      "Select the corresponding table number after the dishes are placed on the tray."
+    ]
+  },
+  "inputAgain": {
+    "child": [
+      "table_ko/2.2.mp3"
+    ],
+    "male": [
+      "继续放餐，请再次放入托盘，选择桌号"
+    ],
+    "female": [
+      "Continue to place dishes or click, 'go', to send me to the destination."
+    ]
+  },
+  "depart": {
+    "child": [
+      "table_ko/3.1.mp3",
+      "table_ko/3.2.mp3",
+      "table_ko/3.3.mp3",
+      "table_ko/3.4.mp3"
+    ],
+    "male": [
+      "好嘞，那我出发喽",
+      "没问题！包在我身上！",
+      "保证完成任务，待会见哦",
+      "美食速递，使命必达!"
+    ],
+    "female": [
+      "I am on my way!",
+      "Okay. I am leaving to complete my task!",
+      "I promise I will complete the task. See you later",
+      "I will complete the mission!"
+    ]
+  },
+  "navigation": {
+    "child": [
+      "table_ko/4.1.mp3",
+      "table_ko/4.3.mp3",
+      "table_ko/4.4.mp3",
+      "table_ko/4.5.mp3"
+    ],
+    "male": [
+      "集美貌和智慧于一身的机器人来喽",
+      "机器人出行，求偶遇，求合照，求分享！",
+      "啦啦啦，啦啦啦，我是配送的小行家，再苦再累都不怕，耶！",
+      "世间万物，唯美食与爱，不可辜负！",
+      "散播阳光散播爱，物品配送我最快"
+    ],
+    "female": [
+      "Here comes the robot, pretty and smart.",
+      "the robot is coming",
+      "I am an expert in delivering meals.",
+      "Attention. The robot is coming"
+    ]
+  },
+  "arriveTip": {
+    "child": [
+      "table_ko/5_11.mp3"
+    ],
+    "male": [
+      "您的美食到啦"
+    ],
+    "female": [
+      "Your delicious meal is here!"
+    ]
+  },
+  "layerTip": {
+    "child": [
+      "table_ko/5_12.mp3",
+      "table_ko/5_13.mp3",
+      "table_ko/5_14.mp3",
+      "table_ko/5_15.mp3"
+    ],
+    "male": [
+      "请取走第一层餐品",
+      "请取走第二层餐品",
+      "请取走第三层餐品",
+      "请取走第四层餐品"
+    ],
+    "female": [
+      "lease take the dishes on the 1 tray",
+      "lease take the dishes on the 2 tray",
+      "lease take the dishes on the 3 tray",
+      "lease take the dishes on the 4 tray"
+    ]
+  },
+  "takeTip": {
+    "child": [
+      "table_ko/5_17.mp3",
+      "table_ko/5_18.mp3",
+      "table_ko/5_19.mp3",
+      "table_ko/5_20.mp3"
+    ],
+    "male": [
+      "取餐后点击屏幕确认",
+      "取餐后点击屏幕或者脚踩投影确认哦",
+      "取餐后，点击屏幕或手部按键确认哦",
+      "取餐后点击屏幕或头部按键确认哦"
+    ],
+    "female": [
+      "取餐后点击屏幕确认哦",
+      "取餐后点击屏幕或者脚踩投影确认哦",
+      "取餐后，点击屏幕或手部按键确认哦",
+      "取餐后点击屏幕或头部按键确认哦"
+    ]
+  },
+  "foodLayer": {
+    "child": [
+      "table_ko/5_21.mp3",
+      "table_ko/5_22.mp3",
+      "table_ko/5_23.mp3",
+      "table_ko/5_24.mp3"
+    ],
+    "male": [
+      "您的餐品在第一层哦",
+      "您的餐品在第二层哦",
+      "您的餐品在第三层哦",
+      "您的餐品在第四层哦"
+    ],
+    "female": [
+      "Your dish is on the 1 tray",
+      "Your dish is on the 2 tray",
+      "Your dish is on the 3 tray",
+      "Your dish is on the 4 tray"
+    ]
+  },
+  "errorLayer": {
+    "child": [
+      "table_ko/5_25.mp3",
+      "table_ko/5_26.mp3",
+      "table_ko/5_27.mp3",
+      "table_ko/5_28.mp3"
+    ],
+    "male": [
+      "请放回第一层菜品",
+      "请放回第二层菜品",
+      "请放回第三层菜品",
+      "请放回第四层菜品"
+    ],
+    "female": [
+      "Please put the dish back on the 1 tray",
+      "Please put the dish back on the 2 tray",
+      "Please put the dish back on the 3 tray",
+      "Please put the dish back on the 4 tray"
+    ]
+  },
+  "bless": {
+    "child": [
+      "table_ko/7.1.mp3",
+      "table_ko/7.2.mp3",
+      "table_ko/7.3.mp3"
+    ],
+    "male": [
+      "客官，可以享用您的美食了",
+      "主人可以开动啦，我去忙了",
+      "客官请慢用，其他美食马上就到"
+    ],
+    "female": [
+      "Here you go! You can now enjoy your meal.",
+      "Enjoy your meal! I'm leaving to complete a new task.",
+      "Enjoy the meal! Other delicacies will be served soon."
+    ]
+  },
+  "backOrigin": {
+    "child": [
+      "table_ko/8.1.mp3",
+      "table_ko/8.2.mp3",
+      "table_ko/8.3.mp3"
+    ],
+    "male": [
+      "圆满完成任务！",
+      "时刻准备再次出发!",
+      "我完成任务回来了"
+    ],
+    "female": [
+      "I am back and ready for more tasks.",
+      "This excellent robot has completed the task. I will wait here for the next one.",
+      "I'm back after completing the task！"
+    ]
+  },
+  "snacksMode": {
+    "child": [
+      "table_ko/12.1.mp3"
+    ],
+    "male": [
+      "派发东西我最在行啦！"
+    ],
+    "female": [
+      "It is time for me to hand out snacks"
+    ]
+  },
+  "snacksDepart": {
+    "child": [
+      "table_ko/3.1.mp3",
+      "table_ko/3.2.mp3",
+      "table_ko/3.3.mp3",
+      "table_ko/3.4.mp3"
+    ],
+    "male": [
+      "好嘞，那我出发喽",
+      "没问题！包在我身上！",
+      "保证完成任务，待会见哦",
+      "美食速递，使命必达!"
+    ],
+    "female": [
+      "I am on my way!",
+      "Okay. I am leaving to complete my task!",
+      "I promise I will complete the task. See you later",
+      "I will complete the mission!"
+    ]
+  },
+  "snacksRunning": {
+    "child": [
+      "table_ko/13.1.mp3",
+      "table_ko/13.2.mp3",
+      "table_ko/13.3.mp3"
+    ],
+    "male": [
+      "看看我带了什么好东西来！请自助拿取哦！",
+      "客官请耐心等待，马上就排到您啦",
+      "拿取请自便，戳一下屏幕我就停下来啦"
+    ],
+    "female": [
+      "Get your snacks here, please help yourself",
+      "Hello, please wait patiently. It will be your turn soon",
+      "Self-service snacks here. You are welcome to come try some."
+    ]
+  },
+  "logout": {
+    "child": [
+      "table_ko/14.1.mp3"
+    ],
+    "male": [
+      "确定要退出吗？"
+    ],
+    "female": [
+      "Are you sure you want to quit?"
+    ]
+  },
+  "directMode": {
+    "child": [
+      "table_ko/16.1.mp3"
+    ],
+    "male": [
+      "给我个目的地，我立马就过去"
+    ],
+    "female": [
+      "Please give me the destination. I'll go there right away"
+    ]
+  },
+  "directDepart": {
+    "child": [
+      "table_ko/3.1.mp3",
+      "table_ko/3.2.mp3",
+      "table_ko/3.3.mp3",
+      "table_ko/3.4.mp3"
+    ],
+    "male": [
+      "好嘞，那我出发喽",
+      "没问题！包在我身上！",
+      "保证完成任务，待会见哦",
+      "美食速递，使命必达!"
+    ],
+    "female": [
+      "I am on my way!",
+      "Okay. I am leaving to complete my task!",
+      "I promise I will complete the task. See you later",
+      "I will complete the mission!"
+    ]
+  },
+  "directArrive": {
+    "child": [
+      "table_ko/17.1.mp3",
+      "table_ko/17.2.mp3",
+      "table_ko/17.3.mp3"
+    ],
+    "male": [
+      "我来啦，主人请尽情吩咐我",
+      "跨越千山万水，终于来到这里了",
+      "机器人来报到了"
+    ],
+    "female": [
+      "Hello, I am here. Please tell me what to do.",
+      "After travelling for many miles, I am finally here. Please tell me what to do.",
+      "This amazing robot is here to work"
+    ]
+  },
+  "multiMode": {
+    "child": [
+      "table_ko/2.1.mp3"
+    ],
+    "male": [
+      "菜品放入托盘后，选择对应桌号",
+      "要送些什么？通通装进托盘里吧"
+    ],
+    "female": [
+      "Select the corresponding table number after the dishes are placed on the tray."
+    ]
+  },
+  "multiDepart": {
+    "child": [
+      "table_ko/3.1.mp3",
+      "table_ko/3.2.mp3",
+      "table_ko/3.3.mp3",
+      "table_ko/3.4.mp3"
+    ],
+    "male": [
+      "好嘞，那我出发喽",
+      "没问题！包在我身上！",
+      "保证完成任务，待会见哦",
+      "美食速递，使命必达!"
+    ],
+    "female": [
+      "I am on my way!",
+      "Okay. I am leaving to complete my task!",
+      "I promise I will complete the task. See you later",
+      "I will complete the mission!"
+    ]
+  },
+  "multiNavigation": {
+    "child": [
+      "table_ko/4.1.mp3",
+      "table_ko/4.3.mp3",
+      "table_ko/4.4.mp3",
+      "table_ko/4.5.mp3"
+    ],
+    "male": [
+      "集美貌和智慧于一身的机器人来喽",
+      "机器人出行，求偶遇，求合照，求分享！",
+      "啦啦啦，啦啦啦，我是配送的小行家，再苦再累都不怕，耶！",
+      "世间万物，唯美食与爱，不可辜负！",
+      "散播阳光散播爱，物品配送我最快"
+    ],
+    "female": [
+      "Here comes the robot, pretty and smart.",
+      "the robot is coming",
+      "I am an expert in delivering meals.",
+      "Attention. The robot is coming"
+    ]
+  },
+  "multiArriveTip": {
+    "child": [
+      "table_ko/5_11.mp3"
+    ],
+    "male": [
+      "您的美食到啦"
+    ],
+    "female": [
+      "Your delicious meal is here!"
+    ]
+  },
+  "multiTakeTip": {
+    "child": [
+      "table_ko/5_17.mp3",
+      "table_ko/5_18.mp3",
+      "table_ko/5_19.mp3",
+      "table_ko/5_20.mp3"
+    ],
+    "male": [
+      "取餐后点击屏幕确认",
+      "取餐后点击屏幕或者脚踩投影确认哦",
+      "取餐后，点击屏幕或手部按键确认哦",
+      "取餐后点击屏幕或头部按键确认哦"
+    ],
+    "female": [
+      "取餐后点击屏幕确认哦",
+      "取餐后点击屏幕或者脚踩投影确认哦",
+      "取餐后，点击屏幕或手部按键确认哦",
+      "取餐后点击屏幕或头部按键确认哦"
+    ]
+  },
+  "multiBless": {
+    "child": [
+      "table_ko/7.1.mp3",
+      "table_ko/7.2.mp3",
+      "table_ko/7.3.mp3"
+    ],
+    "male": [
+      "客官，可以享用您的美食了",
+      "主人可以开动啦，我去忙了",
+      "客官请慢用，其他美食马上就到",
+      "吃饱饱，没烦恼！用餐愉快！"
+    ],
+    "female": [
+      "Here you go! You can now enjoy your meal.",
+      "Enjoy your meal! I'm leaving to complete a new task.",
+      "Enjoy the meal! Other delicacies will be served soon."
+    ]
+  },
+  "multiBackOrigin": {
+    "child": [
+      "table_ko/8.1.mp3",
+      "table_ko/8.2.mp3",
+      "table_ko/8.3.mp3"
+    ],
+    "male": [
+      "圆满完成任务！",
+      "时刻准备再次出发!",
+      "我完成任务回来了"
+    ],
+    "female": [
+      "I am back and ready for more tasks.",
+      "This excellent robot has completed the task. I will wait here for the next one.",
+      "I'm back after completing the task！"
+    ]
+  },
+  "welcomeGuests": {
+    "child": [
+      "table_ko/40.2.mp3"
+    ],
+    "male": [
+      "欢迎光临",
+      "欢迎光临！愿意为您效劳",
+      "感谢光临！我将竭诚为您服务",
+      "欢迎光临，愿您度过愉快的时光"
+    ],
+    "female": [
+      "Welcome."
+    ]
+  },
+  "welcomeMode": {
+    "child": [
+      "table_ko/40.5.mp3"
+    ],
+    "male": [
+      "就让我来迎接尊贵的客人吧！"
+    ],
+    "female": [
+      "Let me welcome our esteemed guests！"
+    ]
+  },
+  "welcomeRunning": {
+    "child": [
+      "table_ko/50.1.mp3"
+    ],
+    "male": [
+      "Hi there! It's nice to see you. Welcome to our restaurant. Please enjoy our delicious food."
+    ],
+    "female": [
+      "Hi there! It's nice to see you. Welcome to our restaurant. Please enjoy our delicious food."
+    ]
+  },
+  "guideMode": {
+    "child": [
+      "table_ko/50.3.mp3"
+    ],
+    "male": [
+      "Please select your destination, I will lead the way."
+    ],
+    "female": [
+      "请选择目的地，想去哪里我来领路"
+    ]
+  },
+  "guideDepart": {
+    "child": [
+      "table_ko/50.4.mp3"
+    ],
+    "male": [
+      "Ok, let's go! Don't even worry about getting lost with me."
+    ],
+    "female": [
+      "准备出发，跟着我不怕迷路"
+    ]
+  },
+  "guideArrive": {
+    "child": [
+      "table_ko/50.2.mp3"
+    ],
+    "male": [
+      "We have arrived at our destination, I wish you a pleasant dining experience. Goodbye."
+    ],
+    "female": [
+      "目的地到咯，祝您用餐愉快，拜拜"
+    ]
+  },
+  "shopGuideArrive": {
+    "child": [
+      "table_ko/50.5.mp3"
+    ],
+    "male": [
+      "目的地到咯，祝您用餐愉快，拜拜"
+    ],
+    "female": [
+      "目的地到咯，祝您用餐愉快，拜拜"
+    ]
+  },
+  "remoteCall": {
+    "child": [
+      "table_ko/34.mp3"
+    ],
+    "male": [
+      "收到远程任务啦"
+    ],
+    "female": [
+      "I have recieved a remote task."
+    ]
+  },
+  "remoteCancel": {
+    "child": [
+      "table_ko/35.mp3"
+    ],
+    "male": [
+      "远程任务被取消啦"
+    ],
+    "female": [
+      "The task has been cancelled remotely."
+    ]
+  },
+  "laserPosition": {
+    "child": [
+      "table_ko/37.1.mp3",
+      "table_ko/37.2.mp3",
+      "table_ko/37.3.mp3"
+    ],
+    "male": [
+      "我正在努力找准自己的位置，请不要挡在我的面前",
+      "请不要挡在我的前面，我在寻找自己的位置",
+      "不要围着我，这样我才能看清楚自己在哪"
+    ],
+    "female": [
+      "I am trying to locate my position. Please don't stand in front of me and keep your distance.",
+      "Please don't stand in front of me and keep your distance. I am locating my position.",
+      "I am trying to find out where I am. Please don't stand in front of me and keep your distance."
+    ]
+  },
+  "scheduler": {
+    "child": [
+      "table_ko/18.1.mp3",
+      "table_ko/18.2.mp3",
+      "table_ko/18.3.mp3",
+      "table_ko/18.4.mp3"
+    ],
+    "male": [
+      "狭路相逢，先让你走吧",
+      "对面兄弟路过，我在此稍作等候",
+      "相逢即是缘，让你先过吧"
+    ],
+    "female": [
+      "There is not room for the both of us. I will let you go first.",
+      "Don't worry robot buddy, I will make room so that you can pass by.",
+      "A robot buddy is passing through. I will wait here until they are out of the way.",
+      "It was fate that we met. I will make way for you to pass."
+    ]
+  },
+  "scheduleEnd": {
+    "child": [
+      "table_ko/19.mp3"
+    ],
+    "male": [
+      "避让结束，继续前进啦"
+    ],
+    "female": [
+      "I am done waiting my robot buddy. I will continue on"
+    ]
+  },
+  "offWorkCharge": {
+    "child": [
+      "table_ko/26.1.mp3",
+      "table_ko/26.2.mp3"
+    ],
+    "male": [
+      "下班时间到了，我回去休息了",
+      "又是辛苦但充实的一天，我下班了"
+    ],
+    "female": [
+      "It's time for me to get off work. I will go back and take a rest.",
+      "Another busy but fulfilling day at work. Time to rest."
+    ]
+  },
+  "lowerCharge": {
+    "child": [
+      "table_ko/27.1.mp3",
+      "table_ko/27.2.mp3"
+    ],
+    "male": [
+      "电量不多了，我先回去充充电",
+      "电量不足，我回去充电了"
+    ],
+    "female": [
+      "My battery is low. I will go back to recharge",
+      "My battery is almost empty. I must head back to rest now."
+    ]
+  },
+  "manualCharge": {
+    "child": [
+      "table_ko/28.1.mp3",
+      "table_ko/28.2.mp3"
+    ],
+    "male": [
+      "好的，这就回去充电",
+      "那我回去充电了，待会见"
+    ],
+    "female": [
+      "Okay. I will go back to charge now.",
+      "Okay, I will go rest. See you later!"
+    ]
+  },
+  "workTimeLeave": {
+    "child": [
+      "table_ko/29.1.mp3",
+      "table_ko/29.2.mp3"
+    ],
+    "male": [
+      "上班时间到！我去工作了",
+      "元气满满！我上班去喽"
+    ],
+    "female": [
+      "It's time to start work! Please don't stand in front of me and please keep your distance.",
+      "I am well rested and am off to work! Please don't stand in front of me and please keep your distance."
+    ]
+  },
+  "fullLeave": {
+    "child": [
+      "table_ko/30.1.mp3",
+      "table_ko/30.2.mp3"
+    ],
+    "male": [
+      "能量满满的我，即将闪亮登场！",
+      "吃饱喝足去干活，加油！"
+    ],
+    "female": [
+      "My battery is finally full! It is time to go back to work. Please don't stand in front of me and please keep your distance.",
+      "My battery is fully charged! Time to go back to work! Please don't stand in front of me and please keep your distance.！"
+    ]
+  },
+  "manualEndCharge": {
+    "child": [
+      "table_ko/31.1.mp3",
+      "table_ko/31.2.mp3"
+    ],
+    "male": [
+      "好的，我这就立即去工作",
+      "干活永不累的机器人立即开启工作"
+    ],
+    "female": [
+      "Okay, I will go back to work. Please don't stand in front of me and please keep your distance.",
+      "On my way back to my wonderful job! Please don't stand in front of me and keep your distance."
+    ]
+  },
+  "lostLocation": {
+    "child": [
+      "table_ko/22.mp3"
+    ],
+    "male": [
+      "我看不到标签了，请推着我沿路寻找标签"
+    ],
+    "female": [
+      "Uh oh~ I can't see any labels. Please push me under the labels.！"
+    ]
+  },
+  "farLabel": {
+    "child": [
+      "table_ko/23.mp3"
+    ],
+    "male": [
+      "我好像偏离标签区域了，请推着我沿路寻找标签"
+    ],
+    "female": [
+      "I am too far from the labels. Please push me back so that I can see the labels."
+    ]
+  },
+  "plankHolder": {
+    "child": [
+      "table_ko/24.mp3"
+    ],
+    "male": [
+      "我被卡住了，请用手掰回碰撞板凹陷区"
+    ],
+    "female": [
+      "Please adjust the collision plate to restore it to the flat state"
+    ]
+  },
+  "remoteDestination": {
+    "child": [
+      "table_ko/18_1.mp3"
+    ],
+    "male": [
+      "机器人来啦 ，请在操作完成后点击屏幕确认哦"
+    ],
+    "female": [
+      "The robot is here, please click the screen to confirm when the operation is completed."
+    ]
+  },
+  "recycleMode": {
+    "child": [
+      "table_ko/70.1.mp3"
+    ],
+    "male": [
+      "要收盘子么？选好路线我这就出发"
+    ],
+    "female": [
+      "Do you need me to collect plates? Once you have selected a route, I will set off."
+    ]
+  },
+  "recycleWashRoomArrive": {
+    "child": [
+      "table_ko/70.3.mp3"
+    ],
+    "male": [
+      "我来啦，请您尽快回收餐盘呦"
+    ],
+    "female": [
+      "The robot is here, could you please assist with retrieving the plates?"
+    ]
+  },
+  "recycleArrive": {
+    "child": [
+      "table_ko/70.2.mp3"
+    ],
+    "male": [
+      "我来帮忙收盘子啦，空盘尽管交给我吧"
+    ],
+    "female": [
+      "Let me help you collect those plates, feel free to place them on my tray."
+    ]
+  },
+  "lampLight": {
+    "child": [
+      "table_ko/70_1.mp3"
+    ],
+    "male": [
+      "任务完成可以脚踩投影确认哦"
+    ],
+    "female": [
+      " You can confirm by stepping on the projection."
+    ]
+  },
+  "collision": {
+    "child": [
+      "table_ko/36.1.mp3",
+      "table_ko/36.2.mp3",
+      "table_ko/36.3.mp3"
+    ],
+    "male": [
+      "不好意思，开了个小差，我知道错了",
+      "对不起，请原谅我吧",
+      "你没事吧，我不是故意的"
+    ],
+    "female": [
+      "Sorry my mind must have wandered. I promise it won't happen again.",
+      "Sorry I was fascinated by you and got distracted. Please forgive me.",
+      "Sorry I did not mean to do that. Please accept my apology."
+    ]
+  },
+  "blockAudios": {
+    "child": [
+      "table_ko/9.4.mp3",
+      "table_ko/9.5.mp3"
+    ],
+    "male": [
+      "这位少侠，麻烦你让一下，急着赶路呢",
+      "亲，能麻烦让一下吗？我要过去呢~",
+      "朋友，请让一让我"
+    ],
+    "female": [
+      "I know I am fascinating, but please let me through. I am a very busy robot",
+      "Excuse me. Pardon me. I need to pass through"
+    ]
+  },
+  "blockWaiting": {
+    "child": [
+      "table_ko/38.3.mp3",
+      "table_ko/38.4.mp3",
+      "table_ko/38.5.mp3"
+    ],
+    "male": [
+      "这位少侠，麻烦你让一下，急着赶路呢",
+      "亲，能麻烦让一下吗？我要过去呢~",
+      "朋友，请让一让我"
+    ],
+    "female": [
+      "I know I am fascinating, but please let me through. I am a very busy robot",
+      "Excuse me. Pardon me. I need to pass through",
+      "全宇宙最好看的你，让一让吗"
+    ]
+  },
+  "blockProbe": {
+    "child": [
+      "table_ko/39.1.mp3",
+      "table_ko/39.2.mp3",
+      "table_ko/39.3.mp3"
+    ],
+    "male": [
+      "麻烦靠边让一下，给我指条明路吧",
+      "让我看一看这边有没有路可以走"
+    ],
+    "female": [
+      "I am not lost, I am just looking for a way through.",
+      "Please make some space for me to get through.",
+      "Let's see here, is there room for me to squeeze by?"
+    ]
+  },
+  "recycleRemoteArrive": {
+    "child": [
+      "table_ko/70.2.mp3"
+    ],
+    "male": [
+      "小花生来啦，空盘尽管交给我吧"
+    ],
+    "female": [
+      "小花生来啦，空盘尽管交给我吧"
+    ]
+  },
+  "remoteTakeTip": {
+    "child": [
+      "table_ko/19_1.mp3"
+    ],
+    "male": [
+      "客官，我去忙喽"
+    ],
+    "female": [
+      "客官，我去忙喽"
+    ]
+  },
+  "directRunning": {
+    "child": [
+      "table_ko/4.1.mp3",
+      "table_ko/4.3.mp3",
+      "table_ko/4.4.mp3",
+      "table_ko/4.5.mp3"
+    ],
+    "male": [
+      "集美貌和智慧于一身的机器人来喽",
+      "机器人出行，求偶遇，求合照，求分享！",
+      "啦啦啦，啦啦啦，我是配送的小行家，再苦再累都不怕，耶！",
+      "世间万物，唯美食与爱，不可辜负！",
+      "散播阳光散播爱，物品配送我最快"
+    ],
+    "female": [
+      "Here comes the robot, pretty and smart.",
+      "the robot is coming",
+      "I am an expert in delivering meals.",
+      "Attention. The robot is coming"
+    ]
+  },
+  "remoteRunning": {
+    "child": [
+      "table_ko/4.1.mp3",
+      "table_ko/4.3.mp3",
+      "table_ko/4.4.mp3",
+      "table_ko/4.5.mp3"
+    ],
+    "male": [
+      "集美貌和智慧于一身的机器人来喽",
+      "机器人出行，求偶遇，求合照，求分享！",
+      "啦啦啦，啦啦啦，我是配送的小行家，再苦再累都不怕，耶！",
+      "世间万物，唯美食与爱，不可辜负！",
+      "散播阳光散播爱，物品配送我最快"
+    ],
+    "female": [
+      "Here comes the robot, pretty and smart.",
+      "the robot is coming",
+      "I am an expert in delivering meals.",
+      "Attention. The robot is coming"
+    ]
+  },
+  "recycleRunning": {
+    "child": [
+      "table_ko/4.1.mp3",
+      "table_ko/4.3.mp3",
+      "table_ko/4.4.mp3",
+      "table_ko/4.5.mp3"
+    ],
+    "male": [
+      "集美貌和智慧于一身的机器人来喽",
+      "机器人出行，求偶遇，求合照，求分享！",
+      "啦啦啦，啦啦啦，我是配送的小行家，再苦再累都不怕，耶！",
+      "世间万物，唯美食与爱，不可辜负！",
+      "散播阳光散播爱，物品配送我最快"
+    ],
+    "female": [
+      "Here comes the robot, pretty and smart.",
+      "the robot is coming",
+      "I am an expert in delivering meals.",
+      "Attention. The robot is coming"
+    ]
+  },
+  "recycleDepart": {
+    "child": [
+      "table_ko/3.1.mp3",
+      "table_ko/3.2.mp3",
+      "table_ko/3.3.mp3",
+      "table_ko/3.4.mp3"
+    ],
+    "male": [
+      "好嘞，那我出发喽",
+      "没问题！包在我身上！",
+      "保证完成任务，待会见哦",
+      "美食速递，使命必达!"
+    ],
+    "female": [
+      "I am on my way!",
+      "Okay. I am leaving to complete my task!",
+      "I promise I will complete the task. See you later",
+      "I will complete the mission!"
+    ]
+  },
+  "chargeReminder": {
+    "child": [
+      "table_ko/charge.mp3"
+    ],
+    "male": [
+    ],
+    "female": [
+    ]
+  },  "omnidirectionalBack": {
+  "child": [
+    "table_ko/60.1.mp3"
+  ],
+  "male": [
+    "我要后退啦，请让一让我哦"
+  ],
+  "female": [
+    "我要后退啦，请让一让我哦"
+  ]
+},
+  "humanDetectionAudio": {
+    "child": [
+      "table_ko/9.2.mp3",
+      "table_ko/9.3.mp3",
+      "table_ko/9.4.mp3",
+      "table_ko/9.5.mp3",
+      "table_ko/9.6.mp3"
+    ],
+    "male": [
+      "这位少侠，麻烦你让一下，急着赶路呢",
+      "亲，能麻烦让一下吗？我要过去呢~",
+      "朋友，请让一让我"
+    ],
+    "female": [
+      "麻烦你让一下哦，人家急着赶路呢",
+      "请让一下好嘛，我要生气啦",
+      "请您不要太迷恋我，人家忙着呢",
+      "亲，能麻烦让一下吗？我要过去哦~"
+    ]
+  },
+  "locationPress": {
+    "child": [
+      "table_ko/80.1.mp3"
+    ],
+    "male": [
+      "急停已按下，您可以推着我移动了"
+    ],
+    "female": [
+      "急停已按下，您可以推着我移动了"
+    ]
+  },
+  "locationRemove": {
+    "child": [
+      "table_ko/80.2.mp3"
+    ],
+    "male": [
+      "旋转急停按钮，我就可以工作啦"
+    ],
+    "female": [
+      "旋转急停按钮，我就可以工作啦"
+    ]
+  },
+  "locationChoose": {
+    "child": [
+      "table_ko/80.3.mp3"
+    ],
+    "male": [
+      "愿意为您效劳，请您吩咐吧"
+    ],
+    "female": [
+      "愿意为您效劳，请您吩咐吧"
+    ]
+  },
+  "earTouchIdle": {
+    "child": [
+      "table_ko/90.1.mp3",
+      "table_ko/90.2.mp3",
+      "table_ko/90.3.mp3",
+      "table_ko/90.4.mp3",
+      "table_ko/90.5.mp3",
+      "table_ko/90.6.mp3",
+      "table_ko/90.7.mp3"
+    ],
+    "male": [
+      "哎？耳朵有点痒，是谁摸了我耳朵？哎，谁碰我了，吓我一跳",
+      "哟，摸耳朵是你表达喜欢的独特方式吗",
+      "哎哟，谁摸了我的耳朵，真调皮！",
+      "哎？好像是谁摸了我一下",
+      "咦？谁在摸我的耳朵？",
+      "哟，有人摸我，让我看看你在哪"
+    ],
+    "female": [
+      "哎？耳朵有点痒，是谁摸了我耳朵？哎，谁碰我了，吓我一跳",
+      "哟，摸耳朵是你表达喜欢的独特方式吗",
+      "哎哟，谁摸了我的耳朵，真调皮！",
+      "哎？好像是谁摸了我一下",
+      "咦？谁在摸我的耳朵？",
+      "哟，有人摸我，让我看看你在哪"
+    ]
+  },
+  "earTouchNavigate": {
+    "child": [
+      "table_ko/91.1.mp3",
+      "table_ko/91.2.mp3"
+    ],
+    "male": [
+      "客官我在干活呢，要不等下来找我玩吧",
+      "哎呀，我在执行秘密任务呢，先别打扰我哦"
+    ],
+    "female": [
+      "客官我在干活呢，要不等下来找我玩吧",
+      "哎呀，我在执行秘密任务呢，先别打扰我哦"
+    ]
+  },
+  "earTouchArrive": {
+    "child": [
+      "table_ko/92.1.mp3",
+      "table_ko/92.2.mp3"
+    ],
+    "male": [
+      "哼！不取餐还敢摸我的耳朵",
+      "哎呀呀，客官快取餐呀，我还要送下一桌呢"
+    ],
+    "female": [
+      "哼！不取餐还敢摸我的耳朵",
+      "哎呀呀，客官快取餐呀，我还要送下一桌呢"
+    ]
+  },
+  "waveDetection": {
+    "child": [
+      "table_ko/90.8.mp3",
+      "table_ko/90.9.mp3"
+    ],
+    "male": [
+      "你好！今天的风景预报：晴朗，微风，和你的笑容！",
+      "朋友你好，今天计划是：先喝咖啡，再点亮世界！"
+    ],
+    "female": [
+      "你好！今天的风景预报：晴朗，微风，和你的笑容！",
+      "朋友你好，今天计划是：先喝咖啡，再点亮世界！"
+    ]
+  },
+  "blockDetectEarlyAudio": {
+    "child": [
+      "table_ko/9.1.mp3"
+    ],
+    "male": [
+      "请前方的朋友挪一挪，感谢"
+    ],
+    "female": [
+      "请前方的朋友挪一挪，感谢"
+    ]
+  },
+  "waitPutDishTip": {
+    "child": [
+      "table_ko/100.1.mp3"
+    ],
+    "male": [
+    ],
+    "female": [
+    ]
+  },
+  "putDishTip": {
+    "child": [
+      "table_ko/100.2.mp3"
+    ],
+    "male": [
+    ],
+    "female": [
+    ]
+  },
+  "dishArrive": {
+    "child": [
+      "table_ko/100.3.mp3"
+    ],
+    "male": [
+    ],
+    "female": [
+    ]
+  },
+  "enterShop": {
+    "child": [
+      "table_ko/93.1.mp3"
+    ],
+    "male": [
+      "嘿，需要找商品嘛，我可以带你去哦"
+    ],
+    "female": [
+      "嘿，需要找商品嘛，我可以带你去哦"
+    ]
+  },
+  "detectShop": {
+    "child": [
+      "table_ko/93.1.mp3"
+    ],
+    "male": [
+      "嘿，需要找商品嘛，我可以带你去哦"
+    ],
+    "female": [
+      "嘿，需要找商品嘛，我可以带你去哦"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "domainName": "d-cloud.ikeenon.com",
+      "englishName": "Data Center Zone(China Region)",
+      "iso2": "CN",
+      "linkId": 0
+    },
+    {
+      "domainName": "d-overseas2-cloud.ikeenon.com",
+      "englishName": "Data Center Zone1(Europe Region)",
+      "iso2": "ES",
+      "linkId": 1
+    },
+    {
+      "domainName": "d-overseas-cloud.ikeenon.com",
+      "englishName": "Data Center Zone2(Other Region)",
+      "iso2": "JP",
+      "linkId": 2
+    }
+  ]
+}

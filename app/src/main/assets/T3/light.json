@@ -1,0 +1,108 @@
+[
+  {
+    "lightId": "idle_scene_light",
+    "levels": 4,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": 25
+  },
+  {
+    "lightId": "charge_ing_light",
+    "levels": 9,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": 25
+  },
+  {
+    "lightId": "charge_full_light",
+    "levels": 9,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": 25
+  },
+  {
+    "lightId": "emergency_stop_light",
+    "levels": 8,
+    "times": 2,
+    "head": 27,
+    "plate": -1,
+    "bottom": 27,
+    "notFindNextLight": true
+  },
+  {
+    "lightId": "open_door_light",
+    "levels": 8,
+    "times": 0,
+    "head": 27,
+    "plate": -1,
+    "bottom": 27
+  },
+  {
+    "lightId": "close_door_light",
+    "levels": 8,
+    "times": 0,
+    "head": 27,
+    "plate": -1,
+    "bottom": 27
+  },
+  {
+    "lightId": "click_go_light",
+    "levels": 7,
+    "times": 2,
+    "head": 27,
+    "plate": -1,
+    "bottom": 27
+  },
+  {
+    "lightId": "running_light",
+    "levels": 6,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": 25
+  },
+  {
+    "lightId": "arrive_light",
+    "levels": 6,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": 25
+  },
+  {
+    "lightId": "running_collision_light",
+    "levels": 7,
+    "times": 3,
+    "head": 27,
+    "plate": -1,
+    "bottom": 27
+  },
+  {
+    "lightId": "fault_light",
+    "levels": 7,
+    "times": 0,
+    "head": 27,
+    "plate": -1,
+    "bottom": 27
+  },
+  {
+    "lightId": "lower_power_light",
+    "levels": 9,
+    "times": 0,
+    "head": 25,
+    "plate": -1,
+    "bottom": 25
+  },
+  {
+    "lightId": "power_save_light",
+    "levels": 9,
+    "times": 0,
+    "head": 1,
+    "plate": -1,
+    "bottom": 1
+  }
+
+]

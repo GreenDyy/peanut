@@ -1,0 +1,47 @@
+{
+  "type": "category",
+  "category": "command",
+  "qa_list": [
+    {
+      "questions": [
+        "切换离线模式"
+      ],
+      "answers": [
+        "就不切换"
+      ],
+      "actions": [
+        "changeSpeechMode offline"
+      ],
+      "priority": 0
+    },
+    {
+      "questions": [
+        "切换在线模式"
+      ],
+      "answers": [
+        "想切换在线模式，再等五百年吧"
+      ],
+      "actions": [
+        "changeSpeechMode online"
+      ],
+      "priority": 0
+    },
+    {
+      "questions": [
+        "去星巴克"
+      ],
+      "doubts": [
+        "请问去哪一个星巴克"
+      ],
+      "confirms": [
+        "一楼",
+        "二楼",
+        "上海"
+      ],
+      "actions": [
+        "goto starbucks"
+      ],
+      "priority": 0
+    }
+  ]
+}
