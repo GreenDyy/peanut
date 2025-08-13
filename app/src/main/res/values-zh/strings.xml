@@ -105,5 +105,9 @@
     <string name="demo_desc_dialog">Speech to text conversation with AI bot</string>
     <string name="demo_title_main_app">Main App</string>
     <string name="demo_desc_main_app">Robot Assistant with Service Functions</string>
+    
+    <!-- Test Play Video -->
+    <string name="demo_title_test_play_video">Test Phát Video</string>
+    <string name="demo_desc_test_play_video">Test phát video từ assets/screenAnim/deer</string>
 
 </resources>

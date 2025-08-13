@@ -24,5 +24,26 @@
 -keep class com.keenon.peanut.common.welcome.StaticWelcomeHelper { *; }
 -keep class com.keenon.peanut.common.welcome.StaticWelcomeHelper$* { *; }
 
+# Bảo vệ tất cả các class trong package welcome
+-keep class com.keenon.peanut.common.welcome.** { *; }
+
+# Bảo vệ tất cả các inner class và anonymous class
+-keepclassmembers class com.keenon.peanut.common.welcome.** {
+    *;
+}
+
 # Giữ lại các lớp liên quan đến TheRouter, được sử dụng trong StaticWelcomeHelper.
 -keep class com.therouter.** { *; }
+
+# Giữ lại tất cả các inner class và anonymous class
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
+# Giữ lại tất cả các class trong package peanut
+-keep class com.keenon.peanut.** { *; }
+
+# Giữ lại tất cả các method và field
+-keepclassmembers class com.keenon.peanut.** {
+    *;
+}

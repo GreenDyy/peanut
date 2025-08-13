@@ -109,6 +109,14 @@
     <!-- Test Perception -->
     <string name="demo_title_test_perception">Test Perception</string>
     <string name="demo_desc_test_perception">Simple test perception activity</string>
+    
+    <!-- Test Play Video -->
+    <string name="demo_title_test_play_video">Test Play Video</string>
+    <string name="demo_desc_test_play_video">Test video playback from assets/screenAnim/deer</string>
+    
+    <!-- Simple Video Player -->
+    <string name="demo_title_simple_video_player">Simple Video Player</string>
+    <string name="demo_desc_simple_video_player">Simple video player for MP4 files from assets</string>
 
     <string name="led_effect_time">Duration in milliseconds</string>
     <string name="action_start">start</string>

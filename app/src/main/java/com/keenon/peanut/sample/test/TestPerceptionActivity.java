@@ -19,11 +19,10 @@ import com.keenon.peanut.common.config.ConfigManager;
 public class TestPerceptionActivity extends BaseActivity {
     private Button startDetectButton, stopDetectButton;
     private TextView logTextView;
+    private Button turnLeftButton;
     private Gson gson = new Gson();
     private boolean hasDetected = false; // Biến cờ để kiểm soát việc quay
     private ApiCallback<String> perceptionCallback;
-
-
 
     // Đối tượng lắng nghe sự kiện từ robot
     private SubscribeRespDispatcher dispatcher;
@@ -32,11 +31,16 @@ public class TestPerceptionActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_perception);
-
         startDetectButton = findViewById(R.id.btn_start_detect);
         stopDetectButton = findViewById(R.id.btn_stop_detect);
         logTextView = findViewById(R.id.tv_log);
+        turnLeftButton = findViewById(R.id.btn_turn_left);
+        turnLeftButton.setOnClickListener(v -> {
+            addLog("ACTION", "⬅️ Đang ra lệnh robot quay sang trái...");
+            handleTurnLeft();
+        });
 
+        setButtonBack();
         setupListeners();
         setupSubscribeDispatcher();
 
@@ -47,7 +51,7 @@ public class TestPerceptionActivity extends BaseActivity {
                 // Kiểm tra trạng thái khởi tạo
                 if (statusCode == PeanutSDK.SDK_INIT_SUCCESS) {
                     // Bước 2: Khởi tạo các thành phần khác sau khi SDK đã sẵn sàng
-                    initRuntime();
+                     initRuntime();
                     addLog("SDK", "✅ PeanutSDK initialized successfully.");
                 } else {
                     addLog("SDK", "❌ PeanutSDK initialization failed with status: " + statusCode);
@@ -76,6 +80,24 @@ public class TestPerceptionActivity extends BaseActivity {
         });
     }
 
+    private void handleTurnLeft() {
+        PeanutSDK.getInstance().motor().turnLeft(new ApiCallback<BaseResp<String>>() {
+            @Override
+            public void onSuccess(BaseResp<String> result) {
+                addLog("Movement", "Turn Left: " + (result != null ? result.toString() : "Success"));
+            }
+
+            @Override
+            public void onSuccess(String requestId, BaseResp<String> result) {
+                onSuccess(result); // reuse callback
+            }
+
+            @Override
+            public void onFail(ApiError error) {
+                addLog("Error", "Turn left failed: " + error.toString());
+            }
+        });
+    }
 
     private void setupListeners() {
         startDetectButton.setOnClickListener(v -> {
@@ -94,12 +116,12 @@ public class TestPerceptionActivity extends BaseActivity {
         PeanutSDK.getInstance().runtime().setWelcomeSwitch(new ApiCallback<BaseResp<String>>() {
             @Override
             public void onFail(ApiError apiError) {
-                addLog("API_FAIL", "Lỗi khi thay đổi chế độ chào mừng: " + apiError.toString());
+                addLog("API_FAIL",  "Lỗi khi thay đổi chế độ chào mừng: " + apiError.toString());
             }
 
             @Override
             public void onSuccess(BaseResp<String> stringBaseResp) {
-                addLog("API_RAW_SUCCESS", "Raw Response: " + gson.toJson(stringBaseResp));
+                addLog("API_RAW_SUCCESS",isOpen ? "Mở " : "Tắt "+ "Raw Response: " + gson.toJson(stringBaseResp));
                 if (isOpen) {
                     subscribePerceptionEvent();
                 } else {
@@ -174,8 +196,6 @@ public class TestPerceptionActivity extends BaseActivity {
         });
     }
 
-
-
     // Đăng ký lắng nghe sự kiện phát hiện đối tượng
     private void subscribePerceptionEvent() {
         addLog("SUBSCRIBE", "Đang đăng ký lắng nghe sự kiện Object Perception...");
@@ -210,6 +230,7 @@ public class TestPerceptionActivity extends BaseActivity {
             }
         };
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

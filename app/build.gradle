@@ -31,10 +31,9 @@ android {
         }
         // Bổ sung cấu hình cho bản debug
         debug {
-            // Để kiểm thử lỗi ProGuard, bạn nên bật minifyEnabled
-            minifyEnabled true
-            // Sử dụng cùng file ProGuard rules
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // Tắt minifyEnabled để tránh lỗi ProGuard khi debug
+            minifyEnabled false
+            // Không sử dụng ProGuard cho debug build
         }
     }
 
