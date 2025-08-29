@@ -60,11 +60,11 @@ public class KeenonApiDemoMain extends BaseActivity {
   ListView mListView;
 
   private static final DemoInfo[] DEMOS = {
-          new DemoInfo(R.drawable.info, R.string.demo_title_baselist, R.string.demo_desc_baselist, BaseDemo.class),
-          new DemoInfo(R.drawable.chassis, R.string.demo_title_chassislist, R.string.demo_desc_chassislist, ChassisList.class),
-          new DemoInfo(R.drawable.robot_eye, R.string.demo_title_robot_keenon, R.string.demo_desc_robot_keenon, RobotKeenonActivity.class),
-          new DemoInfo(R.drawable.chassis, R.string.demo_title_test_navigation, R.string.demo_desc_test_navigation, TestNavigationActivity.class),
-          new DemoInfo(R.drawable.chassis, R.string.demo_title_test_perception, R.string.demo_desc_test_perception, TestPerceptionActivity.class),
+          new DemoInfo(R.drawable.ic_gear_simple, R.string.demo_title_baselist, R.string.demo_desc_baselist, BaseDemo.class),
+          new DemoInfo(R.drawable.ic_battery_simple, R.string.demo_title_chassislist, R.string.demo_desc_chassislist, ChassisList.class),
+          new DemoInfo(R.drawable.ic_robot_simple, R.string.demo_title_robot_keenon, R.string.demo_desc_robot_keenon, RobotKeenonActivity.class),
+          new DemoInfo(R.drawable.ic_nav_simple, R.string.demo_title_test_navigation, R.string.demo_desc_test_navigation, TestNavigationActivity.class),
+          new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_perception, R.string.demo_desc_test_perception, TestPerceptionActivity.class),
 
   };
   private boolean isPermissionRequested;

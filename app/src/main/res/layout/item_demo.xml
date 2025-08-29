@@ -9,12 +9,14 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/map" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:padding="8dp"
+        android:background="@drawable/bg_icon_gradient"
+        android:scaleType="centerInside" />
 
 
     <LinearLayout
