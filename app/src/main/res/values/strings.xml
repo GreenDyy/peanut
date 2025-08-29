@@ -112,6 +112,10 @@
     <string name="demo_title_test_navigation">Test Navigation Component</string>
     <string name="demo_desc_test_navigation">Test đầy đủ các chức năng Navigation và SdkHelper</string>
     
+    <!-- Test Camera Detect Human -->
+    <string name="demo_title_test_camera_detect_human">Test Camera Detect Human</string>
+    <string name="demo_desc_test_camera_detect_human">Test phát hiện người qua camera</string>
+    
     <!-- Test Play Video -->
     <string name="demo_title_test_play_video">Test Play Video</string>
     <string name="demo_desc_test_play_video">Test video playback from assets/screenAnim/deer</string>

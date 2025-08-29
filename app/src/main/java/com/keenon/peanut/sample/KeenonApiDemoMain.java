@@ -31,6 +31,7 @@ import com.keenon.peanut.sample.chassis.ChassisList;
 import com.keenon.peanut.sample.test.TestPerceptionActivity;
 import com.keenon.peanut.sample.util.BaseActivity;
 import com.keenon.peanut.sample.test.TestNavigationActivity;
+import com.keenon.peanut.sample.test.TestCameraDetectHumanActivity;
 import com.keenon.peanut.sample.test.RobotKeenonActivity;
 import com.keenon.common.constant.PeanutConstants;
 import com.keenon.common.utils.LogUtils;
@@ -65,6 +66,7 @@ public class KeenonApiDemoMain extends BaseActivity {
           new DemoInfo(R.drawable.ic_robot_simple, R.string.demo_title_robot_keenon, R.string.demo_desc_robot_keenon, RobotKeenonActivity.class),
           new DemoInfo(R.drawable.ic_nav_simple, R.string.demo_title_test_navigation, R.string.demo_desc_test_navigation, TestNavigationActivity.class),
           new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_perception, R.string.demo_desc_test_perception, TestPerceptionActivity.class),
+          new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_camera_detect_human, R.string.demo_desc_test_camera_detect_human, TestCameraDetectHumanActivity.class),
 
   };
   private boolean isPermissionRequested;

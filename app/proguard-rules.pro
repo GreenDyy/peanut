@@ -42,6 +42,7 @@
 
 # Giữ lại tất cả các class trong package peanut
 -keep class com.keenon.peanut.** { *; }
+-keep class com.keenon.peanut.core.utils.third.** { *; }
 
 # Giữ lại tất cả các method và field
 -keepclassmembers class com.keenon.peanut.** {

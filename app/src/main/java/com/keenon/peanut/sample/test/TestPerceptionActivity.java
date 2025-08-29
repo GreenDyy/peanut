@@ -30,11 +30,6 @@ public class TestPerceptionActivity extends BaseActivity {
         startDetectButton = findViewById(R.id.btn_start_detect);
         stopDetectButton = findViewById(R.id.btn_stop_detect);
         logTextView = findViewById(R.id.tv_log);
-        turnLeftButton = findViewById(R.id.btn_turn_left);
-        turnLeftButton.setOnClickListener(v -> {
-            addLog("ACTION", "⬅️ Đang ra lệnh robot quay sang trái...");
-            handleTurnLeft();
-        });
         setButtonBack();
         setupListeners();
 
@@ -67,45 +62,6 @@ public class TestPerceptionActivity extends BaseActivity {
         String timeStamp = new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date());
         runOnUiThread(() -> {
             logTextView.append("\n[" + timeStamp + "] " + tag + ": " + message);
-        });
-    }
-
-    private void handleTurnLeft() {
-        PeanutSDK.getInstance().motor().turnLeft(new ApiCallback<BaseResp<String>>() {
-            @Override
-            public void onSuccess(BaseResp<String> result) {
-                addLog("Movement", "Turn Left: " + (result != null ? result.toString() : "Success"));
-            }
-
-            @Override
-            public void onSuccess(String requestId, BaseResp<String> result) {
-                onSuccess(result);
-            }
-
-            @Override
-            public void onFail(ApiError error) {
-                addLog("Error", "Turn left failed: " + error.toString());
-            }
-        });
-    }
-
-    private void handleTurnRight() {
-        addLog("ACTION", "➡️ Đang ra lệnh robot quay sang phải...");
-        PeanutSDK.getInstance().motor().turnRight(new ApiCallback<BaseResp<String>>() {
-            @Override
-            public void onSuccess(BaseResp<String> result) {
-                addLog("Movement", "Turn Right: " + (result != null ? result.toString() : "Success"));
-            }
-
-            @Override
-            public void onSuccess(String requestId, BaseResp<String> result) {
-                onSuccess(result);
-            }
-
-            @Override
-            public void onFail(ApiError error) {
-                addLog("Error", "Turn right failed: " + error.toString());
-            }
         });
     }
 
@@ -158,9 +114,6 @@ public class TestPerceptionActivity extends BaseActivity {
         try {
             addLog("RAW_DATA", "Nhận dữ liệu từ sensor: " + data);
             ObjectPerceptionBean bean = gson.fromJson(data, ObjectPerceptionBean.class);
-            if (data != null && !data.isEmpty()) {
-                handleTurnRight();
-            }
             if (bean != null && bean.getObjects() != null && !bean.getObjects().isEmpty()) {
                 addLog("DETECTION", "Phát hiện " + bean.getObjects().size() + " đối tượng.");
 
@@ -169,14 +122,8 @@ public class TestPerceptionActivity extends BaseActivity {
                     addLog("OBJECT_" + (i + 1),
                             "Khoảng cách=" + obj.getDistance() + ", X=" + obj.getX() + ", Y=" + obj.getY());
                 }
-
-                if (!hasDetected) {
-                    handleTurnRight();
-                    hasDetected = true;
-                }
             } else {
                 addLog("DETECTION", "Không có đối tượng nào được phát hiện.");
-                hasDetected = false;
             }
         } catch (Exception e) {
             addLog("JSON_ERROR", "Không thể parse dữ liệu: " + e.getMessage());
