@@ -30,9 +30,7 @@ import com.keenon.peanut.sample.base.BaseDemo;
 import com.keenon.peanut.sample.chassis.ChassisList;
 import com.keenon.peanut.sample.test.TestPerceptionActivity;
 import com.keenon.peanut.sample.util.BaseActivity;
-import com.keenon.peanut.sample.test.AudioRecorderActivity;
-import com.keenon.peanut.sample.test.DialogActivity;
-import com.keenon.peanut.sample.test.MainAppActivity;
+import com.keenon.peanut.sample.test.TestNavigationActivity;
 import com.keenon.peanut.sample.test.RobotKeenonActivity;
 import com.keenon.common.constant.PeanutConstants;
 import com.keenon.common.utils.LogUtils;
@@ -65,10 +63,7 @@ public class KeenonApiDemoMain extends BaseActivity {
           new DemoInfo(R.drawable.info, R.string.demo_title_baselist, R.string.demo_desc_baselist, BaseDemo.class),
           new DemoInfo(R.drawable.chassis, R.string.demo_title_chassislist, R.string.demo_desc_chassislist, ChassisList.class),
           new DemoInfo(R.drawable.robot_eye, R.string.demo_title_robot_keenon, R.string.demo_desc_robot_keenon, RobotKeenonActivity.class),
-          new DemoInfo(R.drawable.audio_recorder, R.string.demo_title_audio_recorder, R.string.demo_desc_audio_recorder, AudioRecorderActivity.class),
-          new DemoInfo(R.drawable.ic_dialog, R.string.demo_title_dialog, R.string.demo_desc_dialog, DialogActivity.class),
-//          new DemoInfo(R.drawable.chassis, R.string.demo_title_robot_peanut, R.string.demo_desc_robot_peanut, RobotPeanutActivity.class),
-          new DemoInfo(R.drawable.util, R.string.demo_title_main_app, R.string.demo_desc_main_app, MainAppActivity.class),
+          new DemoInfo(R.drawable.chassis, R.string.demo_title_test_navigation, R.string.demo_desc_test_navigation, TestNavigationActivity.class),
           new DemoInfo(R.drawable.chassis, R.string.demo_title_test_perception, R.string.demo_desc_test_perception, TestPerceptionActivity.class),
 
   };

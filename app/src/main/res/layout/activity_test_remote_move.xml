@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".test.TestRemoteMoveActivity">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Điều khiển Robot từ xa"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Khu vực kết nối -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="#e8f5e8"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/btn_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kết nối"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#4CAF50" />
+
+        <Button
+            android:id="@+id/btn_disconnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngắt kết nối"
+            android:backgroundTint="#F44336" />
+    </LinearLayout>
+
+    <!-- Khu vực điều khiển motor -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="#fff3e0"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/btn_motor_enable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enable Motor"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#4CAF50"
+            android:enabled="false" />
+
+        <Button
+            android:id="@+id/btn_motor_disable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Disable Motor"
+            android:backgroundTint="#F44336"
+            android:enabled="false" />
+    </LinearLayout>
+
+    <!-- Khu vực điều khiển chuyển động -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="#f5f5f5"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Điều khiển chuyển động"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Nút tiến/lùi -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btn_forward"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:text="⬆️\nTiến"
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#2196F3"
+                android:enabled="false" />
+
+            <!-- Nút trái/phải/dừng -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btn_turn_left"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:text="⬅️\nTrái"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="#FF9800"
+                    android:enabled="false" />
+
+                <Button
+                    android:id="@+id/btn_stop"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:text="⏹️\nDừng"
+                    android:textSize="12sp"
+                    android:backgroundTint="#F44336"
+                    android:enabled="false" />
+
+                <Button
+                    android:id="@+id/btn_turn_right"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:text="➡️\nPhải"
+                    android:textSize="12sp"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="#FF9800"
+                    android:enabled="false" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_backward"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:text="⬇️\nLùi"
+                android:textSize="12sp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#2196F3"
+                android:enabled="false" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Khu vực hiển thị log -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nhật ký hoạt động:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#f0f0f0"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="Chờ kết nối..."
+            android:textColor="#000000"
+            android:fontFamily="monospace" />
+    </ScrollView>
+
+</LinearLayout>

@@ -17,7 +17,7 @@ import com.keenon.sdk.component.runtime.PeanutRuntime;
 import com.keenon.sdk.constant.RobotTopic;
 // SDK mới không còn sử dụng PeanutSDK.subscribe() và IDataCallback
 // import com.keenon.sdk.external.IDataCallback;
-// import com.keenon.sdk.external.PeanutSDK;
+ import com.keenon.sdk.external.PeanutSDK;
 import com.keenon.sdk.hedera.model.ApiError;
 
 import java.util.List;
