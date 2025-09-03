@@ -93,7 +93,7 @@
     <string name="arrive_tip_2">When you reach the destination, please click manually to continue navigation</string>
     <string name="go_to">go to</string>
     <string name="block_timeout_tip">Blocking timeout！</string>
-    <string name="str_content">Welcome to Qinglang robot Android SDK v</string>
+    <string name="str_content">Welcome to robot Android SDK</string>
     <string name="str_init_text">SDK Init：</string>
     
     <!-- Object Perception -->

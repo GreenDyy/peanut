@@ -1,5 +1,11 @@
 /*
  * Copyright (C) 2015 Baidu, Inc. All Rights Reserved.
+ * 
+ * Sử dụng PeanutSDKManager để quản lý SDK thay vì lặp lại code khởi tạo.
+ * PeanutSDKManager cung cấp:
+ * - Quản lý trạng thái khởi tạo SDK
+ * - Tránh khởi tạo lại SDK
+ * - Quản lý lifecycle của SDK
  */
 package com.keenon.peanut.sample;
 
@@ -39,6 +45,7 @@ import com.keenon.common.utils.VersionInfo;
 import com.keenon.sdk.component.runtime.PeanutRuntime;
 import com.keenon.common.external.PeanutConfig;
 import com.keenon.sdk.external.PeanutSDK;
+import com.keenon.peanut.sample.util.PeanutSDKManager;
 
 import java.util.ArrayList;
 
@@ -47,7 +54,6 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 
 import static com.keenon.sdk.external.PeanutSDK.SDK_INIT_SUCCESS;
-
 
 public class KeenonApiDemoMain extends BaseActivity {
   private static final String TAG = KeenonApiDemoMain.class.getSimpleName();
@@ -61,12 +67,18 @@ public class KeenonApiDemoMain extends BaseActivity {
   ListView mListView;
 
   private static final DemoInfo[] DEMOS = {
-          new DemoInfo(R.drawable.ic_gear_simple, R.string.demo_title_baselist, R.string.demo_desc_baselist, BaseDemo.class),
-          new DemoInfo(R.drawable.ic_battery_simple, R.string.demo_title_chassislist, R.string.demo_desc_chassislist, ChassisList.class),
-          new DemoInfo(R.drawable.ic_robot_simple, R.string.demo_title_robot_keenon, R.string.demo_desc_robot_keenon, RobotKeenonActivity.class),
-          new DemoInfo(R.drawable.ic_nav_simple, R.string.demo_title_test_navigation, R.string.demo_desc_test_navigation, TestNavigationActivity.class),
-          new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_perception, R.string.demo_desc_test_perception, TestPerceptionActivity.class),
-          new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_camera_detect_human, R.string.demo_desc_test_camera_detect_human, TestCameraDetectHumanActivity.class),
+      new DemoInfo(R.drawable.ic_gear_simple, R.string.demo_title_baselist, R.string.demo_desc_baselist,
+          BaseDemo.class),
+      new DemoInfo(R.drawable.ic_battery_simple, R.string.demo_title_chassislist, R.string.demo_desc_chassislist,
+          ChassisList.class),
+      new DemoInfo(R.drawable.ic_robot_simple, R.string.demo_title_robot_keenon, R.string.demo_desc_robot_keenon,
+          RobotKeenonActivity.class),
+      new DemoInfo(R.drawable.ic_nav_simple, R.string.demo_title_test_navigation, R.string.demo_desc_test_navigation,
+          TestNavigationActivity.class),
+      new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_perception, R.string.demo_desc_test_perception,
+          TestPerceptionActivity.class),
+      new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_camera_detect_human,
+          R.string.demo_desc_test_camera_detect_human, TestCameraDetectHumanActivity.class),
 
   };
   private boolean isPermissionRequested;
@@ -80,7 +92,8 @@ public class KeenonApiDemoMain extends BaseActivity {
         if (errorCode == SDK_INIT_SUCCESS) {
           text.setTextColor(Color.GREEN);
           text.setText(getString(R.string.str_init_text) + errorCode);
-          PeanutRuntime.getInstance().start(new PeanutRuntime.Listener() {
+          // Sử dụng PeanutSDKManager để khởi tạo Runtime
+          PeanutSDKManager.startRuntime(new PeanutRuntime.Listener() {
             @Override
             public void onEvent(int event, Object obj) {
               LogUtils.d(TAG, "onEvent:" + event + ", content: " + obj);
@@ -115,8 +128,8 @@ public class KeenonApiDemoMain extends BaseActivity {
   }
 
   @OnCheckedChanged({
-          R.id.cb_laser,
-          R.id.cb_label
+      R.id.cb_laser,
+      R.id.cb_label
   })
   public void onViewChecked(CompoundButton view, boolean isChecked) {
     switch (view.getId()) {
@@ -124,7 +137,8 @@ public class KeenonApiDemoMain extends BaseActivity {
         if (isChecked) {
           saveToSP(PeanutConstants.REMOTE_LINK_PROXY);
           cbLabel.setChecked(false);
-          PeanutSDK.getInstance().release();
+          // Sử dụng PeanutSDKManager để giải phóng và khởi tạo lại
+          PeanutSDKManager.releaseSDK();
           // Kiểm tra quyền trước khi init SDK
           checkAndInitSDK();
         }
@@ -133,7 +147,8 @@ public class KeenonApiDemoMain extends BaseActivity {
         if (isChecked) {
           saveToSP(PeanutConstants.LOCAL_LINK_PROXY);
           cbLaser.setChecked(false);
-          PeanutSDK.getInstance().release();
+          // Sử dụng PeanutSDKManager để giải phóng và khởi tạo lại
+          PeanutSDKManager.releaseSDK();
           // Kiểm tra quyền trước khi init SDK
           checkAndInitSDK();
         }
@@ -143,7 +158,7 @@ public class KeenonApiDemoMain extends BaseActivity {
     }
   }
 
-  private void initView () {
+  private void initView() {
     text.setTextColor(Color.GREEN);
     text.setText(getString(R.string.str_content) + VersionInfo.versionName);
     setTitle(getTitle() + " v" + VersionInfo.versionName);
@@ -159,7 +174,7 @@ public class KeenonApiDemoMain extends BaseActivity {
     if (PeanutConstants.REMOTE_LINK_PROXY.equals(getType())) {
       checkBoxLaser.setChecked(true);
       checkBoxLabel.setChecked(false);
-    }else{
+    } else {
       checkBoxLaser.setChecked(false);
       checkBoxLabel.setChecked(true);
     }
@@ -169,12 +184,12 @@ public class KeenonApiDemoMain extends BaseActivity {
     if (Build.VERSION.SDK_INT >= 23) {
       ArrayList<String> permissionsList = new ArrayList<>();
       String[] permissions = {
-              Manifest.permission.ACCESS_NETWORK_STATE,
-              Manifest.permission.INTERNET,
-              Manifest.permission.WRITE_EXTERNAL_STORAGE,
-              Manifest.permission.READ_EXTERNAL_STORAGE,
-              Manifest.permission.ACCESS_WIFI_STATE,
-              Manifest.permission.READ_PHONE_STATE,
+          Manifest.permission.ACCESS_NETWORK_STATE,
+          Manifest.permission.INTERNET,
+          Manifest.permission.WRITE_EXTERNAL_STORAGE,
+          Manifest.permission.READ_EXTERNAL_STORAGE,
+          Manifest.permission.ACCESS_WIFI_STATE,
+          Manifest.permission.READ_PHONE_STATE,
       };
 
       for (String perm : permissions) {
@@ -195,16 +210,10 @@ public class KeenonApiDemoMain extends BaseActivity {
       initSDK(getType());
     }
   }
+
   private void initSDK(String ip) {
-    PeanutConfig.getConfig()
-            .setLinkType(PeanutConstants.REMOTE_LINK_PROXY.equals(ip) ? PeanutConstants.LinkType.COAP : PeanutConstants.LinkType.COM_COAP)
-            .setLinkIP(ip)
-            .enableLog(true)
-            .setLogLevel(Log.DEBUG)
-            .setAppId("bcb8ebc7f22345bebb378aead035cfb3")
-            .setSecret("nPlQERTP4qJWimTp0+ZXXkM5ND93iEyWpM6eXAGIZ/HQmyEg8zN7x5tGLebwINKLYScXEjg5lhQBvt1QCODovm2gq7dsXAK4pgjBRK2OqQHxl4nvTjq2AX9Or6XrdfFfVgOiHqW0mw+qWGDJc1/EUBg3llLOzMNUiDqwPsXMZYs=")
-            .enableUMLog(false);
-    PeanutSDK.getInstance().init(this.getApplicationContext(), mErrorListener);
+    // Sử dụng PeanutSDKManager để khởi tạo SDK
+    PeanutSDKManager.initializeSDK(this.getApplicationContext(), ip, mErrorListener);
   }
 
   void onListItemClick(int index) {
@@ -213,10 +222,10 @@ public class KeenonApiDemoMain extends BaseActivity {
     this.startActivity(intent);
   }
 
-
   @Override
   protected void onDestroy() {
-    PeanutSDK.getInstance().release();
+    // Sử dụng PeanutSDKManager để giải phóng SDK
+    PeanutSDKManager.releaseSDK();
     super.onDestroy();
   }
 
@@ -228,12 +237,12 @@ public class KeenonApiDemoMain extends BaseActivity {
       isPermissionRequested = true;
       ArrayList<String> permissionsList = new ArrayList<>();
       String[] permissions = {
-              Manifest.permission.ACCESS_NETWORK_STATE,
-              Manifest.permission.INTERNET,
-              Manifest.permission.WRITE_EXTERNAL_STORAGE,
-              Manifest.permission.READ_EXTERNAL_STORAGE,
-              Manifest.permission.ACCESS_WIFI_STATE,
-              Manifest.permission.READ_PHONE_STATE,
+          Manifest.permission.ACCESS_NETWORK_STATE,
+          Manifest.permission.INTERNET,
+          Manifest.permission.WRITE_EXTERNAL_STORAGE,
+          Manifest.permission.READ_EXTERNAL_STORAGE,
+          Manifest.permission.ACCESS_WIFI_STATE,
+          Manifest.permission.READ_PHONE_STATE,
       };
 
       for (String perm : permissions) {
@@ -265,8 +274,8 @@ public class KeenonApiDemoMain extends BaseActivity {
         // Đã có quyền, khởi tạo SDK với loại kết nối đã lưu
         initSDK(getType());
       } else {
-        text.setTextColor(Color.RED);
-        text.setText("Thiếu quyền Storage. Nhấp để mở Settings và cấp quyền.");
+//        text.setTextColor(Color.RED);
+//        text.setText("Thiếu quyền Storage. Nhấp để mở Settings và cấp quyền.");
         text.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -351,12 +360,13 @@ public class KeenonApiDemoMain extends BaseActivity {
 
   public void saveToSP(String type) {
     SharedPreferences sp = getSharedPreferences("SP",
-            Context.MODE_PRIVATE);
-    sp.edit().putString("type",type).apply();
+        Context.MODE_PRIVATE);
+    sp.edit().putString("type", type).apply();
   }
+
   public String getType() {
     SharedPreferences sp = getSharedPreferences("SP",
-            Context.MODE_PRIVATE);
+        Context.MODE_PRIVATE);
     return sp.getString("type", PeanutConstants.REMOTE_LINK_PROXY);
   }
 

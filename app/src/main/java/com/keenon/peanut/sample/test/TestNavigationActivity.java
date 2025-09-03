@@ -1,5 +1,15 @@
 package com.keenon.peanut.sample.test;
 
+/*
+ * TestNavigationActivity - Sử dụng PeanutSDKManager để quản lý SDK
+ * 
+ * Lợi ích:
+ * - Tránh duplicate code khởi tạo SDK
+ * - Quản lý trạng thái SDK tập trung
+ * - Tự động kiểm tra SDK đã được khởi tạo từ Main
+ * - Sử dụng Runtime đã được start từ Main
+ */
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -8,6 +18,7 @@ import com.keenon.peanut.sample.R;
 import com.keenon.peanut.sample.util.BaseActivity;
 import com.keenon.sdk.component.runtime.PeanutRuntime;
 import com.keenon.sdk.external.PeanutSDK;
+import com.keenon.peanut.sample.util.PeanutSDKManager;
 import com.keenon.sdk.hedera.model.ApiError;
 import com.keenon.sdk.robot.ApiCallback;
 import com.keenon.sdk.robot.base.BaseResp;
@@ -34,6 +45,7 @@ public class TestNavigationActivity extends BaseActivity {
     private Button getAllTargetsButton, getGuideInfoButton;
     private Button getPointsButton;
     private Button getMapListButton, getMapDataButton;
+    private Button checkWorkModeButton;
     private android.widget.EditText targetIdInput;
     private Button executeNavigationButton;
     private TextView logTextView;
@@ -52,18 +64,28 @@ public class TestNavigationActivity extends BaseActivity {
         addLog("Init", "🚀 TestNavigationActivity đã khởi tạo");
         addLog("Init", "📱 Đang chuẩn bị kết nối đến robot...");
 
-        // Khởi tạo SDK
-        PeanutSDK.getInstance().init(this, new PeanutSDK.ErrorListener() {
-            @Override
-            public void onInit(int statusCode) {
-                if (statusCode == PeanutSDK.SDK_INIT_SUCCESS) {
-                    addLog("SDK", "✅ PeanutSDK khởi tạo thành công");
-                    initRuntime();
-                } else {
-                    addLog("SDK", "❌ PeanutSDK khởi tạo thất bại với mã: " + statusCode);
+        // Khởi tạo SDK sử dụng PeanutSDKManager
+        // Kiểm tra xem SDK đã được khởi tạo chưa, nếu rồi thì thôi, chưa thì mới init
+        if (PeanutSDKManager.isInitialized() && PeanutSDKManager.isSDKAvailable()) {
+            addLog("SDK", "ℹ️ PeanutSDK đã được khởi tạo trước đó");
+            initRuntime();
+        } else {
+            // Sử dụng PeanutSDKManager để khởi tạo SDK
+            PeanutSDKManager.initializeSDK(this, "192.168.1.100", new PeanutSDK.ErrorListener() {
+                @Override
+                public void onInit(int statusCode) {
+                    if (statusCode == PeanutSDK.SDK_INIT_SUCCESS) {
+                        addLog("SDK", "✅ PeanutSDK khởi tạo thành công");
+                        initRuntime();
+                    } else if (statusCode == PeanutSDK.SDK_INITIALIZING) {
+                        addLog("SDK", "⏳ PeanutSDK đang trong quá trình khởi tạo...");
+                    } else {
+                        addLog("SDK", "❌ PeanutSDK khởi tạo thất bại với mã: " + statusCode);
+                    }
                 }
-            }
-        });
+            });
+        }
+
     }
 
     private void initViews() {
@@ -85,6 +107,7 @@ public class TestNavigationActivity extends BaseActivity {
         getPointsButton = findViewById(R.id.btn_get_points);
         getMapListButton = findViewById(R.id.btn_get_map_list);
         getMapDataButton = findViewById(R.id.btn_get_map_data);
+        checkWorkModeButton = findViewById(R.id.btn_check_workmode);
         targetIdInput = findViewById(R.id.et_target_id);
         executeNavigationButton = findViewById(R.id.btn_execute_navigation);
         logTextView = findViewById(R.id.tv_log);
@@ -97,6 +120,7 @@ public class TestNavigationActivity extends BaseActivity {
         autoChargeButton.setOnClickListener(v -> autoCharge());
         manualChargeButton.setOnClickListener(v -> manualCharge());
         cancelChargeButton.setOnClickListener(v -> cancelCharge());
+        checkWorkModeButton.setOnClickListener(v -> checkWorkMode());
         // SdkHelper listeners
         setSpeedButton.setOnClickListener(v -> setRobotSpeed());
         pauseNavigationButton.setOnClickListener(v -> pauseNavigation());
@@ -114,7 +138,8 @@ public class TestNavigationActivity extends BaseActivity {
     private void initRuntime() {
         try {
             if (PeanutRuntime.getInstance() != null) {
-                PeanutRuntime.getInstance().start(new PeanutRuntime.Listener() {
+                // Sử dụng PeanutSDKManager để khởi tạo Runtime
+                PeanutSDKManager.startRuntime(new PeanutRuntime.Listener() {
                     @Override
                     public void onEvent(int event, Object obj) {
                         addLog("Runtime", "Event: " + event + ", Content: " + obj);
@@ -171,14 +196,11 @@ public class TestNavigationActivity extends BaseActivity {
         getPointsButton.setEnabled(enabled);
         getMapListButton.setEnabled(enabled);
         getMapDataButton.setEnabled(enabled);
+        checkWorkModeButton.setEnabled(enabled);
         executeNavigationButton.setEnabled(enabled);
     }
 
     // ==================== ĐIỀU HƯỚNG CƠ BẢN ====================
-
-
-
-
 
     private void getPosition() {
         if (!isConnected) {
@@ -232,63 +254,66 @@ public class TestNavigationActivity extends BaseActivity {
 
         addLog("AutoCharge", "🔄 Đang tìm dock sạc trong map...");
         try {
-//            if (PeanutSDK.getInstance() != null && PeanutSDK.getInstance().map() != null) {
-//                // Lấy danh sách zones từ map
-//                PeanutSDK.getInstance().map().mapZoneList(new ApiCallback<BaseResp<MapAreaBean>>() {
-//                    @Override
-//                    public void onSuccess(BaseResp<MapAreaBean> result) {
-//                        if (result.getData() != null) {
-//                            MapAreaBean mapArea = result.getData();
-//                            if (mapArea.getZoneArray() != null && !mapArea.getZoneArray().isEmpty()) {
-//                                // Tìm dock sạc (type = charger)
-//                                ZoneInfoBean dockZone = null;
-//                                for (ZoneInfoBean zone : mapArea.getZoneArray()) {
-//                                    if ("charger".equals(zone.getZoneType()) || "dock".equals(zone.getZoneType())) {
-//                                        dockZone = zone;
-//                                        break;
-//                                    }
-//                                }
-//
-//                                if (dockZone != null) {
-//                                    addLog("AutoCharge", "✅ Tìm thấy dock sạc: " + dockZone.getName() + " (ID="
-//                                            + dockZone.getZoneId() + ")");
-//                                    // Gọi auto charge với zoneId của dock
-//                                    startAutoCharge(dockZone.getZoneId());
-//                                } else {
-//                                    addLog("Warning", "⚠️ Không tìm thấy dock sạc trong map");
-//                                    addLog("Info", "💡 Vui lòng kiểm tra map có được cấu hình dock sạc chưa");
-//                                }
-//                            } else {
-//                                addLog("Warning", "⚠️ Không có zones nào trong map");
-//                            }
-//                        } else {
-//                            addLog("Warning", "⚠️ Không có dữ liệu zones");
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(String s, BaseResp<MapAreaBean> mapAreaBeanBaseResp) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onFail(ApiError apiError) {
-//                        addLog("Error", "❌ Lấy danh sách zones thất bại: " + apiError.toString());
-//                    }
-//                });
-//            } else {
-//                addLog("Error", "❌ Map component không khả dụng");
-//            }
-            //new char nè
+            // if (PeanutSDK.getInstance() != null && PeanutSDK.getInstance().map() != null)
+            // {
+            // // Lấy danh sách zones từ map
+            // PeanutSDK.getInstance().map().mapZoneList(new
+            // ApiCallback<BaseResp<MapAreaBean>>() {
+            // @Override
+            // public void onSuccess(BaseResp<MapAreaBean> result) {
+            // if (result.getData() != null) {
+            // MapAreaBean mapArea = result.getData();
+            // if (mapArea.getZoneArray() != null && !mapArea.getZoneArray().isEmpty()) {
+            // // Tìm dock sạc (type = charger)
+            // ZoneInfoBean dockZone = null;
+            // for (ZoneInfoBean zone : mapArea.getZoneArray()) {
+            // if ("charger".equals(zone.getZoneType()) ||
+            // "dock".equals(zone.getZoneType())) {
+            // dockZone = zone;
+            // break;
+            // }
+            // }
+            //
+            // if (dockZone != null) {
+            // addLog("AutoCharge", "✅ Tìm thấy dock sạc: " + dockZone.getName() + " (ID="
+            // + dockZone.getZoneId() + ")");
+            // // Gọi auto charge với zoneId của dock
+            // startAutoCharge(dockZone.getZoneId());
+            // } else {
+            // addLog("Warning", "⚠️ Không tìm thấy dock sạc trong map");
+            // addLog("Info", "💡 Vui lòng kiểm tra map có được cấu hình dock sạc chưa");
+            // }
+            // } else {
+            // addLog("Warning", "⚠️ Không có zones nào trong map");
+            // }
+            // } else {
+            // addLog("Warning", "⚠️ Không có dữ liệu zones");
+            // }
+            // }
+            //
+            // @Override
+            // public void onSuccess(String s, BaseResp<MapAreaBean> mapAreaBeanBaseResp) {
+            //
+            // }
+            //
+            // @Override
+            // public void onFail(ApiError apiError) {
+            // addLog("Error", "❌ Lấy danh sách zones thất bại: " + apiError.toString());
+            // }
+            // });
+            // } else {
+            // addLog("Error", "❌ Map component không khả dụng");
+            // }
+            // new char nè
             ChargerImpl.getInstance().autoCharge();
-            //new charge nữa nè
-//            PeanutCharger charger = new PeanutCharger.Builder()
-//                    .setPile(pointId) // dock id
-//                    .setListener(listener)
-//                    .build();
-//
-//            charger.performAction(PeanutCharger.CHARGE_ACTION_AUTO);
-            //lỏ lắm
+            // new charge nữa nè
+            // PeanutCharger charger = new PeanutCharger.Builder()
+            // .setPile(pointId) // dock id
+            // .setListener(listener)
+            // .build();
+            //
+            // charger.performAction(PeanutCharger.CHARGE_ACTION_AUTO);
+            // lỏ lắm
 
         } catch (Exception e) {
             addLog("Error", "❌ Lỗi khi tìm dock sạc: " + e.getMessage());
@@ -390,6 +415,56 @@ public class TestNavigationActivity extends BaseActivity {
             }
         } catch (Exception e) {
             addLog("Error", "❌ Lỗi khi hủy bỏ sạc pin: " + e.getMessage());
+        }
+    }
+
+    // ==================== WORK MODE ====================
+    
+    private void checkWorkMode() {
+        if (!isConnected) {
+            addLog("Warning", "⚠️ Vui lòng kết nối đến robot trước");
+            return;
+        }
+
+        addLog("WorkMode", "🔍 Đang kiểm tra work mode hiện tại...");
+        try {
+            if (PeanutRuntime.getInstance() != null && PeanutRuntime.getInstance().getRuntimeInfo() != null) {
+                int workMode = PeanutRuntime.getInstance().getRuntimeInfo().getWorkMode();
+                String modeDescription = getWorkModeDescription(workMode);
+                
+                addLog("WorkMode", "✅ Work Mode hiện tại: " + workMode + " (" + modeDescription + ")");
+                
+                // Hiển thị thông tin chi tiết về work mode
+                addLog("WorkMode", "📋 Thông tin Work Mode:");
+                addLog("WorkMode", "   • Mã Mode: " + workMode);
+                addLog("WorkMode", "   • Mô tả: " + modeDescription);
+                addLog("WorkMode", "   • Trạng thái: " + (workMode >= 0 ? "Hoạt động" : "Chưa thiết lập"));
+                
+                // Thêm thông tin về các work mode có thể có
+                addLog("WorkMode", "📚 Các Work Mode có sẵn:");
+                addLog("WorkMode", "   • -1: Chưa thiết lập");
+                addLog("WorkMode", "   • 0: Hoạt động bình thường");
+                addLog("WorkMode", "   • 1: Kiểm tra sản xuất");
+                addLog("WorkMode", "   • 2: Chế độ Debug");
+                
+            } else {
+                addLog("Error", "❌ Runtime hoặc RuntimeInfo không khả dụng");
+            }
+            
+        } catch (Exception e) {
+            addLog("Error", "❌ Lỗi khi kiểm tra work mode: " + e.getMessage());
+            addLog("Debug", "Loại exception: " + e.getClass().getSimpleName());
+        }
+    }
+    
+    private String getWorkModeDescription(int mode) {
+        // Từ decompiled code: work mode values
+        switch (mode) {
+            case -1: return "Chưa thiết lập";
+            case 0: return "Hoạt động bình thường";
+            case 1: return "Kiểm tra sản xuất";
+            case 2: return "Chế độ Debug";
+            default: return "Không xác định (" + mode + ")";
         }
     }
 
@@ -639,10 +714,10 @@ public class TestNavigationActivity extends BaseActivity {
                 addLog("Warning", "⚠️ Target ID phải là số nguyên dương");
                 return;
             }
-            
+
             addLog("Navigation", "🎯 Bắt đầu điều hướng với Target ID: " + pointId);
             navigateToPointId(pointId);
-            
+
         } catch (NumberFormatException e) {
             addLog("Error", "❌ Target ID không hợp lệ. Vui lòng nhập số nguyên");
         } catch (Exception e) {
@@ -780,38 +855,43 @@ public class TestNavigationActivity extends BaseActivity {
         addLog("MapList", "🔄 Đang lấy danh sách bản đồ...");
         try {
             if (PeanutSDK.getInstance() != null && PeanutSDK.getInstance().map() != null) {
-                PeanutSDK.getInstance().map().mapList(new ApiCallback<BaseResp<com.keenon.sdk.robot.model.bean.map.MapListBean>>() {
-                    @Override
-                    public void onSuccess(BaseResp<com.keenon.sdk.robot.model.bean.map.MapListBean> result) {
-                        addLog("MapList", "✅ Lấy danh sách bản đồ thành công");
-                        if (result.getData() != null) {
-                            com.keenon.sdk.robot.model.bean.map.MapListBean mapList = result.getData();
-                            addLog("MapList", "🗺️ Tổng số bản đồ: " + (mapList.getMapArray() != null ? mapList.getMapArray().size() : 0));
-                            addLog("MapList", "📊 Dữ liệu bản đồ: " + mapList.toString());
-                            
-                                                         if (mapList.getMapArray() != null && !mapList.getMapArray().isEmpty()) {
-                                 addLog("MapList", "📍 Danh sách bản đồ:");
-                                 for (com.keenon.sdk.robot.model.bean.map.MapInfoBean map : mapList.getMapArray()) {
-                                     addLog("MapList", "   - " + map.getName() + " | Floor=" + map.getFloor() + " | Type=" + map.getType() + " | MD5=" + map.getMd5());
-                                 }
-                             } else {
-                                 addLog("MapList", "⚠️ Không có bản đồ nào");
-                             }
-                        } else {
-                            addLog("MapList", "⚠️ Không có dữ liệu bản đồ");
-                        }
-                    }
+                PeanutSDK.getInstance().map()
+                        .mapList(new ApiCallback<BaseResp<com.keenon.sdk.robot.model.bean.map.MapListBean>>() {
+                            @Override
+                            public void onSuccess(BaseResp<com.keenon.sdk.robot.model.bean.map.MapListBean> result) {
+                                addLog("MapList", "✅ Lấy danh sách bản đồ thành công");
+                                if (result.getData() != null) {
+                                    com.keenon.sdk.robot.model.bean.map.MapListBean mapList = result.getData();
+                                    addLog("MapList", "🗺️ Tổng số bản đồ: "
+                                            + (mapList.getMapArray() != null ? mapList.getMapArray().size() : 0));
+                                    addLog("MapList", "📊 Dữ liệu bản đồ: " + mapList.toString());
 
-                    @Override
-                    public void onSuccess(String requestId, BaseResp<com.keenon.sdk.robot.model.bean.map.MapListBean> result) {
-                        onSuccess(result);
-                    }
+                                    if (mapList.getMapArray() != null && !mapList.getMapArray().isEmpty()) {
+                                        addLog("MapList", "📍 Danh sách bản đồ:");
+                                        for (com.keenon.sdk.robot.model.bean.map.MapInfoBean map : mapList
+                                                .getMapArray()) {
+                                            addLog("MapList", "   - " + map.getName() + " | Floor=" + map.getFloor()
+                                                    + " | Type=" + map.getType() + " | MD5=" + map.getMd5());
+                                        }
+                                    } else {
+                                        addLog("MapList", "⚠️ Không có bản đồ nào");
+                                    }
+                                } else {
+                                    addLog("MapList", "⚠️ Không có dữ liệu bản đồ");
+                                }
+                            }
 
-                    @Override
-                    public void onFail(ApiError error) {
-                        addLog("Error", "❌ Lấy danh sách bản đồ thất bại: " + error.toString());
-                    }
-                });
+                            @Override
+                            public void onSuccess(String requestId,
+                                    BaseResp<com.keenon.sdk.robot.model.bean.map.MapListBean> result) {
+                                onSuccess(result);
+                            }
+
+                            @Override
+                            public void onFail(ApiError error) {
+                                addLog("Error", "❌ Lấy danh sách bản đồ thất bại: " + error.toString());
+                            }
+                        });
             } else {
                 addLog("Error", "❌ Map component không khả dụng");
             }
@@ -830,39 +910,42 @@ public class TestNavigationActivity extends BaseActivity {
         try {
             if (PeanutSDK.getInstance() != null && PeanutSDK.getInstance().map() != null) {
                 // Lấy dữ liệu bản đồ với ID=1 và name="current"
-                PeanutSDK.getInstance().map().mapDataGet(new ApiCallback<BaseResp<com.keenon.sdk.robot.model.bean.map.MapDataBean>>() {
-                    @Override
-                    public void onSuccess(BaseResp<com.keenon.sdk.robot.model.bean.map.MapDataBean> result) {
-                        addLog("MapData", "✅ Lấy dữ liệu bản đồ thành công");
-                        if (result.getData() != null) {
-                            com.keenon.sdk.robot.model.bean.map.MapDataBean mapData = result.getData();
-                            addLog("MapData", "🗺️ Thông tin bản đồ:");
-                            addLog("MapData", "📊 Dữ liệu chi tiết: " + mapData.toString());
-                            
-                            // Hiển thị thông tin cơ bản nếu có
-                            try {
-                                // Thử gọi các method có thể có
-                                if (mapData.getClass().getMethod("getName") != null) {
-                                    addLog("MapData", "   - Name: " + mapData.toString());
+                PeanutSDK.getInstance().map()
+                        .mapDataGet(new ApiCallback<BaseResp<com.keenon.sdk.robot.model.bean.map.MapDataBean>>() {
+                            @Override
+                            public void onSuccess(BaseResp<com.keenon.sdk.robot.model.bean.map.MapDataBean> result) {
+                                addLog("MapData", "✅ Lấy dữ liệu bản đồ thành công");
+                                if (result.getData() != null) {
+                                    com.keenon.sdk.robot.model.bean.map.MapDataBean mapData = result.getData();
+                                    addLog("MapData", "🗺️ Thông tin bản đồ:");
+                                    addLog("MapData", "📊 Dữ liệu chi tiết: " + mapData.toString());
+
+                                    // Hiển thị thông tin cơ bản nếu có
+                                    try {
+                                        // Thử gọi các method có thể có
+                                        if (mapData.getClass().getMethod("getName") != null) {
+                                            addLog("MapData", "   - Name: " + mapData.toString());
+                                        }
+                                    } catch (NoSuchMethodException e) {
+                                        addLog("MapData",
+                                                "   - Cấu trúc MapDataBean: " + mapData.getClass().getSimpleName());
+                                    }
+                                } else {
+                                    addLog("MapData", "⚠️ Không có dữ liệu bản đồ");
                                 }
-                            } catch (NoSuchMethodException e) {
-                                addLog("MapData", "   - Cấu trúc MapDataBean: " + mapData.getClass().getSimpleName());
                             }
-                        } else {
-                            addLog("MapData", "⚠️ Không có dữ liệu bản đồ");
-                        }
-                    }
 
-                    @Override
-                    public void onSuccess(String requestId, BaseResp<com.keenon.sdk.robot.model.bean.map.MapDataBean> result) {
-                        onSuccess(result);
-                    }
+                            @Override
+                            public void onSuccess(String requestId,
+                                    BaseResp<com.keenon.sdk.robot.model.bean.map.MapDataBean> result) {
+                                onSuccess(result);
+                            }
 
-                    @Override
-                    public void onFail(ApiError error) {
-                        addLog("Error", "❌ Lấy dữ liệu bản đồ thất bại: " + error.toString());
-                    }
-                }, 1, "current"); // ID=1, name="current"
+                            @Override
+                            public void onFail(ApiError error) {
+                                addLog("Error", "❌ Lấy dữ liệu bản đồ thất bại: " + error.toString());
+                            }
+                        }, 1, "current"); // ID=1, name="current"
             } else {
                 addLog("Error", "❌ Map component không khả dụng");
             }

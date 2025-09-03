@@ -13,6 +13,7 @@ import com.keenon.peanut.sample.R;
 import com.keenon.peanut.sample.util.BaseActivity;
 import com.keenon.peanut.sample.util.PrintLnLog;
 import com.keenon.sdk.component.runtime.PeanutRuntime;
+import com.keenon.peanut.sample.util.PeanutSDKManager;
 import com.keenon.sdk.constant.ApiConstants;
 import com.keenon.sdk.constant.RobotTopic;
 import com.keenon.sdk.external.PeanutSDK;
@@ -59,26 +60,24 @@ public class RobotKeenonActivity extends BaseActivity {
     TextView tvLog;
     @BindView(R.id.sv_log)
     ScrollView svLog;
-    
 
     private SpannableStringBuilder logBuilder = new SpannableStringBuilder();
     private boolean isSDKInitialized = false;
     private ObjectPerceptionApi objectPerceptionApi;
-
 
     // Runtime listener để nhận events
     private PeanutRuntime.Listener runtimeListener = new PeanutRuntime.Listener() {
         @Override
         public void onEvent(int event, Object obj) {
             addLog("Runtime Event", "Event: " + event + ", Data: " + (obj != null ? obj.toString() : "null"));
-            
+
             // Kiểm tra nếu là head motor event - có thể events được gửi qua đây
             if (obj instanceof HeadMotorBean) {
                 HeadMotorBean headData = (HeadMotorBean) obj;
-                addLog("Head Motor Event", "🎯 Head Motor Bean - X: " + headData.getAngleX() + 
-                       ", Y: " + headData.getAngleY() + ", State: " + headData.getState());
+                addLog("Head Motor Event", "🎯 Head Motor Bean - X: " + headData.getAngleX() +
+                        ", Y: " + headData.getAngleY() + ", State: " + headData.getState());
             }
-            
+
             // Kiểm tra nếu obj là String chứa head motor data
             if (obj instanceof String) {
                 String data = (String) obj;
@@ -108,7 +107,27 @@ public class RobotKeenonActivity extends BaseActivity {
 
         // Khởi tạo APIs
         objectPerceptionApi = new ObjectPerceptionApi();
-        initializeRobot();
+        // Khởi tạo SDK sử dụng PeanutSDKManager
+        // Kiểm tra xem SDK đã được khởi tạo chưa, nếu rồi thì thôi, chưa thì mới init
+        if (PeanutSDKManager.isInitialized() && PeanutSDKManager.isSDKAvailable()) {
+            addLog("SDK", "ℹ️ PeanutSDK đã được khởi tạo trước đó");
+            initRuntime();
+        } else {
+            // Sử dụng PeanutSDKManager để khởi tạo SDK
+            PeanutSDKManager.initializeSDK(this, "192.168.1.100", new PeanutSDK.ErrorListener() {
+                @Override
+                public void onInit(int statusCode) {
+                    if (statusCode == PeanutSDK.SDK_INIT_SUCCESS) {
+                        addLog("SDK", "✅ PeanutSDK khởi tạo thành công");
+                        initRuntime();
+                    }  else if (statusCode == PeanutSDK.SDK_INITIALIZING) {
+                        addLog("SDK", "⏳ PeanutSDK đang trong quá trình khởi tạo...");
+                    }else {
+                        addLog("SDK", "❌ PeanutSDK khởi tạo thất bại với mã: " + statusCode);
+                    }
+                }
+            });
+        }
     }
 
     @Override
@@ -133,41 +152,27 @@ public class RobotKeenonActivity extends BaseActivity {
         addLog("Cleanup", "🧹 Activity cleanup completed (SDK preserved)");
     }
 
-    private void initializeRobot() {
-        addLog("Initialization", "🚀 Starting Robot Keenon SDK test...");
-
-        try {
-            // Sử dụng SDK đã được khởi tạo từ KeenonApiDemoMain
-            // Không khởi tạo lại để tránh conflict
-            addLog("SDK Status", "✅ Using existing SDK instance");
-            isSDKInitialized = true;
-            // Chỉ khởi tạo Runtime
-            initRuntime();
-        } catch (Exception e) {
-            addLog("Error", "❌ Initialization failed: " + e.getMessage());
-        }
-    }
-    
     private void initRuntime() {
         try {
             if (PeanutRuntime.getInstance() != null) {
-                PeanutRuntime.getInstance().start(runtimeListener);
-                PeanutRuntime.getInstance().setWorkMode(ApiConstants.WorkMode.MFG_TEST);
-                PeanutRuntime.getInstance().setTime(System.currentTimeMillis());
-                addLog("Runtime", "✅ Runtime started with MFG_TEST mode and time synced");
+                // KHÔNG gọi start() vì đã được gọi từ KeenonApiDemoMain
+                // Chỉ cần add listener để nhận events
+                PeanutRuntime.getInstance().registerListener(runtimeListener);
+                addLog("Runtime", "✅ Runtime listener added (Runtime already started from Main)");
             } else {
                 addLog("Runtime", "❌ PeanutRuntime not available");
             }
-            
+
             // Head Motor setup - MOUNT sensor trước khi sử dụng
             try {
                 SensorHeadMotor.getInstance().mount();
                 addLog("Head Motor", "✅ Head Motor mounted successfully");
-                
+
                 // Add observer để nhận events
                 SensorHeadMotor.getInstance().addObserver(new com.keenon.sdk.embedded.common.SensorObserver() {
                     @Override
-                    public void onUpdate(com.keenon.sdk.embedded.common.Event event, com.keenon.sdk.embedded.common.Sensor sensor) {
+                    public void onUpdate(com.keenon.sdk.embedded.common.Event event,
+                            com.keenon.sdk.embedded.common.Sensor sensor) {
                         addLog("Head Motor Event", "🎯 Event: " + event.toString() + " from " + sensor.name());
                     }
                 });
@@ -175,10 +180,10 @@ public class RobotKeenonActivity extends BaseActivity {
             } catch (Exception e) {
                 addLog("Error", "❌ Head Motor mount failed: " + e.getMessage());
             }
-            
+
             // Head Motor events sẽ được nhận qua cả Runtime Listener VÀ Sensor Observer
             addLog("Head Motor", "✅ Head Motor setup completed");
-            
+
         } catch (Exception e) {
             addLog("Error", "❌ Runtime initialization failed: " + e.getMessage());
         }
@@ -188,24 +193,24 @@ public class RobotKeenonActivity extends BaseActivity {
         runOnUiThread(() -> {
             String timestamp = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
             String logEntry = String.format("[%s] %s: %s\n", timestamp, category, message);
-            
+
             // Get color for this category
             int color = getCategoryColor(category);
-            
+
             // Create colored text
             int startPos = logBuilder.length();
             logBuilder.append(logEntry);
             int endPos = logBuilder.length();
-            
+
             // Apply color to this specific log entry
             logBuilder.setSpan(new ForegroundColorSpan(color), startPos, endPos, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            
+
             // Set text and scroll
             tvLog.setText(logBuilder);
             svLog.post(() -> svLog.fullScroll(View.FOCUS_DOWN));
         });
     }
-    
+
     private int getCategoryColor(String category) {
         switch (category.toLowerCase()) {
             case "error":
@@ -235,6 +240,10 @@ public class RobotKeenonActivity extends BaseActivity {
             case "object detection":
             case "location":
                 return Color.BLUE;
+            case "work mode":
+            case "work mode details":
+            case "work mode info":
+                return 0xFF9C27B0; // Purple
             case "door":
             case "map":
                 return 0xFFFFA500; // Orange
@@ -258,10 +267,10 @@ public class RobotKeenonActivity extends BaseActivity {
             addLog("Error", "❌ SDK not initialized. Please wait for initialization to complete.");
             return;
         }
-        
+
         try {
             addLog("Robot Info", "🔍 Collecting robot information...");
-            
+
             // 1. Try to get IP address from runtime
             if (PeanutSDK.getInstance() != null && PeanutSDK.getInstance().runtime() != null) {
                 addLog("Robot Info", "📡 Requesting IP address from runtime...");
@@ -290,20 +299,20 @@ public class RobotKeenonActivity extends BaseActivity {
             } else {
                 addLog("Error", "❌ Runtime component not available");
             }
-            
+
             // 2. Get basic SDK info as fallback
             getRobotBasicInfo();
-            
+
         } catch (Exception e) {
             addLog("Error", "❌ Failed to get robot info: " + e.getMessage());
             addLog("Debug", "Exception type: " + e.getClass().getSimpleName());
         }
     }
-    
+
     private void getRobotBasicInfo() {
         try {
             addLog("Robot Info", "📋 Basic robot information:");
-            
+
             // 1. SDK instance info
             if (PeanutSDK.getInstance() != null) {
                 addLog("Robot Info", "✅ SDK Instance: " + PeanutSDK.getInstance().getClass().getSimpleName());
@@ -311,34 +320,34 @@ public class RobotKeenonActivity extends BaseActivity {
                 addLog("Robot Info", "❌ SDK Instance: Not available");
                 return; // No point checking further if SDK is null
             }
-            
+
             // 2. Runtime info
             if (PeanutRuntime.getInstance() != null) {
                 addLog("Robot Info", "✅ Runtime Instance: Available");
-                
+
                 // Get runtime info details safely
                 getRuntimeDetails();
-                
+
             } else {
                 addLog("Robot Info", "❌ Runtime not available");
             }
-            
+
             // 3. SDK components availability
             checkSDKComponents();
-            
+
             // 4. Additional system info
             getSystemInfo();
-            
+
         } catch (Exception e) {
             addLog("Error", "❌ Basic info collection failed: " + e.getMessage());
         }
     }
-    
+
     private void getRuntimeDetails() {
         try {
             if (PeanutRuntime.getInstance().getRuntimeInfo() != null) {
                 addLog("Robot Info", "📊 Runtime Details:");
-                
+
                 // Power level
                 try {
                     int power = PeanutRuntime.getInstance().getRuntimeInfo().getPower();
@@ -346,15 +355,16 @@ public class RobotKeenonActivity extends BaseActivity {
                 } catch (Exception e) {
                     addLog("Robot Info", "🔋 Power Level: Not accessible");
                 }
-                
+
                 // Destination info
                 try {
                     String destList = PeanutRuntime.getInstance().getRuntimeInfo().getDestList();
-                    addLog("Robot Info", "📍 Destination List: " + (destList != null && !destList.isEmpty() ? destList : "Empty"));
+                    addLog("Robot Info",
+                            "📍 Destination List: " + (destList != null && !destList.isEmpty() ? destList : "Empty"));
                 } catch (Exception e) {
                     addLog("Robot Info", "📍 Destination List: Not accessible - " + e.getMessage());
                 }
-                
+
                 // Robot sync status (from decompiled code)
                 try {
                     int syncStatus = PeanutRuntime.getInstance().getRuntimeInfo().getSyncStatus();
@@ -363,7 +373,7 @@ public class RobotKeenonActivity extends BaseActivity {
                 } catch (Exception e) {
                     addLog("Robot Info", "🚀 Sync Status: Not accessible - " + e.getMessage());
                 }
-                
+
                 // Work mode
                 try {
                     int workMode = PeanutRuntime.getInstance().getRuntimeInfo().getWorkMode();
@@ -372,7 +382,7 @@ public class RobotKeenonActivity extends BaseActivity {
                 } catch (Exception e) {
                     addLog("Robot Info", "⚙️ Work Mode: Not accessible - " + e.getMessage());
                 }
-                
+
                 // Motor status
                 try {
                     int motorStatus = PeanutRuntime.getInstance().getRuntimeInfo().getMotorStatus();
@@ -381,7 +391,7 @@ public class RobotKeenonActivity extends BaseActivity {
                 } catch (Exception e) {
                     addLog("Robot Info", "🔧 Motor Status: Not accessible - " + e.getMessage());
                 }
-                
+
                 // Emergency status
                 try {
                     boolean emergencyOpen = PeanutRuntime.getInstance().getRuntimeInfo().isEmergencyOpen();
@@ -389,15 +399,16 @@ public class RobotKeenonActivity extends BaseActivity {
                 } catch (Exception e) {
                     addLog("Robot Info", "🚨 Emergency: Not accessible - " + e.getMessage());
                 }
-                
+
                 // Robot IP (confirmed exists)
                 try {
                     String robotIp = PeanutRuntime.getInstance().getRuntimeInfo().getRobotIp();
-                    addLog("Robot Info", "🌐 Robot IP: " + (robotIp != null && !robotIp.isEmpty() ? robotIp : "Not set"));
+                    addLog("Robot Info",
+                            "🌐 Robot IP: " + (robotIp != null && !robotIp.isEmpty() ? robotIp : "Not set"));
                 } catch (Exception e) {
                     addLog("Robot Info", "🌐 Robot IP: Not accessible - " + e.getMessage());
                 }
-                
+
                 // Total ODO (confirmed exists)
                 try {
                     Double totalOdo = PeanutRuntime.getInstance().getRuntimeInfo().getTotalOdo();
@@ -405,31 +416,34 @@ public class RobotKeenonActivity extends BaseActivity {
                 } catch (Exception e) {
                     addLog("Robot Info", "🛣️ Total ODO: Not accessible - " + e.getMessage());
                 }
-                
+
                 // Robot Arm Info (newly discovered)
                 try {
                     String robotArmInfo = PeanutRuntime.getInstance().getRuntimeInfo().getRobotArmInfo();
-                    addLog("Robot Info", "🦾 Robot Arm: " + (robotArmInfo != null && !robotArmInfo.isEmpty() ? robotArmInfo : "Not set"));
+                    addLog("Robot Info", "🦾 Robot Arm: "
+                            + (robotArmInfo != null && !robotArmInfo.isEmpty() ? robotArmInfo : "Not set"));
                 } catch (Exception e) {
                     addLog("Robot Info", "🦾 Robot Arm: Not accessible - " + e.getMessage());
                 }
-                
+
                 // Robot Properties (newly discovered)
                 try {
                     String robotProperties = PeanutRuntime.getInstance().getRuntimeInfo().getRobotProperties();
-                    addLog("Robot Info", "⚙️ Properties: " + (robotProperties != null && !robotProperties.isEmpty() ? robotProperties : "Not set"));
+                    addLog("Robot Info", "⚙️ Properties: "
+                            + (robotProperties != null && !robotProperties.isEmpty() ? robotProperties : "Not set"));
                 } catch (Exception e) {
                     addLog("Robot Info", "⚙️ Properties: Not accessible - " + e.getMessage());
                 }
-                
+
                 // STM32 Info (newly discovered)
                 try {
                     String stm32Info = PeanutRuntime.getInstance().getRuntimeInfo().getRobotStm32Info();
-                    addLog("Robot Info", "🔧 STM32: " + (stm32Info != null && !stm32Info.isEmpty() ? stm32Info : "Not set"));
+                    addLog("Robot Info",
+                            "🔧 STM32: " + (stm32Info != null && !stm32Info.isEmpty() ? stm32Info : "Not set"));
                 } catch (Exception e) {
                     addLog("Robot Info", "🔧 STM32: Not accessible - " + e.getMessage());
                 }
-                
+
                 // Emergency Enable status (newly discovered)
                 try {
                     boolean emergencyEnabled = PeanutRuntime.getInstance().getRuntimeInfo().isEmergencyEnable();
@@ -437,7 +451,7 @@ public class RobotKeenonActivity extends BaseActivity {
                 } catch (Exception e) {
                     addLog("Robot Info", "🛡️ Emergency Enable: Not accessible - " + e.getMessage());
                 }
-                
+
             } else {
                 addLog("Robot Info", "⚠️ Runtime info object not available");
             }
@@ -445,65 +459,82 @@ public class RobotKeenonActivity extends BaseActivity {
             addLog("Robot Info", "❌ Runtime details error: " + e.getMessage());
         }
     }
-    
+
     private String getSyncStatusDescription(int status) {
         // From decompiled code: robot reboot status tracking
         switch (status) {
-            case -1: return "Not initialized";
-            case 0: return "Startup";
-            case 1: return "Initializing";
-            case 2: return "Ready";
-            default: return "Unknown (" + status + ")";
+            case -1:
+                return "Not initialized";
+            case 0:
+                return "Startup";
+            case 1:
+                return "Initializing";
+            case 2:
+                return "Ready";
+            default:
+                return "Unknown (" + status + ")";
         }
     }
-    
+
     private String getWorkModeDescription(int mode) {
         // From decompiled code: work mode values
         switch (mode) {
-            case -1: return "Not set";
-            case 0: return "Normal";
-            case 1: return "Manufacturing Test";
-            case 2: return "Debug";
-            default: return "Unknown (" + mode + ")";
+            case -1:
+                return "Not set";
+            case 0:
+                return "Normal";
+            case 1:
+                return "Manufacturing Test";
+            case 2:
+                return "Debug";
+            default:
+                return "Unknown (" + mode + ")";
         }
     }
-    
+
     private String getMotorStatusDescription(int status) {
         // Motor status values (need to verify with actual API)
         switch (status) {
-            case -1: return "Not initialized";
-            case 0: return "Disabled";
-            case 1: return "Enabled";
-            case 2: return "Error";
-            default: return "Unknown (" + status + ")";
+            case -1:
+                return "Not initialized";
+            case 0:
+                return "Disabled";
+            case 1:
+                return "Enabled";
+            case 2:
+                return "Error";
+            default:
+                return "Unknown (" + status + ")";
         }
     }
-    
+
     private void getSystemInfo() {
         try {
             addLog("Robot Info", "🔧 System Information:");
-            
+
             // App info
             addLog("Robot Info", "📱 Package: " + getPackageName());
-            
+
             // Thread info
-            addLog("Robot Info", "🧵 Main Thread: " + (android.os.Looper.myLooper() == android.os.Looper.getMainLooper() ? "Yes" : "No"));
-            
+            addLog("Robot Info", "🧵 Main Thread: "
+                    + (android.os.Looper.myLooper() == android.os.Looper.getMainLooper() ? "Yes" : "No"));
+
             // Memory info
             Runtime runtime = Runtime.getRuntime();
             long maxMemory = runtime.maxMemory() / 1024 / 1024; // Convert to MB
             long totalMemory = runtime.totalMemory() / 1024 / 1024;
             long freeMemory = runtime.freeMemory() / 1024 / 1024;
-            addLog("Robot Info", "💾 Memory: " + (totalMemory - freeMemory) + "/" + totalMemory + " MB (Max: " + maxMemory + " MB)");
-            
+            addLog("Robot Info",
+                    "💾 Memory: " + (totalMemory - freeMemory) + "/" + totalMemory + " MB (Max: " + maxMemory + " MB)");
+
         } catch (Exception e) {
             addLog("Robot Info", "❌ System info error: " + e.getMessage());
         }
     }
-    
+
     private void checkSDKComponents() {
         addLog("Robot Info", "🔧 SDK Components Status:");
-        
+
         try {
             if (PeanutSDK.getInstance().battery() != null) {
                 addLog("Components", "✅ Battery component available");
@@ -513,7 +544,7 @@ public class RobotKeenonActivity extends BaseActivity {
         } catch (Exception e) {
             addLog("Components", "❌ Battery component error: " + e.getMessage());
         }
-        
+
         try {
             if (PeanutSDK.getInstance().motor() != null) {
                 addLog("Components", "✅ Motor component available");
@@ -523,7 +554,7 @@ public class RobotKeenonActivity extends BaseActivity {
         } catch (Exception e) {
             addLog("Components", "❌ Motor component error: " + e.getMessage());
         }
-        
+
         try {
             if (PeanutSDK.getInstance().door() != null) {
                 addLog("Components", "✅ Door component available");
@@ -541,10 +572,10 @@ public class RobotKeenonActivity extends BaseActivity {
             addLog("Error", "❌ SDK not initialized. Please wait for initialization to complete.");
             return;
         }
-        
+
         try {
             addLog("Battery", "🔋 Getting battery information...");
-            
+
             // Sử dụng BatteryComponent theo decompiled code
             if (PeanutSDK.getInstance() != null && PeanutSDK.getInstance().battery() != null) {
                 PeanutSDK.getInstance().battery().batteryInfo(new ApiCallback<BaseResp<BatteryInfoBean>>() {
@@ -577,13 +608,13 @@ public class RobotKeenonActivity extends BaseActivity {
             } else {
                 addLog("Error", "❌ Battery component not available");
             }
-            
+
             // Cũng lấy power từ runtime như backup
             if (PeanutRuntime.getInstance() != null && PeanutRuntime.getInstance().getRuntimeInfo() != null) {
                 int powerLevel = PeanutRuntime.getInstance().getRuntimeInfo().getPower();
                 addLog("Power Level", "🔋 Runtime Power: " + powerLevel + "%");
             }
-                
+
         } catch (Exception e) {
             addLog("Error", "❌ Failed to get battery info: " + e.getMessage());
         }
@@ -593,31 +624,73 @@ public class RobotKeenonActivity extends BaseActivity {
     public void onLocationInfoClicked() {
         try {
             if (PeanutSDK.getInstance() != null && PeanutSDK.getInstance().runtime() != null) {
-                PeanutSDK.getInstance().runtime().getRobotPosition(new ApiCallback<BaseResp<com.keenon.sdk.robot.model.bean.map.PositionInfoBean>>() {
-                    @Override
-                    public void onSuccess(BaseResp<com.keenon.sdk.robot.model.bean.map.PositionInfoBean> result) {
-                        if (result != null && result.getData() != null) {
-                            addLog("Location", "Position: " + result.getData().toString());
-                        } else {
-                            addLog("Location", "No position data");
-                        }
-                    }
+                PeanutSDK.getInstance().runtime().getRobotPosition(
+                        new ApiCallback<BaseResp<com.keenon.sdk.robot.model.bean.map.PositionInfoBean>>() {
+                            @Override
+                            public void onSuccess(
+                                    BaseResp<com.keenon.sdk.robot.model.bean.map.PositionInfoBean> result) {
+                                if (result != null && result.getData() != null) {
+                                    addLog("Location", "Position: " + result.getData().toString());
+                                } else {
+                                    addLog("Location", "No position data");
+                                }
+                            }
 
-                    @Override
-                    public void onSuccess(String requestId, BaseResp<com.keenon.sdk.robot.model.bean.map.PositionInfoBean> result) {
-                        onSuccess(result);
-                    }
+                            @Override
+                            public void onSuccess(String requestId,
+                                    BaseResp<com.keenon.sdk.robot.model.bean.map.PositionInfoBean> result) {
+                                onSuccess(result);
+                            }
 
-                    @Override
-                    public void onFail(ApiError error) {
-                        addLog("Error", "Failed to get position: " + error.toString());
-                    }
-                });
+                            @Override
+                            public void onFail(ApiError error) {
+                                addLog("Error", "Failed to get position: " + error.toString());
+                            }
+                        });
             } else {
                 addLog("Error", "Runtime not initialized");
             }
         } catch (Exception e) {
             addLog("Error", "Failed to get location: " + e.getMessage());
+        }
+    }
+
+    @OnClick(R.id.btn_work_mode)
+    public void onWorkModeClicked() {
+        if (!isSDKInitialized) {
+            addLog("Error", "❌ SDK not initialized. Please wait for initialization to complete.");
+            return;
+        }
+
+        try {
+            addLog("Work Mode", "🔍 Checking current work mode...");
+
+            if (PeanutRuntime.getInstance() != null && PeanutRuntime.getInstance().getRuntimeInfo() != null) {
+                int workMode = PeanutRuntime.getInstance().getRuntimeInfo().getWorkMode();
+                String modeDescription = getWorkModeDescription(workMode);
+
+                addLog("Work Mode", "✅ Current Work Mode: " + workMode + " (" + modeDescription + ")");
+
+                // Hiển thị thông tin chi tiết về work mode
+                addLog("Work Mode Details", "📋 Work Mode Information:");
+                addLog("Work Mode Details", "   • Mode Code: " + workMode);
+                addLog("Work Mode Details", "   • Description: " + modeDescription);
+                addLog("Work Mode Details", "   • Status: " + (workMode >= 0 ? "Active" : "Not Set"));
+
+                // Thêm thông tin về các work mode có thể có
+                addLog("Work Mode Info", "📚 Available Work Modes:");
+                addLog("Work Mode Info", "   • -1: Not Set");
+                addLog("Work Mode Info", "   • 0: Normal Operation");
+                addLog("Work Mode Info", "   • 1: Manufacturing Test");
+                addLog("Work Mode Info", "   • 2: Debug Mode");
+
+            } else {
+                addLog("Error", "❌ Runtime or RuntimeInfo not available");
+            }
+
+        } catch (Exception e) {
+            addLog("Error", "❌ Failed to get work mode: " + e.getMessage());
+            addLog("Debug", "Exception type: " + e.getClass().getSimpleName());
         }
     }
 
@@ -795,10 +868,10 @@ public class RobotKeenonActivity extends BaseActivity {
             addLog("Error", "❌ SDK not initialized. Please wait for initialization to complete.");
             return;
         }
-        
+
         try {
             addLog("Perception", "🎯 Starting object detection...");
-            
+
             // Sử dụng ObjectPerceptionApi đúng theo screenshot
             objectPerceptionApi.send(new ApiCallback<BaseResp<ObjectPerceptionBean>>() {
                 @Override
@@ -806,12 +879,12 @@ public class RobotKeenonActivity extends BaseActivity {
                     if (result != null && result.getData() != null) {
                         ObjectPerceptionBean data = result.getData();
                         addLog("Object Detection", "✅ Object detected: " + data.toString());
-                        
+
                         // Log chi tiết về objects
                         if (data.getObjects() != null && !data.getObjects().isEmpty()) {
                             addLog("Objects", "📋 Found " + data.getObjects().size() + " objects");
                             for (int i = 0; i < data.getObjects().size(); i++) {
-                                addLog("Object " + (i+1), "📍 " + data.getObjects().get(i).toString());
+                                addLog("Object " + (i + 1), "📍 " + data.getObjects().get(i).toString());
                             }
                         } else {
                             addLog("Objects", "📡 No objects detected");
@@ -831,7 +904,7 @@ public class RobotKeenonActivity extends BaseActivity {
                     addLog("Error", "❌ Object detection failed: " + error.toString());
                 }
             });
-                
+
         } catch (Exception e) {
             addLog("Error", "❌ Object detection error: " + e.getMessage());
         }
@@ -915,10 +988,10 @@ public class RobotKeenonActivity extends BaseActivity {
             addLog("Error", "❌ SDK not initialized. Please wait for initialization to complete.");
             return;
         }
-        
+
         try {
             addLog("Charge", "🔌 Starting auto charge...");
-            
+
             // Sử dụng BatteryComponent.autoCharge(int i, ApiCallback) theo decompiled code
             if (PeanutSDK.getInstance() != null && PeanutSDK.getInstance().battery() != null) {
                 PeanutSDK.getInstance().battery().autoCharge(1, new ApiCallback<BaseResp<String>>() {
@@ -944,7 +1017,7 @@ public class RobotKeenonActivity extends BaseActivity {
             } else {
                 addLog("Error", "❌ Battery component not available");
             }
-            
+
         } catch (Exception e) {
             addLog("Error", "❌ Auto charge error: " + e.getMessage());
         }
@@ -956,11 +1029,13 @@ public class RobotKeenonActivity extends BaseActivity {
             addLog("Error", "❌ SDK not initialized. Please wait for initialization to complete.");
             return;
         }
-        
+
         try {
             addLog("Charge Status", "🔍 Checking charge match times...");
-            
-            // Sử dụng BatteryComponent.getChargeMatches(ApiCallback<BaseResp<ChargeStatusBean>>) theo decompiled code
+
+            // Sử dụng
+            // BatteryComponent.getChargeMatches(ApiCallback<BaseResp<ChargeStatusBean>>)
+            // theo decompiled code
             if (PeanutSDK.getInstance() != null && PeanutSDK.getInstance().battery() != null) {
                 PeanutSDK.getInstance().battery().getChargeMatches(new ApiCallback<BaseResp<ChargeStatusBean>>() {
                     @Override
@@ -991,7 +1066,7 @@ public class RobotKeenonActivity extends BaseActivity {
             } else {
                 addLog("Error", "❌ Battery component not available");
             }
-            
+
         } catch (Exception e) {
             addLog("Error", "❌ Charge status error: " + e.getMessage());
         }
@@ -1113,15 +1188,13 @@ public class RobotKeenonActivity extends BaseActivity {
         }
     }
 
-
-
     // =========================== HEAD MOTOR HELPER ===========================
     private boolean checkHeadMotorReady() {
         if (!isSDKInitialized) {
             addLog("Error", "❌ SDK not initialized. Please wait for initialization to complete.");
             return false;
         }
-        
+
         try {
             if (SensorHeadMotor.getInstance() == null) {
                 addLog("Error", "❌ Head Motor sensor not available");
@@ -1137,8 +1210,9 @@ public class RobotKeenonActivity extends BaseActivity {
     // =========================== HEAD MOTOR CONTROL ===========================
     @OnClick(R.id.btn_head_up)
     public void onHeadUpClicked() {
-        if (!checkHeadMotorReady()) return;
-        
+        if (!checkHeadMotorReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Moving head up...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PA);
@@ -1152,8 +1226,9 @@ public class RobotKeenonActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_down)
     public void onHeadDownClicked() {
-        if (!checkHeadMotorReady()) return;
-        
+        if (!checkHeadMotorReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Moving head down...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PB);
@@ -1167,8 +1242,9 @@ public class RobotKeenonActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_left)
     public void onHeadLeftClicked() {
-        if (!checkHeadMotorReady()) return;
-        
+        if (!checkHeadMotorReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Turning head left...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PH);
@@ -1182,8 +1258,9 @@ public class RobotKeenonActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_right)
     public void onHeadRightClicked() {
-        if (!checkHeadMotorReady()) return;
-        
+        if (!checkHeadMotorReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Turning head right...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PI);
@@ -1197,8 +1274,9 @@ public class RobotKeenonActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_center)
     public void onHeadCenterClicked() {
-        if (!checkHeadMotorReady()) return;
-        
+        if (!checkHeadMotorReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Centering head position...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.RESET);
@@ -1212,8 +1290,9 @@ public class RobotKeenonActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_nod)
     public void onHeadNodClicked() {
-        if (!checkHeadMotorReady()) return;
-        
+        if (!checkHeadMotorReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Performing nod gesture...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PC);
@@ -1227,8 +1306,9 @@ public class RobotKeenonActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_stop)
     public void onHeadStopClicked() {
-        if (!checkHeadMotorReady()) return;
-        
+        if (!checkHeadMotorReady())
+            return;
+
         try {
             addLog("Head Motor", "🔍 Getting head motor state...");
             SensorHeadMotor.getInstance().getHeadMotorState();
@@ -1240,9 +1320,3 @@ public class RobotKeenonActivity extends BaseActivity {
         }
     }
 }
-
-
-
-
-
-    
