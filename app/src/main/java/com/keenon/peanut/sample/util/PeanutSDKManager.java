@@ -74,8 +74,8 @@ public class PeanutSDKManager {
                     Log.d(TAG, "✅ PeanutSDK khởi tạo thành công.");
 
                     //init thành công thì subscribe các cotpic
-                    TopicManager topicManager = new TopicManager();
-                    topicManager.subscribeTopics();
+//                   TopicManager topicManager = new TopicManager();
+//                   topicManager.subscribeTopics();
                 } else {
                     isSdkInitialized = false;
                     Log.e(TAG, "❌ PeanutSDK khởi tạo thất bại với mã: " + statusCode);

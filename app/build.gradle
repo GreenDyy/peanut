@@ -54,6 +54,17 @@ android {
         pickFirst 'META-INF/legal/3rd-party/APACHE-LICENSE-2.0.txt'
         pickFirst 'META-INF/legal/3rd-party/MIT-license.html'
         pickFirst 'META-INF/legal/3rd-party/CDDL+GPL-1.1.txt'
+        //
+        pickFirst 'META-INF/services/*'
+        pickFirst 'META-INF/androidx.*'
+        pickFirst 'META-INF/kotlin.*'
+        pickFirst 'META-INF/com.google.android.material*'
+        pickFirst 'META-INF/org.eclipse.paho.*'
+        pickFirst 'META-INF/okhttp3.*'
+        pickFirst 'META-INF/bundle.properties'
+        pickFirst 'META-INF/DebugProbesKt.bin'
+        pickFirst 'kotlin/**'
+        pickFirst 'org/eclipse/paho/**'
     }
 }
 

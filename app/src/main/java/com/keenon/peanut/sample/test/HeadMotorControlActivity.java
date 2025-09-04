@@ -98,7 +98,7 @@ public class HeadMotorControlActivity extends BaseActivity {
 
         // Khởi tạo hệ thống
         initializeSystem();
-        
+
         // Thiết lập scroll cho log panel
         setupScrollView();
     }
@@ -128,20 +128,33 @@ public class HeadMotorControlActivity extends BaseActivity {
 
         // Kiểm tra SDK status
         checkSDKStatus();
-        
+
         // Kiểm tra Head Motor status
         checkHeadMotorStatus();
-        
+
         // Kiểm tra Topic Manager status
         checkTopicManagerStatus();
-        
+
         // Kiểm tra Sensor status
         checkSensorStatus();
 
         // Khởi tạo Runtime listener
         initRuntimeListener();
 
+        // Khởi tạo SensorHeadMotor
+        initHeadMotorSensor();
+
         addLog("System", "✅ System initialization completed");
+    }
+
+    private void initHeadMotorSensor() {
+        try {
+            PeanutSensors.getInstance().putSensor(SensorHeadMotor.getInstance());
+            SensorHeadMotor.getInstance().setSerialDirect(true);
+            addLog("Head Motor", "✅ Sensor registered & SerialDirect enabled");
+        } catch (Exception e) {
+            addLog("Head Motor", "❌ Failed to init sensor: " + e.getMessage());
+        }
     }
 
     private void setupScrollView() {
@@ -150,22 +163,22 @@ public class HeadMotorControlActivity extends BaseActivity {
         svMainContent.setHorizontalScrollBarEnabled(false);
         svMainContent.setSmoothScrollingEnabled(true);
         svMainContent.setOverScrollMode(View.OVER_SCROLL_ALWAYS);
-        
+
         // Thiết lập log panel scroll (cố định ở dưới)
         svLog.setVerticalScrollBarEnabled(true);
         svLog.setHorizontalScrollBarEnabled(false);
         svLog.setSmoothScrollingEnabled(true);
-        
+
         // Thiết lập scroll listener cho main content
         svMainContent.getViewTreeObserver().addOnScrollChangedListener(() -> {
             // Có thể thêm logic xử lý scroll events ở đây nếu cần
         });
-        
+
         // Thiết lập scroll listener cho log panel
         svLog.getViewTreeObserver().addOnScrollChangedListener(() -> {
             // Có thể thêm logic xử lý scroll events ở đây nếu cần
         });
-        
+
         addLog("System", "🎯 Scroll system initialized - Main content scrollable, Log panel fixed");
     }
 
@@ -256,12 +269,14 @@ public class HeadMotorControlActivity extends BaseActivity {
         }
     }
 
-    // =========================== HEAD MOTOR CONTROL METHODS ===========================
+    // =========================== HEAD MOTOR CONTROL METHODS
+    // ===========================
 
     @OnClick(R.id.btn_head_up)
     public void onHeadUpClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Moving head up...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PA);
@@ -273,8 +288,9 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_down)
     public void onHeadDownClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Moving head down...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PB);
@@ -286,8 +302,9 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_left)
     public void onHeadLeftClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Turning head left...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PH);
@@ -299,8 +316,9 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_right)
     public void onHeadRightClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Turning head right...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PI);
@@ -312,8 +330,9 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_center)
     public void onHeadCenterClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Centering head position...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.RESET);
@@ -325,8 +344,9 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_nod)
     public void onHeadNodClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Performing nod gesture...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PC);
@@ -338,8 +358,9 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_shake)
     public void onHeadShakeClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Performing shake gesture...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PD);
@@ -351,8 +372,9 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_look_around)
     public void onHeadLookAroundClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Looking around...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PE);
@@ -364,8 +386,9 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_turn)
     public void onHeadTurnClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Turning head...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PF);
@@ -377,8 +400,9 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_tilt2)
     public void onHeadTilt2Clicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Tilting head (Tilt 2)...");
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PG);
@@ -390,10 +414,13 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_face_tracking)
     public void onHeadFaceTrackingClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Starting face tracking...");
+            PeanutSensors.getInstance().putSensor(SensorHeadMotor.getInstance());
+            SensorHeadMotor.getInstance().setSerialDirect(true);
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PJ);
             addLog("Head Motor", "✅ Face tracking started (PJ - Theo dõi khuôn mặt) - Command sent");
         } catch (Exception e) {
@@ -403,10 +430,13 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_head_startup)
     public void onHeadStartupClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔄 Starting head motor startup sequence...");
+            PeanutSensors.getInstance().putSensor(SensorHeadMotor.getInstance());
+            SensorHeadMotor.getInstance().setSerialDirect(true);
             SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PZ);
             addLog("Head Motor", "✅ Startup sequence initiated (PZ - Khởi động) - Command sent");
         } catch (Exception e) {
@@ -418,10 +448,13 @@ public class HeadMotorControlActivity extends BaseActivity {
 
     @OnClick(R.id.btn_get_state)
     public void onGetStateClicked() {
-        if (!checkSystemReady()) return;
-        
+        if (!checkSystemReady())
+            return;
+
         try {
             addLog("Head Motor", "🔍 Getting head motor state...");
+            PeanutSensors.getInstance().putSensor(SensorHeadMotor.getInstance());
+            SensorHeadMotor.getInstance().setSerialDirect(true);
             SensorHeadMotor.getInstance().getHeadMotorState();
             addLog("Head Motor", "✅ Head motor state request sent - check events for result");
         } catch (Exception e) {
@@ -432,13 +465,13 @@ public class HeadMotorControlActivity extends BaseActivity {
     @OnClick(R.id.btn_check_status)
     public void onCheckStatusClicked() {
         addLog("System", "🔍 Checking system status...");
-        
+
         // Recheck all statuses
         checkSDKStatus();
         checkHeadMotorStatus();
         checkTopicManagerStatus();
         checkSensorStatus();
-        
+
         addLog("System", "✅ Status check completed");
     }
 
@@ -446,9 +479,11 @@ public class HeadMotorControlActivity extends BaseActivity {
     public void onReinitHeadMotorClicked() {
         try {
             addLog("Head Motor", "🔄 Reinitializing head motor...");
-            
+
             // Cleanup existing head motor
             try {
+                PeanutSensors.getInstance().putSensor(SensorHeadMotor.getInstance());
+                SensorHeadMotor.getInstance().setSerialDirect(true);
                 SensorHeadMotor.getInstance().release();
                 addLog("Head Motor", "✅ Existing head motor released");
             } catch (Exception e) {
@@ -458,7 +493,7 @@ public class HeadMotorControlActivity extends BaseActivity {
             // Reinitialize
             checkHeadMotorStatus();
             addLog("Head Motor", "✅ Head motor reinitialization completed");
-            
+
         } catch (Exception e) {
             addLog("Error", "❌ Head motor reinit error: " + e.getMessage());
         }
@@ -468,11 +503,11 @@ public class HeadMotorControlActivity extends BaseActivity {
     public void onReinitTopicManagerClicked() {
         try {
             addLog("Topic Manager", "🔄 Reinitializing TopicManager...");
-            
+
             // Reinitialize TopicManager
             checkTopicManagerStatus();
             addLog("Topic Manager", "✅ TopicManager reinitialization completed");
-            
+
         } catch (Exception e) {
             addLog("Error", "❌ TopicManager reinit error: " + e.getMessage());
         }
@@ -483,26 +518,28 @@ public class HeadMotorControlActivity extends BaseActivity {
     @OnClick(R.id.btn_debug_sensors)
     public void onDebugSensorsClicked() {
         addLog("Debug", "🔧 Debugging sensors...");
-        
+
         try {
             // Debug SDK status
             boolean sdkAvailable = PeanutSDK.getInstance() != null;
             addLog("Debug", "📱 SDK Available: " + sdkAvailable);
-            
+
             // Debug runtime status
             boolean runtimeAvailable = PeanutRuntime.getInstance() != null;
             addLog("Debug", "🔄 Runtime Available: " + runtimeAvailable);
-            
+
             // Debug head motor
             boolean headMotorAvailable = false;
             try {
+                PeanutSensors.getInstance().putSensor(SensorHeadMotor.getInstance());
+                SensorHeadMotor.getInstance().setSerialDirect(true);
                 SensorHeadMotor.getInstance();
                 headMotorAvailable = true;
             } catch (Exception e) {
                 addLog("Debug", "⚠️ Head Motor not available: " + e.getMessage());
             }
             addLog("Debug", "🤖 Head Motor Available: " + headMotorAvailable);
-            
+
             // Debug PeanutSensors
             boolean peanutSensorsAvailable = false;
             try {
@@ -512,9 +549,9 @@ public class HeadMotorControlActivity extends BaseActivity {
                 addLog("Debug", "⚠️ PeanutSensors not available: " + e.getMessage());
             }
             addLog("Debug", "📡 PeanutSensors Available: " + peanutSensorsAvailable);
-            
+
             addLog("Debug", "✅ Sensor debug completed");
-            
+
         } catch (Exception e) {
             addLog("Error", "❌ Debug sensors error: " + e.getMessage());
         }
@@ -524,19 +561,21 @@ public class HeadMotorControlActivity extends BaseActivity {
     public void onForceInitClicked() {
         try {
             addLog("Force Init", "💪 Force initializing HeadMotor...");
-            
+
             // Force khởi tạo lại headMotor
             try {
+                PeanutSensors.getInstance().putSensor(SensorHeadMotor.getInstance());
+                SensorHeadMotor.getInstance().setSerialDirect(true);
                 SensorHeadMotor.getInstance();
                 addLog("Force Init", "✅ HeadMotor force initialized successfully");
-                
+
                 // Update status
                 checkHeadMotorStatus();
-                
+
             } catch (Exception e) {
                 addLog("Error", "❌ Failed to force initialize HeadMotor: " + e.getMessage());
             }
-            
+
         } catch (Exception e) {
             addLog("Error", "❌ Force init error: " + e.getMessage());
         }
@@ -556,12 +595,12 @@ public class HeadMotorControlActivity extends BaseActivity {
             addLog("Error", "❌ SDK not initialized. Please wait for initialization to complete.");
             return false;
         }
-        
+
         if (!isHeadMotorReady) {
             addLog("Error", "❌ Head Motor not ready. Please check system status.");
             return false;
         }
-        
+
         return true;
     }
 
@@ -583,7 +622,7 @@ public class HeadMotorControlActivity extends BaseActivity {
 
             // Set text và scroll xuống dưới cùng
             tvLog.setText(logBuilder);
-            
+
             // Scroll xuống dưới cùng với animation mượt mà
             svLog.post(() -> {
                 svLog.fullScroll(View.FOCUS_DOWN);

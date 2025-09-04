@@ -48,3 +48,7 @@
 -keepclassmembers class com.keenon.peanut.** {
     *;
 }
+
+-keep class com.keenon.sdk.robot.compat.IRobotApiCompat
+-keep class com.keenon.sdk.service.RobotApiCompatService
+-keep class com.keenon.sdk.service.** { *; }
