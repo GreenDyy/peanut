@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test Navigation 2 - Load Map and Navigate"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Input Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#f0f0f0"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Navigation Settings"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Target ID:"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_target_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Nhập ID điểm đích"
+                android:inputType="number"
+                android:text="6" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Approximate Time:"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_approximate_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Thời gian dự kiến"
+                android:inputType="number"
+                android:text="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Control Buttons Row 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <Button
+            android:id="@+id/btn_load_map"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Load Map"
+            android:layout_marginEnd="4dp"
+            android:background="#4CAF50"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_navigate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Start Navigate"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="#2196F3"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_stop_navigation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Stop"
+            android:layout_marginStart="4dp"
+            android:background="#F44336"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <!-- Control Buttons Row 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btn_pause_navigation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pause"
+            android:layout_marginEnd="4dp"
+            android:background="#FF9800"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_resume_navigation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Resume"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="#4CAF50"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_get_navigation_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Get Status"
+            android:layout_marginStart="4dp"
+            android:background="#9C27B0"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <!-- Available Targets Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Available Targets (Click to select):"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#f9f9f9"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:id="@+id/layout_targets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+    <!-- Log Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Output:"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#000000"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#00FF00"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:text="Log sẽ hiển thị ở đây...\n" />
+
+    </ScrollView>
+
+</LinearLayout>

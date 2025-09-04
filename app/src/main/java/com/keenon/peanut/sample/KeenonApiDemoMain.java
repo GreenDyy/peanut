@@ -37,6 +37,7 @@ import com.keenon.peanut.sample.chassis.ChassisList;
 import com.keenon.peanut.sample.test.TestPerceptionActivity;
 import com.keenon.peanut.sample.util.BaseActivity;
 import com.keenon.peanut.sample.test.TestNavigationActivity;
+import com.keenon.peanut.sample.test.TestNavigate2Activity;
 import com.keenon.peanut.sample.test.TestCameraDetectHumanActivity;
 import com.keenon.peanut.sample.test.RobotKeenonActivity;
 import com.keenon.peanut.sample.test.HeadMotorControlActivity;
@@ -78,6 +79,8 @@ public class KeenonApiDemoMain extends BaseActivity {
           HeadMotorControlActivity.class),
       new DemoInfo(R.drawable.ic_nav_simple, R.string.demo_title_test_navigation, R.string.demo_desc_test_navigation,
           TestNavigationActivity.class),
+      new DemoInfo(R.drawable.ic_nav_simple, R.string.demo_title_test_navigate2, R.string.demo_desc_test_navigate2,
+          TestNavigate2Activity.class),
       new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_perception, R.string.demo_desc_test_perception,
           TestPerceptionActivity.class),
       new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_camera_detect_human,

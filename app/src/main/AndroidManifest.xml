@@ -112,6 +112,9 @@ android:label="Test Remote Move" />
         <activity android:name=".test.TestNavigationActivity"
 android:label="Test Navigation Component" />
 
+        <activity android:name=".test.TestNavigate2Activity"
+android:label="Test Navigate 2" />
+
         <activity android:name=".test.TestCameraDetectHumanActivity"
 android:label="Test Camera Detect Human" />
 
