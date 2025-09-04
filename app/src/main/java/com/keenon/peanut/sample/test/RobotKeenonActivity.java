@@ -111,14 +111,16 @@ public class RobotKeenonActivity extends BaseActivity {
         // Kiểm tra xem SDK đã được khởi tạo chưa, nếu rồi thì thôi, chưa thì mới init
         if (PeanutSDKManager.isInitialized() && PeanutSDKManager.isSDKAvailable()) {
             addLog("SDK", "ℹ️ PeanutSDK đã được khởi tạo trước đó");
+            isSDKInitialized = true; // Gán lại biến khi SDK đã sẵn sàng
             initRuntime();
         } else {
             // Sử dụng PeanutSDKManager để khởi tạo SDK
-            PeanutSDKManager.initializeSDK(this, "192.168.1.100", new PeanutSDK.ErrorListener() {
+            PeanutSDKManager.initializeSDK(this,  new PeanutSDK.ErrorListener() {
                 @Override
                 public void onInit(int statusCode) {
                     if (statusCode == PeanutSDK.SDK_INIT_SUCCESS) {
                         addLog("SDK", "✅ PeanutSDK khởi tạo thành công");
+                        isSDKInitialized = true; // Gán lại biến khi SDK khởi tạo thành công
                         initRuntime();
                     }  else if (statusCode == PeanutSDK.SDK_INITIALIZING) {
                         addLog("SDK", "⏳ PeanutSDK đang trong quá trình khởi tạo...");
@@ -377,8 +379,7 @@ public class RobotKeenonActivity extends BaseActivity {
                 // Work mode
                 try {
                     int workMode = PeanutRuntime.getInstance().getRuntimeInfo().getWorkMode();
-                    String modeDescription = getWorkModeDescription(workMode);
-                    addLog("Robot Info", "⚙️ Work Mode: " + workMode + " (" + modeDescription + ")");
+                    addLog("Robot Info", "⚙️ Work Mode: " + workMode);
                 } catch (Exception e) {
                     addLog("Robot Info", "⚙️ Work Mode: Not accessible - " + e.getMessage());
                 }
@@ -473,22 +474,6 @@ public class RobotKeenonActivity extends BaseActivity {
                 return "Ready";
             default:
                 return "Unknown (" + status + ")";
-        }
-    }
-
-    private String getWorkModeDescription(int mode) {
-        // From decompiled code: work mode values
-        switch (mode) {
-            case -1:
-                return "Not set";
-            case 0:
-                return "Normal";
-            case 1:
-                return "Manufacturing Test";
-            case 2:
-                return "Debug";
-            default:
-                return "Unknown (" + mode + ")";
         }
     }
 
@@ -667,22 +652,7 @@ public class RobotKeenonActivity extends BaseActivity {
 
             if (PeanutRuntime.getInstance() != null && PeanutRuntime.getInstance().getRuntimeInfo() != null) {
                 int workMode = PeanutRuntime.getInstance().getRuntimeInfo().getWorkMode();
-                String modeDescription = getWorkModeDescription(workMode);
-
-                addLog("Work Mode", "✅ Current Work Mode: " + workMode + " (" + modeDescription + ")");
-
-                // Hiển thị thông tin chi tiết về work mode
-                addLog("Work Mode Details", "📋 Work Mode Information:");
-                addLog("Work Mode Details", "   • Mode Code: " + workMode);
-                addLog("Work Mode Details", "   • Description: " + modeDescription);
-                addLog("Work Mode Details", "   • Status: " + (workMode >= 0 ? "Active" : "Not Set"));
-
-                // Thêm thông tin về các work mode có thể có
-                addLog("Work Mode Info", "📚 Available Work Modes:");
-                addLog("Work Mode Info", "   • -1: Not Set");
-                addLog("Work Mode Info", "   • 0: Normal Operation");
-                addLog("Work Mode Info", "   • 1: Manufacturing Test");
-                addLog("Work Mode Info", "   • 2: Debug Mode");
+                addLog("Work Mode", "✅ Current Work Mode: " + workMode);
 
             } else {
                 addLog("Error", "❌ Runtime or RuntimeInfo not available");

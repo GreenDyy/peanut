@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    android:padding="16dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_robot_simple"
+            android:tint="@android:color/white"
+            android:layout_marginEnd="16dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🤖 Head Motor Control"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← Back"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_background"
+            android:padding="12dp" />
+    </LinearLayout>
+
+    <!-- Status Panel -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/status_panel_background"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📊 System Status"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/tv_sdk_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SDK: ❌"
+                android:textColor="@android:color/white"
+                android:background="@drawable/status_indicator_background"
+                android:padding="8dp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tv_head_motor_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Head Motor: ❌"
+                android:textColor="@android:color/white"
+                android:background="@drawable/status_indicator_background"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_topic_manager_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Topic Manager: ❌"
+                android:textColor="@android:color/white"
+                android:background="@drawable/status_indicator_background"
+                android:padding="8dp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tv_sensor_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sensor: ❌"
+                android:textColor="@android:color/white"
+                android:background="@drawable/status_indicator_background"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Control Buttons - Scrollable (Main Content) -->
+    <ScrollView
+        android:id="@+id/sv_main_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        android:overScrollMode="always"
+        android:scrollbarStyle="insideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Basic Movements -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🎯 Basic Movements"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btn_head_up"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="⬆️ Up\n(PA)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_head_down"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="⬇️ Down\n(PB)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btn_head_left"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="⬅️ Left\n(PH)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_head_right"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="➡️ Right\n(PI)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btn_head_center"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="🎯 Center\n(RESET)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_head_nod"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="👍 Nod\n(PC)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <!-- Advanced Actions -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🚀 Advanced Actions"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btn_head_shake"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="🤝 Shake\n(PD)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_head_look_around"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="👀 Look Around\n(PE)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btn_head_turn"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="🔄 Turn\n(PF)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_head_tilt2"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="📐 Tilt 2\n(PG)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btn_head_face_tracking"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="👤 Face Track\n(PJ)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_head_startup"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:text="🚀 Startup\n(PZ)"
+                    android:textSize="12sp"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <!-- Control Panel -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="⚙️ Control Panel"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btn_get_state"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="📊 Get State"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_check_status"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="🔍 Check Status"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btn_reinit_head_motor"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="🔄 Reinit Motor"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_reinit_topic_manager"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="🔄 Reinit Topics"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <!-- Debug Panel -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🐛 Debug Tools"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btn_debug_sensors"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="🔧 Debug Sensors"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_force_init"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="💪 Force Init"
+                    android:background="@drawable/control_button_background"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Log Panel -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:background="@drawable/log_panel_background"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="📝 Activity Log"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btn_clear_log"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="🗑️ Clear"
+                android:textSize="12sp"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/white"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/sv_log"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/black"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tv_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:text="🤖 Head Motor Control System Ready\n" />
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

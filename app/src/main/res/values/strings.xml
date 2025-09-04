@@ -11,6 +11,8 @@
     <string name="demo_desc_chassislist">Robot navigation, charging, motor control, etc</string>
     <string name="demo_title_robot_keenon">Robot Keenon Test Center</string>
     <string name="demo_desc_robot_keenon">Robot Keenon Test Center</string>
+    <string name="demo_title_head_motor_control">Head Motor Control</string>
+    <string name="demo_desc_head_motor_control">Advanced head motor control with real-time monitoring and debugging tools</string>
     <string name="demo_title_navigation">Navigation function</string>
     <string name="demo_desc_navigation">Navigation control and status information</string>
     <string name="demo_title_pilot">Navigation control</string>

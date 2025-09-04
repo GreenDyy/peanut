@@ -39,6 +39,7 @@ import com.keenon.peanut.sample.util.BaseActivity;
 import com.keenon.peanut.sample.test.TestNavigationActivity;
 import com.keenon.peanut.sample.test.TestCameraDetectHumanActivity;
 import com.keenon.peanut.sample.test.RobotKeenonActivity;
+import com.keenon.peanut.sample.test.HeadMotorControlActivity;
 import com.keenon.common.constant.PeanutConstants;
 import com.keenon.common.utils.LogUtils;
 import com.keenon.common.utils.VersionInfo;
@@ -73,6 +74,8 @@ public class KeenonApiDemoMain extends BaseActivity {
           ChassisList.class),
       new DemoInfo(R.drawable.ic_robot_simple, R.string.demo_title_robot_keenon, R.string.demo_desc_robot_keenon,
           RobotKeenonActivity.class),
+      new DemoInfo(R.drawable.ic_robot_simple, R.string.demo_title_head_motor_control, R.string.demo_desc_head_motor_control,
+          HeadMotorControlActivity.class),
       new DemoInfo(R.drawable.ic_nav_simple, R.string.demo_title_test_navigation, R.string.demo_desc_test_navigation,
           TestNavigationActivity.class),
       new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_perception, R.string.demo_desc_test_perception,
@@ -203,17 +206,17 @@ public class KeenonApiDemoMain extends BaseActivity {
         requestPermissions(permissionsList.toArray(strings), 1000); // Đổi requestCode để dễ quản lý hơn
       } else {
         // Đã có tất cả các quyền, tiến hành khởi tạo SDK
-        initSDK(getType());
+        initSDK();
       }
     } else {
       // Phiên bản Android dưới 6.0, không cần xin quyền động
-      initSDK(getType());
+      initSDK();
     }
   }
 
-  private void initSDK(String ip) {
+  private void initSDK() {
     // Sử dụng PeanutSDKManager để khởi tạo SDK
-    PeanutSDKManager.initializeSDK(this.getApplicationContext(), ip, mErrorListener);
+    PeanutSDKManager.initializeSDK(this.getApplicationContext(), mErrorListener);
   }
 
   void onListItemClick(int index) {
@@ -272,7 +275,7 @@ public class KeenonApiDemoMain extends BaseActivity {
       }
       if (allGranted) {
         // Đã có quyền, khởi tạo SDK với loại kết nối đã lưu
-        initSDK(getType());
+        initSDK();
       } else {
 //        text.setTextColor(Color.RED);
 //        text.setText("Thiếu quyền Storage. Nhấp để mở Settings và cấp quyền.");

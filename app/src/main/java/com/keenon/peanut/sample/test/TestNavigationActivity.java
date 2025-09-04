@@ -71,7 +71,7 @@ public class TestNavigationActivity extends BaseActivity {
             initRuntime();
         } else {
             // Sử dụng PeanutSDKManager để khởi tạo SDK
-            PeanutSDKManager.initializeSDK(this, "192.168.1.100", new PeanutSDK.ErrorListener() {
+            PeanutSDKManager.initializeSDK(this, new PeanutSDK.ErrorListener() {
                 @Override
                 public void onInit(int statusCode) {
                     if (statusCode == PeanutSDK.SDK_INIT_SUCCESS) {

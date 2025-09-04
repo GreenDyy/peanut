@@ -80,6 +80,9 @@ android:label="Test Navigation Component" />
         <activity android:name=".test.TestCameraDetectHumanActivity"
 android:label="Test Camera Detect Human" />
 
+        <activity android:name=".test.HeadMotorControlActivity"
+android:label="Head Motor Control" />
+
         <activity android:name=".chassis.T8LightDemo" />
         <activity android:name=".chassis.DoorDemo" />
         <activity android:name=".chassis.MapDemo" />
