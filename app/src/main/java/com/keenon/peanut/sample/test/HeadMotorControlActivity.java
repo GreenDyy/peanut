@@ -279,7 +279,7 @@ public class HeadMotorControlActivity extends BaseActivity {
 
         try {
             addLog("Head Motor", "🔄 Moving head up...");
-            SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PA);
+            SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PA, (short) 60);
             addLog("Head Motor", "✅ Moving head up (PA - Thẳng đứng) - Command sent");
         } catch (Exception e) {
             addLog("Error", "❌ Head up error: " + e.getMessage());

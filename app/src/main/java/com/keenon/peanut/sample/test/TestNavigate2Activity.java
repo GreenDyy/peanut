@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.keenon.peanut.sample.R;
 import com.keenon.peanut.sample.util.BaseActivity;
 import com.keenon.peanut.sample.util.PeanutSDKManager;
+import com.keenon.peanut.common.resouorce.resourceBean.Resource;
 import com.keenon.sdk.component.NavigationComponent;
 import com.keenon.sdk.robot.ApiCallback;
 import com.keenon.sdk.robot.base.BaseResp;
@@ -29,6 +30,8 @@ public class TestNavigate2Activity extends BaseActivity {
     private EditText etTargetId;
     private EditText etApproximateTime;
     private Button btnLoadMap;
+    private Button btnLoadMapWithSDK;
+    private Button btnCheckMapStatus;
     private Button btnNavigate;
     private Button btnStopNavigation;
     private Button btnPauseNavigation;
@@ -48,19 +51,46 @@ public class TestNavigate2Activity extends BaseActivity {
         setContentView(R.layout.activity_test_navigate2);
         
         initViews();
-        initNavigation();
         setupClickListeners();
         
         mainHandler = new Handler(Looper.getMainLooper());
         
         logMessage("TestNavigate2Activity khởi tạo thành công");
         logMessage("Sử dụng PeanutSDK.getInstance().navigation() API");
+        
+        // Khởi tạo SDK và Navigation
+        initializeSDKAndNavigation();
+    }
+    
+    private void initializeSDKAndNavigation() {
+        logMessage("=== KHỞI TẠO SDK VÀ NAVIGATION ===");
+        
+        // Khởi tạo SDK
+        PeanutSDKManager.initializeSDK(this, new PeanutSDK.ErrorListener() {
+            @Override
+            public void onInit(int statusCode) {
+                mainHandler.post(() -> {
+                    if (statusCode == PeanutSDK.SDK_INIT_SUCCESS) {
+                        logMessage("✅ PeanutSDK khởi tạo thành công!");
+                        initNavigation();
+                        
+                        // Kiểm tra map status sau khi SDK init
+                        checkMapStatus();
+                    } else {
+                        logMessage("❌ PeanutSDK khởi tạo thất bại với mã: " + statusCode);
+                        Toast.makeText(TestNavigate2Activity.this, "SDK init thất bại: " + statusCode, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
     }
     
     private void initViews() {
         etTargetId = findViewById(R.id.et_target_id);
         etApproximateTime = findViewById(R.id.et_approximate_time);
         btnLoadMap = findViewById(R.id.btn_load_map);
+        btnLoadMapWithSDK = findViewById(R.id.btn_load_map_with_sdk);
+        btnCheckMapStatus = findViewById(R.id.btn_check_map_status);
         btnNavigate = findViewById(R.id.btn_navigate);
         btnStopNavigation = findViewById(R.id.btn_stop_navigation);
         btnPauseNavigation = findViewById(R.id.btn_pause_navigation);
@@ -73,6 +103,14 @@ public class TestNavigate2Activity extends BaseActivity {
         // Set default values
         etTargetId.setText("6");
         etApproximateTime.setText("1");
+        
+        // Set button text for new buttons
+        if (btnLoadMapWithSDK != null) {
+            btnLoadMapWithSDK.setText("Load Map (SDK)");
+        }
+        if (btnCheckMapStatus != null) {
+            btnCheckMapStatus.setText("Check Map Status");
+        }
     }
     
     private void initNavigation() {
@@ -91,6 +129,12 @@ public class TestNavigate2Activity extends BaseActivity {
     
     private void setupClickListeners() {
         btnLoadMap.setOnClickListener(v -> loadMapTargets());
+        if (btnLoadMapWithSDK != null) {
+            btnLoadMapWithSDK.setOnClickListener(v -> loadMapWithSDK());
+        }
+        if (btnCheckMapStatus != null) {
+            btnCheckMapStatus.setOnClickListener(v -> checkMapStatus());
+        }
         btnNavigate.setOnClickListener(v -> startNavigation());
         btnStopNavigation.setOnClickListener(v -> stopNavigation());
         btnPauseNavigation.setOnClickListener(v -> pauseNavigation());
@@ -156,15 +200,43 @@ public class TestNavigate2Activity extends BaseActivity {
             return;
         }
         
-        // Hiển thị các điểm đích từ list
+        // Tạo header thông tin tổng quan
+        TextView headerInfo = new TextView(this);
+        headerInfo.setText("📊 THÔNG TIN MAP TARGETS:");
+        headerInfo.setTextSize(16);
+        headerInfo.setTextColor(0xFF2196F3);
+        headerInfo.setPadding(0, 0, 0, 16);
+        layoutTargets.addView(headerInfo);
+        
+        // Hiển thị tổng số targets
+        TextView totalInfo = new TextView(this);
+        totalInfo.setText("Tổng số targets: " + navigationPointBean.getCount());
+        totalInfo.setTextSize(14);
+        totalInfo.setTextColor(0xFF666666);
+        totalInfo.setPadding(0, 0, 0, 8);
+        layoutTargets.addView(totalInfo);
+        
+        // Hiển thị các điểm đích từ list (Targets thông thường)
         if (navigationPointBean.getList() != null && !navigationPointBean.getList().isEmpty()) {
-            logMessage("Hiển thị " + navigationPointBean.getList().size() + " điểm đích từ list:");
+            logMessage("🗺️ Hiển thị " + navigationPointBean.getList().size() + " điểm đích thông thường:");
+            
+            TextView sectionHeader = new TextView(this);
+            sectionHeader.setText("🎯 TARGETS THÔNG THƯỜNG (" + navigationPointBean.getList().size() + "):");
+            sectionHeader.setTextSize(14);
+            sectionHeader.setTextColor(0xFF4CAF50);
+            sectionHeader.setPadding(0, 16, 0, 8);
+            layoutTargets.addView(sectionHeader);
+            
             for (Integer targetId : navigationPointBean.getList()) {
                 Button btnTarget = new Button(this);
-                btnTarget.setText("Target ID: " + targetId);
+                btnTarget.setText("🎯 Target ID: " + targetId);
+                btnTarget.setBackgroundColor(0xFF4CAF50);
+                btnTarget.setTextColor(0xFFFFFFFF);
+                btnTarget.setPadding(16, 8, 16, 8);
                 btnTarget.setOnClickListener(v -> {
                     etTargetId.setText(String.valueOf(targetId));
-                    logMessage("Đã chọn điểm đích: ID=" + targetId);
+                    logMessage("✅ Đã chọn điểm đích: ID=" + targetId + " (Target thông thường)");
+                    Toast.makeText(this, "Chọn Target ID: " + targetId, Toast.LENGTH_SHORT).show();
                 });
                 layoutTargets.addView(btnTarget);
             }
@@ -172,14 +244,25 @@ public class TestNavigate2Activity extends BaseActivity {
         
         // Hiển thị các điểm sạc từ chargers
         if (navigationPointBean.getChargers() != null && !navigationPointBean.getChargers().isEmpty()) {
-            logMessage("Hiển thị " + navigationPointBean.getChargers().size() + " điểm sạc:");
+            logMessage("🔋 Hiển thị " + navigationPointBean.getChargers().size() + " điểm sạc:");
+            
+            TextView sectionHeader = new TextView(this);
+            sectionHeader.setText("🔋 ĐIỂM SẠC (" + navigationPointBean.getChargers().size() + "):");
+            sectionHeader.setTextSize(14);
+            sectionHeader.setTextColor(0xFF2196F3);
+            sectionHeader.setPadding(0, 16, 0, 8);
+            layoutTargets.addView(sectionHeader);
+            
             for (Integer chargerId : navigationPointBean.getChargers()) {
                 Button btnCharger = new Button(this);
-                btnCharger.setText("Charger ID: " + chargerId);
-                btnCharger.setBackgroundColor(0xFF4CAF50); // Màu xanh cho charger
+                btnCharger.setText("🔋 Charger ID: " + chargerId);
+                btnCharger.setBackgroundColor(0xFF2196F3);
+                btnCharger.setTextColor(0xFFFFFFFF);
+                btnCharger.setPadding(16, 8, 16, 8);
                 btnCharger.setOnClickListener(v -> {
                     etTargetId.setText(String.valueOf(chargerId));
-                    logMessage("Đã chọn điểm sạc: ID=" + chargerId);
+                    logMessage("✅ Đã chọn điểm sạc: ID=" + chargerId + " (Charger)");
+                    Toast.makeText(this, "Chọn Charger ID: " + chargerId, Toast.LENGTH_SHORT).show();
                 });
                 layoutTargets.addView(btnCharger);
             }
@@ -187,14 +270,25 @@ public class TestNavigate2Activity extends BaseActivity {
         
         // Hiển thị các điểm thang máy từ elevators
         if (navigationPointBean.getElevators() != null && !navigationPointBean.getElevators().isEmpty()) {
-            logMessage("Hiển thị " + navigationPointBean.getElevators().size() + " điểm thang máy:");
+            logMessage("🛗 Hiển thị " + navigationPointBean.getElevators().size() + " điểm thang máy:");
+            
+            TextView sectionHeader = new TextView(this);
+            sectionHeader.setText("🛗 THANG MÁY (" + navigationPointBean.getElevators().size() + "):");
+            sectionHeader.setTextSize(14);
+            sectionHeader.setTextColor(0xFF9C27B0);
+            sectionHeader.setPadding(0, 16, 0, 8);
+            layoutTargets.addView(sectionHeader);
+            
             for (Integer elevatorId : navigationPointBean.getElevators()) {
                 Button btnElevator = new Button(this);
-                btnElevator.setText("Elevator ID: " + elevatorId);
-                btnElevator.setBackgroundColor(0xFF9C27B0); // Màu tím cho elevator
+                btnElevator.setText("🛗 Elevator ID: " + elevatorId);
+                btnElevator.setBackgroundColor(0xFF9C27B0);
+                btnElevator.setTextColor(0xFFFFFFFF);
+                btnElevator.setPadding(16, 8, 16, 8);
                 btnElevator.setOnClickListener(v -> {
                     etTargetId.setText(String.valueOf(elevatorId));
-                    logMessage("Đã chọn điểm thang máy: ID=" + elevatorId);
+                    logMessage("✅ Đã chọn điểm thang máy: ID=" + elevatorId + " (Elevator)");
+                    Toast.makeText(this, "Chọn Elevator ID: " + elevatorId, Toast.LENGTH_SHORT).show();
                 });
                 layoutTargets.addView(btnElevator);
             }
@@ -202,17 +296,139 @@ public class TestNavigate2Activity extends BaseActivity {
         
         // Hiển thị các điểm gốc từ origins
         if (navigationPointBean.getOrigins() != null && !navigationPointBean.getOrigins().isEmpty()) {
-            logMessage("Hiển thị " + navigationPointBean.getOrigins().size() + " điểm gốc:");
+            logMessage("🏠 Hiển thị " + navigationPointBean.getOrigins().size() + " điểm gốc:");
+            
+            TextView sectionHeader = new TextView(this);
+            sectionHeader.setText("🏠 ĐIỂM GỐC (" + navigationPointBean.getOrigins().size() + "):");
+            sectionHeader.setTextSize(14);
+            sectionHeader.setTextColor(0xFFFF9800);
+            sectionHeader.setPadding(0, 16, 0, 8);
+            layoutTargets.addView(sectionHeader);
+            
             for (Integer originId : navigationPointBean.getOrigins()) {
                 Button btnOrigin = new Button(this);
-                btnOrigin.setText("Origin ID: " + originId);
-                btnOrigin.setBackgroundColor(0xFFFF9800); // Màu cam cho origin
+                btnOrigin.setText("🏠 Origin ID: " + originId);
+                btnOrigin.setBackgroundColor(0xFFFF9800);
+                btnOrigin.setTextColor(0xFFFFFFFF);
+                btnOrigin.setPadding(16, 8, 16, 8);
                 btnOrigin.setOnClickListener(v -> {
                     etTargetId.setText(String.valueOf(originId));
-                    logMessage("Đã chọn điểm gốc: ID=" + originId);
+                    logMessage("✅ Đã chọn điểm gốc: ID=" + originId + " (Origin)");
+                    Toast.makeText(this, "Chọn Origin ID: " + originId, Toast.LENGTH_SHORT).show();
                 });
                 layoutTargets.addView(btnOrigin);
             }
+        }
+        
+        // Hiển thị thông tin tổng kết
+        TextView summaryInfo = new TextView(this);
+        int totalLocations = (navigationPointBean.getList() != null ? navigationPointBean.getList().size() : 0) +
+                           (navigationPointBean.getChargers() != null ? navigationPointBean.getChargers().size() : 0) +
+                           (navigationPointBean.getElevators() != null ? navigationPointBean.getElevators().size() : 0) +
+                           (navigationPointBean.getOrigins() != null ? navigationPointBean.getOrigins().size() : 0);
+        
+        summaryInfo.setText("📋 TỔNG KẾT: " + totalLocations + " locations có sẵn trong map");
+        summaryInfo.setTextSize(12);
+        summaryInfo.setTextColor(0xFF666666);
+        summaryInfo.setPadding(0, 16, 0, 8);
+        layoutTargets.addView(summaryInfo);
+        
+        logMessage("✅ Đã hiển thị " + totalLocations + " locations trong map");
+    }
+    
+    private void loadMapWithSDK() {
+        logMessage("=== BẮT ĐẦU LOAD MAP VỚI PEANUTSDKMANAGER ===");
+        
+        try {
+            if (!PeanutSDKManager.isInitialized()) {
+                logMessage("❌ PeanutSDK chưa được khởi tạo!");
+                Toast.makeText(this, "PeanutSDK chưa được khởi tạo", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            
+            // Kiểm tra xem có cần load map không
+            boolean shouldLoad = PeanutSDKManager.shouldLoadMap();
+            logMessage("Có cần load map: " + shouldLoad);
+            
+            if (!shouldLoad) {
+                logMessage("ℹ️ Không cần load map cho machine type này");
+                Toast.makeText(this, "Không cần load map cho machine type này", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            
+            // Kiểm tra và load map tự động
+            PeanutSDKManager.checkAndLoadMap(this, new PeanutSDKManager.MapLoadListener() {
+                @Override
+                public void onMapLoadStart() {
+                    mainHandler.post(() -> {
+                        logMessage("🔄 Bắt đầu load map...");
+                        Toast.makeText(TestNavigate2Activity.this, "Bắt đầu load map...", Toast.LENGTH_SHORT).show();
+                    });
+                }
+                
+                @Override
+                public void onMapLoadSuccess() {
+                    mainHandler.post(() -> {
+                        logMessage("✅ Map load thành công!");
+                        Toast.makeText(TestNavigate2Activity.this, "Map load thành công!", Toast.LENGTH_SHORT).show();
+                        
+                        // Sau khi load map thành công, load lại targets
+                        loadMapTargets();
+                    });
+                }
+                
+                @Override
+                public void onMapLoadError(String error) {
+                    mainHandler.post(() -> {
+                        logMessage("❌ Map load lỗi: " + error);
+                        Toast.makeText(TestNavigate2Activity.this, "Map load lỗi: " + error, Toast.LENGTH_LONG).show();
+                    });
+                }
+                
+                @Override
+                public void onMapLoadProgress(int progress) {
+                    mainHandler.post(() -> {
+                        logMessage("📊 Map load progress: " + progress + "%");
+                    });
+                }
+            });
+            
+        } catch (Exception e) {
+            logMessage("Exception khi load map với SDK: " + e.getMessage());
+            Log.e(TAG, "Error loading map with SDK", e);
+            Toast.makeText(this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+    
+    private void checkMapStatus() {
+        logMessage("=== KIỂM TRA TRẠNG THÁI MAP ===");
+        
+        try {
+            if (!PeanutSDKManager.isInitialized()) {
+                logMessage("❌ PeanutSDK chưa được khởi tạo!");
+                return;
+            }
+            
+            // Kiểm tra trạng thái map loading
+            boolean isMapLoading = PeanutSDKManager.isMapLoading();
+            logMessage("Map đang loading: " + isMapLoading);
+            
+            // Kiểm tra xem có cần load map không
+            boolean shouldLoad = PeanutSDKManager.shouldLoadMap();
+            logMessage("Có cần load map: " + shouldLoad);
+            
+            // Hiển thị thông tin tổng hợp
+            String statusInfo = "Map Status:\n" +
+                    "- Đang loading: " + isMapLoading + "\n" +
+                    "- Cần load: " + shouldLoad + "\n" +
+                    "- SDK initialized: " + PeanutSDKManager.isInitialized();
+            
+            logMessage(statusInfo);
+            Toast.makeText(this, "Map Status: " + (isMapLoading ? "Loading" : "Ready"), Toast.LENGTH_SHORT).show();
+            
+        } catch (Exception e) {
+            logMessage("Exception khi check map status: " + e.getMessage());
+            Log.e(TAG, "Error checking map status", e);
         }
     }
     
@@ -449,8 +665,17 @@ public class TestNavigate2Activity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        
+        // Cleanup map loading nếu đang loading
+        if (PeanutSDKManager.isMapLoading()) {
+            logMessage("Dừng map loading trước khi destroy...");
+            PeanutSDKManager.stopMapLoading();
+        }
+        
         if (mainHandler != null) {
             mainHandler.removeCallbacksAndMessages(null);
         }
+        
+        logMessage("TestNavigate2Activity đã destroy");
     }
 }

@@ -115,6 +115,31 @@ public class KeenonApiDemoMain extends BaseActivity {
               LogUtils.d(TAG, "onHeartbeat:" + content);
             }
           });
+
+          // ✅ SDK OK -> check & load map luôn ở đây
+          PeanutSDKManager.checkAndLoadMap(getApplicationContext(),
+                  new PeanutSDKManager.MapLoadListener() {
+                    @Override
+                    public void onMapLoadStart() {
+                      Log.d(TAG, "🔄 Bắt đầu load map...");
+                    }
+
+                    @Override
+                    public void onMapLoadSuccess() {
+                      Log.d(TAG, "✅ Map load thành công!");
+                    }
+
+                    @Override
+                    public void onMapLoadError(String error) {
+                      Log.e(TAG, "❌ Map load lỗi: " + error);
+                    }
+
+                    @Override
+                    public void onMapLoadProgress(int progress) {
+                      Log.d(TAG, "📊 Map load progress: " + progress + "%");
+                    }
+                  });
+
         } else {
           text.setTextColor(Color.RED);
           text.setText(getString(R.string.str_init_text) + errorCode);

@@ -81,7 +81,7 @@
 
     </LinearLayout>
 
-    <!-- Control Buttons Row 1 -->
+    <!-- Map Loading Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -93,10 +93,40 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Load Map"
+            android:text="Load Map (API)"
             android:layout_marginEnd="4dp"
             android:background="#4CAF50"
             android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_load_map_with_sdk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Load Map (SDK)"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="#8BC34A"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_check_map_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Check Status"
+            android:layout_marginStart="4dp"
+            android:background="#607D8B"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <!-- Control Buttons Row 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
 
         <Button
             android:id="@+id/btn_navigate"
@@ -104,7 +134,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Start Navigate"
-            android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:background="#2196F3"
             android:textColor="@android:color/white" />
@@ -116,7 +145,18 @@
             android:layout_weight="1"
             android:text="Stop"
             android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:background="#F44336"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_get_navigation_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Get Status"
+            android:layout_marginStart="4dp"
+            android:background="#9C27B0"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
@@ -145,18 +185,7 @@
             android:layout_weight="1"
             android:text="Resume"
             android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
             android:background="#4CAF50"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/btn_get_navigation_status"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Get Status"
-            android:layout_marginStart="4dp"
-            android:background="#9C27B0"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
