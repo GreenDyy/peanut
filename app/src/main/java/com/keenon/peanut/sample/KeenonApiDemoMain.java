@@ -57,6 +57,7 @@ public class KeenonApiDemoMain extends BaseActivity {
 
   private static final String BROKER_URL = "ssl://emqx.naiscorp.com:8883";
   private static final String CLIENT_ID = "a8faad3e-44fe-41d6-8084-d0ad7ce6dcd9";
+
   private static final String USER_NAME = "robot01";
   private static final String PASSWORD = "E9SvBhWXK6ZL0z89";
   private String topic = "robot/signal/a8faad3e-44fe-41d6-8084-d0ad7ce6dcd9";
@@ -81,7 +82,9 @@ public class KeenonApiDemoMain extends BaseActivity {
           new DemoInfo(R.drawable.ic_gear_simple, R.string.demo_title_mqtt_demo, R.string.demo_desc_mqtt_demo, MqttDemoActivity.class)
   };
 
-  private boolean isPermissionRequested;
+  public static String getAndroidId(Context context) {
+    return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -128,11 +131,20 @@ public class KeenonApiDemoMain extends BaseActivity {
       @Override
       public void onSuccess(IMqttToken asyncActionToken) {
         addLog("✅ MQTT connect success");
+        // Subcribe ngay sau khi connect thành công
+        try {
+          mqttHandler.subscribe(topic); // QoS = 1
+          addLog("📡 Subscribed to topic: " + topic);
+          Log.d(TAG, "📡 Subscribed to topic: " + topic);
+        } catch (Exception e) {
+          addLog("❌ Subscribe failed: " + e.getMessage());
+          Log.d(TAG, "❌ Subscribe failed: " + e.getMessage());
+        }
       }
 
       @Override
       public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-        addLog("❌ MQTT connect failed: " + (exception != null ? exception.getMessage() : "Unknown"));
+        Log.d(TAG,"❌ MQTT connect failed: " + (exception != null ? exception.getMessage() : "Unknown"));
       }
     };
 
@@ -140,21 +152,24 @@ public class KeenonApiDemoMain extends BaseActivity {
     MqttCallback mqttCallback = new MqttCallback() {
       @Override
       public void connectionLost(Throwable cause) {
-        addLog("🚨 MQTT connection lost: " + (cause != null ? cause.getMessage() : "Unknown"));
+//        addLog("🚨 MQTT connection lost: " + (cause != null ? cause.getMessage() : "Unknown"));
+        Log.d(TAG, "🚨 MQTT connection lost");
       }
 
       @Override
       public void messageArrived(String topic, MqttMessage message) {
         String payload = new String(message.getPayload());
-        addLog("📩 Message arrived [" + topic + "]: " + payload);
+//        addLog("📩 Message arrived [" + topic + "]: " + payload);
+        Log.d(TAG, "📩 Message arrived [" + topic + "]: " + payload);
       }
 
       @Override
       public void deliveryComplete(IMqttDeliveryToken token) {
-        addLog("✅ Message delivered");
+        Log.d(TAG,"✅ Message delivered");
       }
     };
-
+    String CLIENT_ID = getAndroidId(this);
+    Log.d(TAG,"CLIENT_ID: "+ CLIENT_ID);
     // Kết nối MQTT
     mqttHandler.connect(BROKER_URL, CLIENT_ID, USER_NAME, PASSWORD, mqttActionListener, mqttCallback);
   }
