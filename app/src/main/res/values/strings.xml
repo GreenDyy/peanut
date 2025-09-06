@@ -140,4 +140,8 @@
     <string name="str_door_3">Door3</string>
     <string name="str_door_4">Door4</string>
     <string name="test_api">Test API</string>
+    
+    <!-- MQTT Demo -->
+    <string name="demo_title_mqtt_demo">MQTT Demo</string>
+    <string name="demo_desc_mqtt_demo">Test MQTT publish và subscribe với MqttHandler</string>
 </resources>

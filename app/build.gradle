@@ -97,6 +97,8 @@ dependencies {
     implementation  'com.umeng.umsdk:common:9.4.0'// 必选
     implementation  'com.umeng.umsdk:asms:1.2.3'// 必选
 
+    // MQTT Client dependencies
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
 
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.5'

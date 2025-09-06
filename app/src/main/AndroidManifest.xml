@@ -92,12 +92,6 @@
         <activity
             android:name=".chassis.ChargerDemo"
             android:label="@string/demo_title_charger" />
-        <activity
-            android:name=".chassis.HeadMotorDemo"
-            android:label="@string/demo_title_head_motor" />
-        <activity
-            android:name=".chassis.MotorDemo"
-            android:label="@string/demo_title_motor" />
         <activity android:name=".util.BaseActivity"></activity>
 
                 <activity android:name=".test.RobotKeenonActivity"
@@ -120,6 +114,9 @@ android:label="Test Camera Detect Human" />
 
         <activity android:name=".test.HeadMotorControlActivity"
 android:label="Head Motor Control" />
+
+        <activity android:name=".test.MqttDemoActivity"
+android:label="MQTT Demo" />
 
     </application>
 
