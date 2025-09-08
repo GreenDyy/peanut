@@ -41,6 +41,9 @@ import com.keenon.sdk.component.runtime.PeanutRuntime;
 import com.keenon.peanut.sample.util.PeanutSDKManager;
 import com.keenon.sdk.embedded.common.PeanutSensors;
 import com.keenon.sdk.external.PeanutSDK;
+import com.keenon.sdk.hedera.model.ApiError;
+import com.keenon.sdk.robot.ApiCallback;
+import com.keenon.sdk.robot.base.BaseResp;
 import com.keenon.sdk.sensor.headmotor.HeadMotorInterface;
 import com.keenon.sdk.sensor.headmotor.SensorHeadMotor;
 
@@ -49,6 +52,8 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
@@ -65,7 +70,7 @@ public class KeenonApiDemoMain extends BaseActivity {
 
   private static final String USER_NAME = "robot01";
   private static final String PASSWORD = "E9SvBhWXK6ZL0z89";
-  private String topic = "robot/signal/a8faad3e-44fe-41d6-8084-d0ad7ce6dcd9";
+  private String topic = "robot/signal";
 
   private MqttHandler mqttHandler;
   private StringBuilder messageLog = new StringBuilder();
@@ -113,6 +118,11 @@ public class KeenonApiDemoMain extends BaseActivity {
     initView();
     checkAndInitSDK();
     initMqtt();
+
+    String deviceId = getAndroidId(KeenonApiDemoMain.this);
+    String serial = Build.SERIAL;
+    Log.d(TAG, "📱 My Serial ID: " + serial);
+    Log.d(TAG, "📱 Device ID: " + deviceId);
   }
 
   private void initView() {
@@ -189,18 +199,79 @@ public class KeenonApiDemoMain extends BaseActivity {
       @Override
       public void messageArrived(String topic, MqttMessage message) {
         String payload = new String(message.getPayload());
-        // addLog("📩 Message arrived [" + topic + "]: " + payload);
         Log.d(TAG, "📩 Message arrived [" + topic + "]: " + payload);
-        // gọi hàm gật đầu tại đây nè
-        Log.d(TAG, "🔄 Tiến hành gật đầu.");
-        if (SensorHeadMotor.getInstance() != null) {
-          SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PC);
-          Log.d(TAG, "✅Đã thực hiện (PC - Gật đầu)");
-        }
-        else {
-          Log.e(TAG, "❌ SensorHeadMotor chưa khởi tạo");
-        }
 
+        String deviceId = getAndroidId(KeenonApiDemoMain.this);
+        String serial = Build.SERIAL;
+        Log.d(TAG, "📱 My Serial ID: " + serial);
+        Log.d(TAG, "📱 Device ID: " + deviceId);
+        try {
+          //convert sang Json
+          JSONObject json = new JSONObject(payload);
+          //field data
+          JSONObject data = json.getJSONObject("data");
+          String type = data.getString("type");
+          Log.d(TAG, "📱 Type: " + type);
+          String name = data.getString("name");
+          Log.d(TAG, "📱 Name: " + name);
+
+
+          JSONObject target = json.getJSONObject("target");
+          // Lấy mảng robotIds từ object target
+          JSONArray robotIds = target.getJSONArray("robotIds");
+          //check xem robot id có tồn tại trong robotIds ko?
+          for(int i = 0; i<= robotIds.length(); i++) {
+            String id = robotIds.getString(i);
+            Log.d(TAG, "📱 Robot ID in loop: " + id);
+            //de963 tạm fix cunf71 nha
+            if ("a8faad3e-44fe-41d6-8084-d0ad7ce6dcd9".equals(id)) {
+              Log.d(TAG, "✅ robotId có tồn tại: " + id + " trong robotIds, tiến hành thực hiện hành động!");
+              //ACTION
+              if (type.toLowerCase().equals("task")) {
+                switch (name.toLowerCase()) {
+                  case "nod":
+                    Log.d(TAG, "🔄 Tiến hành gật đầu.");
+                    if (SensorHeadMotor.getInstance() != null) {
+                      SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.RESET);
+                      Log.d(TAG, "✅Đã thực hiện (PC - Gật đầu)");
+                    }
+                    else {
+                      Log.e(TAG, "❌ SensorHeadMotor chưa khởi tạo");
+                    }
+                    break;
+                  case "charge":
+                    Log.d(TAG, "🔄 Tiến hành đi sạc!");
+                    int pointId = 1;//charge tuỳ theo id trong map nha
+                    PeanutSDK.getInstance().navigation().setTarget(pointId, 0, new ApiCallback<BaseResp<String>>() {
+                      @Override
+                      public void onSuccess(BaseResp<String> result) {
+                        Log.d(TAG, "✅ Điều hướng tới điểm đích ID=" + pointId + " thành công");
+                        Log.d(TAG, "📊 Kết quả: " + result.getData());
+                        Log.d(TAG, "🔢 Mã phản hồi: " + result.getCode());
+                      }
+
+                      @Override
+                      public void onSuccess(String requestId, BaseResp<String> result) {
+                        onSuccess(result);
+                      }
+
+                      @Override
+                      public void onFail(ApiError error) {
+                        Log.e(TAG, "❌ Điều hướng tới điểm đích ID=" + pointId + " thất bại: " + error.toString());
+                      }
+                    });
+                    break;
+                  default:
+                    Log.d(TAG, "⚠️ Task không xác định: " + name);
+                    break;
+                }
+              }
+            }
+          }
+        }
+        catch ( Exception e ) {
+          Log.e(TAG, "❌ Error parsing JSON: " + e.getMessage());
+        }
       }
 
       @Override
@@ -208,7 +279,7 @@ public class KeenonApiDemoMain extends BaseActivity {
         Log.d(TAG, "✅ Message delivered");
       }
     };
-    String CLIENT_ID = getAndroidId(this);
+    String CLIENT_ID = getAndroidId(KeenonApiDemoMain.this);
     Log.d(TAG, "CLIENT_ID: " + CLIENT_ID);
     // Kết nối MQTT
     mqttHandler.connect(BROKER_URL, CLIENT_ID, USER_NAME, PASSWORD, mqttActionListener, mqttCallback);
