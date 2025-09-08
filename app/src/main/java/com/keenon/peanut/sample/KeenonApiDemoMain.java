@@ -220,7 +220,7 @@ public class KeenonApiDemoMain extends BaseActivity {
           // Lấy mảng robotIds từ object target
           JSONArray robotIds = target.getJSONArray("robotIds");
           //check xem robot id có tồn tại trong robotIds ko?
-          for(int i = 0; i<= robotIds.length(); i++) {
+          for(int i = 0; i < robotIds.length(); i++) {
             String id = robotIds.getString(i);
             Log.d(TAG, "📱 Robot ID in loop: " + id);
             //de963 tạm fix cunf71 nha
