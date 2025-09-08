@@ -115,24 +115,21 @@ public class RobotKeenonActivity extends BaseActivity {
             initRuntime();
         } else {
             // Sử dụng PeanutSDKManager để khởi tạo SDK
-            PeanutSDKManager.initializeSDK(this,  new PeanutSDK.ErrorListener() {
-                @Override
-                public void onInit(int statusCode) {
-                    switch (statusCode) {
-                        case PeanutSDK.SDK_INIT_SUCCESS:
-                            addLog("SDK", "✅ PeanutSDK khởi tạo thành công");
-                            isSDKInitialized = true; // Gán lại biến khi SDK khởi tạo thành công
-                            initRuntime();
-                            break;
+            PeanutSDKManager.initializeSDK(this, statusCode -> {
+                switch (statusCode) {
+                    case PeanutSDK.SDK_INIT_SUCCESS:
+                        addLog("SDK", "✅ PeanutSDK khởi tạo thành công");
+                        isSDKInitialized = true; // Gán lại biến khi SDK khởi tạo thành công
+                        initRuntime();
+                        break;
 
-                        case PeanutSDK.SDK_INITIALIZING:
-                            addLog("SDK", "⏳ PeanutSDK đang trong quá trình khởi tạo...");
-                            break;
+                    case PeanutSDK.SDK_INITIALIZING:
+                        addLog("SDK", "⏳ PeanutSDK đang trong quá trình khởi tạo...");
+                        break;
 
-                        default:
-                            addLog("SDK", "❌ PeanutSDK khởi tạo thất bại với mã: " + statusCode);
-                            break;
-                    }
+                    default:
+                        addLog("SDK", "❌ PeanutSDK khởi tạo thất bại với mã: " + statusCode);
+                        break;
                 }
             });
         }

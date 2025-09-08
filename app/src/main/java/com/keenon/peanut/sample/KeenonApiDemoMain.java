@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -38,6 +39,10 @@ import com.keenon.common.utils.VersionInfo;
 import com.keenon.peanut.sample.util.MqttHandler;
 import com.keenon.sdk.component.runtime.PeanutRuntime;
 import com.keenon.peanut.sample.util.PeanutSDKManager;
+import com.keenon.sdk.embedded.common.PeanutSensors;
+import com.keenon.sdk.external.PeanutSDK;
+import com.keenon.sdk.sensor.headmotor.HeadMotorInterface;
+import com.keenon.sdk.sensor.headmotor.SensorHeadMotor;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -65,21 +70,34 @@ public class KeenonApiDemoMain extends BaseActivity {
   private MqttHandler mqttHandler;
   private StringBuilder messageLog = new StringBuilder();
 
-  @BindView(R.id.text_Info) TextView text;
-  @BindView(R.id.cb_laser) CheckBox cbLaser;
-  @BindView(R.id.cb_label) CheckBox cbLabel;
-  @BindView(R.id.listView) ListView mListView;
+  @BindView(R.id.text_Info)
+  TextView text;
+  @BindView(R.id.cb_laser)
+  CheckBox cbLaser;
+  @BindView(R.id.cb_label)
+  CheckBox cbLabel;
+  @BindView(R.id.listView)
+  ListView mListView;
 
   private static final DemoInfo[] DEMOS = {
-          new DemoInfo(R.drawable.ic_gear_simple, R.string.demo_title_baselist, R.string.demo_desc_baselist, BaseDemo.class),
-          new DemoInfo(R.drawable.ic_battery_simple, R.string.demo_title_chassislist, R.string.demo_desc_chassislist, ChassisList.class),
-          new DemoInfo(R.drawable.ic_robot_simple, R.string.demo_title_robot_keenon, R.string.demo_desc_robot_keenon, RobotKeenonActivity.class),
-          new DemoInfo(R.drawable.ic_robot_simple, R.string.demo_title_head_motor_control, R.string.demo_desc_head_motor_control, HeadMotorControlActivity.class),
-          new DemoInfo(R.drawable.ic_nav_simple, R.string.demo_title_test_navigation, R.string.demo_desc_test_navigation, TestNavigationActivity.class),
-          new DemoInfo(R.drawable.ic_nav_simple, R.string.demo_title_test_navigate2, R.string.demo_desc_test_navigate2, TestNavigate2Activity.class),
-          new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_perception, R.string.demo_desc_test_perception, TestPerceptionActivity.class),
-          new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_camera_detect_human, R.string.demo_desc_test_camera_detect_human, TestCameraDetectHumanActivity.class),
-          new DemoInfo(R.drawable.ic_gear_simple, R.string.demo_title_mqtt_demo, R.string.demo_desc_mqtt_demo, MqttDemoActivity.class)
+      new DemoInfo(R.drawable.ic_gear_simple, R.string.demo_title_baselist, R.string.demo_desc_baselist,
+          BaseDemo.class),
+      new DemoInfo(R.drawable.ic_battery_simple, R.string.demo_title_chassislist, R.string.demo_desc_chassislist,
+          ChassisList.class),
+      new DemoInfo(R.drawable.ic_robot_simple, R.string.demo_title_robot_keenon, R.string.demo_desc_robot_keenon,
+          RobotKeenonActivity.class),
+      new DemoInfo(R.drawable.ic_robot_simple, R.string.demo_title_head_motor_control,
+          R.string.demo_desc_head_motor_control, HeadMotorControlActivity.class),
+      new DemoInfo(R.drawable.ic_nav_simple, R.string.demo_title_test_navigation, R.string.demo_desc_test_navigation,
+          TestNavigationActivity.class),
+      new DemoInfo(R.drawable.ic_nav_simple, R.string.demo_title_test_navigate2, R.string.demo_desc_test_navigate2,
+          TestNavigate2Activity.class),
+      new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_perception, R.string.demo_desc_test_perception,
+          TestPerceptionActivity.class),
+      new DemoInfo(R.drawable.ic_vision_eye, R.string.demo_title_test_camera_detect_human,
+          R.string.demo_desc_test_camera_detect_human, TestCameraDetectHumanActivity.class),
+      new DemoInfo(R.drawable.ic_gear_simple, R.string.demo_title_mqtt_demo, R.string.demo_desc_mqtt_demo,
+          MqttDemoActivity.class)
   };
 
   public static String getAndroidId(Context context) {
@@ -108,7 +126,7 @@ public class KeenonApiDemoMain extends BaseActivity {
     cbLabel.setChecked(PeanutConstants.LOCAL_LINK_PROXY.equals(getType()));
   }
 
-  @OnCheckedChanged({R.id.cb_laser, R.id.cb_label})
+  @OnCheckedChanged({ R.id.cb_laser, R.id.cb_label })
   public void onViewChecked(CompoundButton view, boolean isChecked) {
     if (view.getId() == R.id.cb_laser && isChecked) {
       saveToSP(PeanutConstants.REMOTE_LINK_PROXY);
@@ -120,6 +138,17 @@ public class KeenonApiDemoMain extends BaseActivity {
       cbLaser.setChecked(false);
       PeanutSDKManager.releaseSDK();
       checkAndInitSDK();
+    }
+  }
+
+  private void initHeadMotorSensor() {
+    try {
+      PeanutSensors.getInstance().putSensor(SensorHeadMotor.getInstance());
+      SensorHeadMotor.getInstance().setSerialDirect(true);
+      Log.d(TAG, "✅ đã put Sensor headmotor vào PeanutSensor & SerialDirect enabled");
+      Log.d(TAG, "✅ Head Motor đã sẳn sàng!");
+    } catch (Exception e) {
+      Log.e(TAG, "❌ Failed to init sensor: " + e.getMessage());
     }
   }
 
@@ -144,7 +173,7 @@ public class KeenonApiDemoMain extends BaseActivity {
 
       @Override
       public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-        Log.d(TAG,"❌ MQTT connect failed: " + (exception != null ? exception.getMessage() : "Unknown"));
+        Log.d(TAG, "❌ MQTT connect failed: " + (exception != null ? exception.getMessage() : "Unknown"));
       }
     };
 
@@ -152,24 +181,35 @@ public class KeenonApiDemoMain extends BaseActivity {
     MqttCallback mqttCallback = new MqttCallback() {
       @Override
       public void connectionLost(Throwable cause) {
-//        addLog("🚨 MQTT connection lost: " + (cause != null ? cause.getMessage() : "Unknown"));
+        // addLog("🚨 MQTT connection lost: " + (cause != null ? cause.getMessage() :
+        // "Unknown"));
         Log.d(TAG, "🚨 MQTT connection lost");
       }
 
       @Override
       public void messageArrived(String topic, MqttMessage message) {
         String payload = new String(message.getPayload());
-//        addLog("📩 Message arrived [" + topic + "]: " + payload);
+        // addLog("📩 Message arrived [" + topic + "]: " + payload);
         Log.d(TAG, "📩 Message arrived [" + topic + "]: " + payload);
+        // gọi hàm gật đầu tại đây nè
+        Log.d(TAG, "🔄 Tiến hành gật đầu.");
+        if (SensorHeadMotor.getInstance() != null) {
+          SensorHeadMotor.getInstance().onControlHeadMotorPlay(HeadMotorInterface.MotorAction.PC);
+          Log.d(TAG, "✅Đã thực hiện (PC - Gật đầu)");
+        }
+        else {
+          Log.e(TAG, "❌ SensorHeadMotor chưa khởi tạo");
+        }
+
       }
 
       @Override
       public void deliveryComplete(IMqttDeliveryToken token) {
-        Log.d(TAG,"✅ Message delivered");
+        Log.d(TAG, "✅ Message delivered");
       }
     };
     String CLIENT_ID = getAndroidId(this);
-    Log.d(TAG,"CLIENT_ID: "+ CLIENT_ID);
+    Log.d(TAG, "CLIENT_ID: " + CLIENT_ID);
     // Kết nối MQTT
     mqttHandler.connect(BROKER_URL, CLIENT_ID, USER_NAME, PASSWORD, mqttActionListener, mqttCallback);
   }
@@ -178,12 +218,12 @@ public class KeenonApiDemoMain extends BaseActivity {
     if (Build.VERSION.SDK_INT >= 23) {
       ArrayList<String> permissionsList = new ArrayList<>();
       String[] permissions = {
-              Manifest.permission.ACCESS_NETWORK_STATE,
-              Manifest.permission.INTERNET,
-              Manifest.permission.WRITE_EXTERNAL_STORAGE,
-              Manifest.permission.READ_EXTERNAL_STORAGE,
-              Manifest.permission.ACCESS_WIFI_STATE,
-              Manifest.permission.READ_PHONE_STATE
+          Manifest.permission.ACCESS_NETWORK_STATE,
+          Manifest.permission.INTERNET,
+          Manifest.permission.WRITE_EXTERNAL_STORAGE,
+          Manifest.permission.READ_EXTERNAL_STORAGE,
+          Manifest.permission.ACCESS_WIFI_STATE,
+          Manifest.permission.READ_PHONE_STATE
       };
       for (String perm : permissions) {
         if (PackageManager.PERMISSION_GRANTED != checkSelfPermission(perm)) {
@@ -201,11 +241,21 @@ public class KeenonApiDemoMain extends BaseActivity {
   }
 
   private void initSDK() {
-    PeanutSDKManager.initializeSDK(getApplicationContext(), errorCode -> {
-      if (errorCode == com.keenon.sdk.external.PeanutSDK.SDK_INIT_SUCCESS) {
-        addLog("✅ SDK Init Success");
-      } else {
-        addLog("❌ SDK Init Failed: " + errorCode);
+    PeanutSDKManager.initializeSDK(getApplicationContext(), statusCode -> {
+      switch (statusCode) {
+        case PeanutSDK.SDK_INIT_SUCCESS:
+//          Log.d(TAG, "✅ PeanutSDK khởi tạo thành công");
+          // khởi tạo head motor
+          initHeadMotorSensor();
+          break;
+
+        case PeanutSDK.SDK_INITIALIZING:
+          Log.d(TAG, "⏳ PeanutSDK đang trong quá trình khởi tạo...");
+          break;
+
+        default:
+          Log.d(TAG, "❌ PeanutSDK khởi tạo thất bại với mã: " + statusCode);
+          break;
       }
     });
   }
